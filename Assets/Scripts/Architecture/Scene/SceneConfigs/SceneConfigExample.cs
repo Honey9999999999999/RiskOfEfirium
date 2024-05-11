@@ -17,7 +17,7 @@ namespace Architecture
 
             CreateInteractor<BankInteractor>();
             CreateInteractor<LabyrinthInteractor>();
-            CreateInteractor<MapDrawerInteractor>();
+            CreateInteractor<MiniMapInteractor>();
 
             return _interactorsMap;
         }

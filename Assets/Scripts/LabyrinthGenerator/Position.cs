@@ -11,12 +11,19 @@
             this.y = y;
         }
 
-        public Position GetPosition(DirectionEnum direction)
+        public static Position operator +(Position pos1, Position pos2)
         {
-            int x = direction == DirectionEnum.Left ? -1 : direction == DirectionEnum.Right ? 1 : 0;
-            int y = direction == DirectionEnum.Down ? -1 : direction == DirectionEnum.Top ? 1 : 0;
+            return new Position(pos1.x + pos2.x, pos1.y + pos2.y);
+        }
 
-            return new Position(this.x + x, this.y + y);
+        public bool Equals(Position pos)
+        {
+            return x == pos.x && y == pos.y;
+        }
+
+        public override string ToString()
+        {
+            return $"({x};{y})";
         }
     }
 }
