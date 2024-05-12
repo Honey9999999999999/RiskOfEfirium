@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Assets.Scripts.LabyrinthGenerator
+{
+    public abstract class Room
+    {
+        public Room(List<Block> blocks)
+        {
+            this.blocks = blocks;
+            CalculateCountDoors();
+        }
+
+        public List<Block> blocks { get; }
+
+        public int countDoors { get; private set; }
+
+        public void RandomRotate()
+        {
+            int count = new Random().Next(4);
+
+            for (int i = 0; i < count; i++)
+            {
+                Rotate();
+            }
+        }
+
+        public void Rotate()
+        {
+            foreach (var block in blocks)
+            {
+                block.Rotate();
+            }
+        }
+
+        public void SetInPosition(IntVector2 position)
+        {
+            foreach (var block in blocks)
+            {
+                block.SetInPosition(position);
+            }
+        }
+
+        public Block GetBlock(IntVector2 position)
+        {
+            if(TryGetBlock(position, out Block block))
+            {
+                return block;
+            }
+
+            throw new System.Exception("this room has't that block");
+        }
+        public bool TryGetBlock(IntVector2 position, out Block block)
+        {
+            foreach (var checkingBlock in blocks)
+            {
+                if(checkingBlock.position == position)
+                {
+                    block = checkingBlock;
+                    return true;
+                }
+            }
+
+            block = null;
+            return false;
+        }
+
+        public void OverrideCenter(Block block)
+        {
+            IntVector2 vector2 = new (block.offsetFromCenter.x, block.offsetFromCenter.y);
+            OverrideCenter(vector2);
+        }
+        public void OverrideCenter(IntVector2 position)
+        {
+            foreach (var block in blocks)
+            {
+                block.offsetFromCenter -= position;
+            }
+        }
+        public List<IntVector2> GetOccupiedPosition()
+        {
+            List<IntVector2> positions = new();
+
+            foreach (var block in blocks)
+            {
+                positions.Add(block.position);
+            }
+
+            return positions;
+        }
+
+        private void CalculateCountDoors()
+        {
+            foreach (var block in blocks)
+            {
+                countDoors += block.GetCountDoors();
+            }
+        }
+
+        public override string ToString()
+        {
+            return GetType().ToString();
+        }
+    }
+}

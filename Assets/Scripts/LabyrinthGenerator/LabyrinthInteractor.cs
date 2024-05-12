@@ -1,5 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.LabyrinthGenerator.GeneratorConfigs;
 using UnityEngine;
 
 namespace Assets.Scripts.LabyrinthGenerator

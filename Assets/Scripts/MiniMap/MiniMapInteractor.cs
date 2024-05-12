@@ -1,7 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.LabyrinthGenerator;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.MapDrawer
@@ -27,6 +24,13 @@ namespace Assets.Scripts.MapDrawer
         public override void OnStart()
         {
             base.OnStart();
+        }
+
+        public void ReDrawMap()
+        {
+            GameObject.Destroy(miniMap);
+
+            miniMap = MiniMapDrawer.CreateMiniMap();
         }
     }
 }

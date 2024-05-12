@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.LabyrinthGenerator.Rooms;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
@@ -12,7 +11,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             rooms = new()
             {
-                new EnterRoom()
+                //new EnterRoom()
             };
 
             while(rooms.Count < MAX_ROOMS)
