@@ -2,8 +2,6 @@
 using Assets.Scripts.LabyrinthGenerator;
 using System;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,8 +15,10 @@ namespace Assets.Scripts.MapDrawer
         private static Dictionary<Type, Color32> _roomColorMap = new()
         {
             //[typeof(EnterRoom)] = Color.blue,
+            [typeof(SimpleRoom)] = Color.gray,
             [typeof(TRoom)] = new Color32(0, 255, 125, 255),
-            //[typeof(LongRoom)] = Color.gray,
+            [typeof(LongRoomA)] = Color.yellow,
+            [typeof(LongRoomB)] = new Color32(255, 128, 64, 255),
             //[typeof(ExitRoom)] = Color.red
         };
 
@@ -42,10 +42,13 @@ namespace Assets.Scripts.MapDrawer
 
                     foreach (var door in block.doors)
                     {
-                        GameObject drawingDoor = GameObject.Instantiate(Resources.Load<GameObject>(SIMPLE_ROOM_PATH), drawingRoom.transform);
-                        drawingDoor.GetComponent<Image>().color = Color.magenta;
-                        drawingDoor.GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
-                        drawingDoor.transform.localPosition = new Vector2(door.direction.x * 50, door.direction.y * 50);
+                        if (door.isLeadSomeWhere)
+                        {
+                            GameObject drawingDoor = GameObject.Instantiate(Resources.Load<GameObject>(SIMPLE_ROOM_PATH), drawingRoom.transform);
+                            drawingDoor.GetComponent<Image>().color = Color.magenta;
+                            drawingDoor.GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
+                            drawingDoor.transform.localPosition = new Vector2(door.direction.x * 50, door.direction.y * 50);
+                        }                        
                     }
                 }                
             }

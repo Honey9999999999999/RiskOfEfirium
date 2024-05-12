@@ -7,18 +7,27 @@ namespace Assets.Scripts.LabyrinthGenerator
         public const int MAX_ROOMS = 300;
         public override int roomsCount => MAX_ROOMS;
 
+        private delegate Room RoomCreator<T>();
+        private readonly List<RoomCreator<Room>> typesRoom = new()
+        {
+            CreateRandomRoom<SimpleRoom>,
+            CreateRandomRoom<LongRoomA>,
+            CreateRandomRoom<LongRoomB>,
+            CreateRandomRoom<TRoom>
+        };
+
         public override List<Room> CreateLevelMap()
         {
             rooms = new List<Room>()
             {
-                new TRoom()
+                new SimpleRoom()
             };
             rooms[0].RandomRotate();
 
             while (rooms.Count < MAX_ROOMS)
             {
                 Door freeDoor = GetRandomFreeDoor();
-                Room room = new TRoom();
+                Room room = CreateRandomRoom();
                 room.RandomRotate();
                 room.SetInPosition(freeDoor.targetPosition);
 
@@ -34,6 +43,9 @@ namespace Assets.Scripts.LabyrinthGenerator
                         if (IsFitRoom(room.GetOccupiedPosition()))
                         {
                             rooms.Add(room);
+                            freeDoor.isLeadSomeWhere = true;
+                            chekingDoor.isLeadSomeWhere = true;
+
                             break;
                         }
                         else
@@ -65,6 +77,16 @@ namespace Assets.Scripts.LabyrinthGenerator
             List<Door> freeDoors = GetFreeDoors();
 
             return freeDoors[random.Next(freeDoors.Count)];
+        }
+
+
+        private Room CreateRandomRoom()
+        {
+            return typesRoom[random.Next(typesRoom.Count)]();
+        }
+        private static Room CreateRandomRoom<TType>() where TType : Room, new()
+        {
+            return new TType();
         }
 
         private List<Door> GetFreeDoors()
