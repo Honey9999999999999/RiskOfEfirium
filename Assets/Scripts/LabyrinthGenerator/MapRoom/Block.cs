@@ -2,14 +2,14 @@
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
-    public class Block
+    public abstract class Block
     {
         private IntVector2 _position;        
         private IntVector2 _offset;
 
-        public Block(IntVector2 offsetFromCenter, List<Door> doors)
+        public Block(IntVector2 offsetFromCenter, Direction direction, List<Door> doors)
         {
-            _position = new(0, 0);
+            _position = new(0, 0);            
             _offset = offsetFromCenter;
 
             foreach (var door in doors)
@@ -18,6 +18,8 @@ namespace Assets.Scripts.LabyrinthGenerator
             }
 
             this.doors = doors;
+
+            RotateToDirection(direction);
         }
 
         public List<Door> doors { get; }
@@ -35,6 +37,19 @@ namespace Assets.Scripts.LabyrinthGenerator
                 SetDoorsInPosition();
             }
         }
+        public Direction RotatedOn { get; private set; }
+
+        private void RotateToDirection(Direction direction)
+        {
+            int rotationCount = (int)direction;
+
+            for (int i = 0; i < rotationCount; i++)
+            {
+                RotateDoors();
+            }
+
+            RotatedOn = direction;
+        }
 
         internal void Rotate()
         {
@@ -43,6 +58,13 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             offsetFromCenter = new(x, y);
 
+            RotateDoors();
+
+            int rotation = (int)RotatedOn + 1;
+            RotatedOn = (Direction)(rotation >= 4 ? 0 : rotation);
+        }
+        private void RotateDoors()
+        {
             foreach (var door in doors)
             {
                 door.Rotate();

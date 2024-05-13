@@ -2,11 +2,11 @@
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
-    internal class SimpleRoom : Room
+    internal class SimpleRoomB : Room
     {
-        public SimpleRoom() : base(new List<Block>()
+        public SimpleRoomB() : base(new()
         {
-            new SimpleBlock4(new(0, 0))
+            new SimpleBlock2(new(0, 0), Direction.Top)
         })
         {
         }

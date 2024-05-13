@@ -28,14 +28,9 @@ namespace Assets.Scripts.Architecture
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    labyrinthInteractor.levelMap.Rotate();
+                    labyrinthInteractor.OnCreate();
                     mapInteractor.ReDrawMap();
                 }
-                if (Input.GetKeyDown(KeyCode.O))
-                {
-                    labyrinthInteractor.levelMap.rooms[0].OverrideCenter(labyrinthInteractor.levelMap.rooms[0].blocks[0]);
-                }
-
                 if (Input.GetKeyDown(KeyCode.A))
                 {
                     bank.AddCoins(5);

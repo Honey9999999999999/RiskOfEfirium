@@ -3,8 +3,8 @@
     public enum Direction
     {
         Top,
-        Down,
         Left,
+        Down,        
         Right
     }
     public static class DirectionHandler
