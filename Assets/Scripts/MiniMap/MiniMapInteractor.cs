@@ -1,4 +1,5 @@
 ﻿using Architecture;
+using Assets.Scripts.MiniMap.Configs;
 using UnityEngine;
 
 namespace Assets.Scripts.MapDrawer
@@ -12,7 +13,7 @@ namespace Assets.Scripts.MapDrawer
         {
             base.OnCreate();
 
-            drawer = new();
+            drawer = new(new MinimazeDrawerConfig());
         }
 
         public override void Initialize()

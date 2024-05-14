@@ -18,7 +18,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             rooms = new List<Room>()
             {
-                new SimpleRoom()
+                new SimpleRoomA()
             };
             rooms[0].RandomRotate();
 
@@ -93,7 +93,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var door in freeDoors)
             {
-                CreateRoomInDoor(door, random.Next(0, 2) == 1 ? new CloseRoom() : new LongRoomC());
+                CreateRoomInDoor(door, random.Next(0, 2) == 1 ? new SimpleRoomC() : new LongRoomC());
                 //rooms[rooms.Count - 1].DefineRoomType();
             }
         }       

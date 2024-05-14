@@ -1,7 +1,7 @@
 ﻿using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
-using System;
-using System.Collections.Generic;
+using Assets.Scripts.MiniMap.Configs;
+using Assets.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,45 +9,24 @@ namespace Assets.Scripts.MapDrawer
 {
     public class MiniMapDrawer
     {
-        private const int TEXTURE_BLOCK_SIZE = 64;
-
-        private const string MINIMAP_PATH = "Prefabs/MiniMap/Minimap";
-        private const string SIMPLE_ROOM_PATH = "Prefabs/MiniMap/SimpleRoom";
-        private const string PLAYER_PATH = "Prefabs/MiniMap/Player";
-
-        private Dictionary<Type, string> _blockSpriteMap = new()
-        {
-            [typeof(SimpleBlock1)] = "Sprites/MiniMap/SimpleBlock1",
-            [typeof(SimpleBlock2)] = "Sprites/MiniMap/SimpleBlock2",
-            [typeof(SimpleBlock4)] = "Sprites/MiniMap/SimpleBlock4",
-            [typeof(TBlock)] = "Sprites/MiniMap/TBlock",
-
-            [typeof(CorridorEnd0)] = "Sprites/MiniMap/CorridorEnd0",
-            [typeof(CorridorEnd1)] = "Sprites/MiniMap/CorridorEnd1",
-            [typeof(CorridorEnd3)] = "Sprites/MiniMap/CorridorEnd3",
-            [typeof(CorridorTBlock0)] = "Sprites/MiniMap/CorridorTBlock0",
-
-            [typeof(InterBlock0)] = "Sprites/MiniMap/InterBlock0",
-            [typeof(InterTBlock0)] = "Sprites/MiniMap/InterTBlock0",
-            [typeof(InterGBlock0)] = "Sprites/MiniMap/InterGBlock0",
-            [typeof(InterGBlock1)] = "Sprites/MiniMap/InterGBlock1",
-            [typeof(InterGBlock2)] = "Sprites/MiniMap/InterGBlock2"
-        };
+        private IDrawerConfig _config;
 
         private LevelMap _map;
 
         private GameObject _miniMap;
         private GameObject _player;
 
-        public MiniMapDrawer()
+        public MiniMapDrawer(IDrawerConfig config)
         {
+            _config = config;
+
             Game.GetInteractor<PlayerPositionInteractor>().OnInitialized += DrawPlayer;
             Game.GetInteractor<PlayerPositionInteractor>().OnPositionChanged += MovePlayer;
         }
 
         public GameObject CreateMiniMap()
         {
-            _miniMap = GameObject.Instantiate(Resources.Load<GameObject>(MINIMAP_PATH));
+            _miniMap = Instantiater.Instantiate<GameObject>(_config.minimapPath);
             _map = Game.GetInteractor<LabyrinthInteractor>().levelMap;
 
             foreach (var room in _map.rooms)
@@ -60,25 +39,25 @@ namespace Assets.Scripts.MapDrawer
 
         private void DrawRoom(Room room)
         {
+            GameObject drawingRoom = Instantiater.Instantiate<GameObject>(_config.roomPrefabMap[room.GetType()], _miniMap.transform);
+            Vector2 roomPosition = Vector2.zero;
+
             foreach (var block in room.blocks)
             {
-                DrawBlock(block);
-                DrawDoors(block);
+                roomPosition += new Vector2(block.position.x, block.position.y);
             }
-        }
 
-        private void DrawBlock(Block block)
-        {
-            GameObject drawingBlock = GameObject.Instantiate(Resources.Load<GameObject>(SIMPLE_ROOM_PATH), _miniMap.transform);
+            roomPosition /= room.blocks.Count;
 
-            Texture2D textureBlock = GameObject.Instantiate(Resources.Load<Texture2D>(_blockSpriteMap[block.GetType()]));
-            drawingBlock.GetComponent<Image>().sprite = Sprite.Create(textureBlock, new Rect(0, 0, textureBlock.width, textureBlock.height), Vector2.zero);
-            drawingBlock.GetComponent<RectTransform>().sizeDelta = new Vector2(TEXTURE_BLOCK_SIZE, TEXTURE_BLOCK_SIZE);
-            drawingBlock.transform.localPosition = GetBlockPosition(block);
+            drawingRoom.GetComponent<Image>().color = _config.roomColorMap[room.type];
+            drawingRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(room.width, room.height) * _config.textureBlockSize;
+            drawingRoom.transform.localPosition = roomPosition * _config.textureBlockSize;
 
-            for (int i = 0; i < (int)block.RotatedOn; i++)
+            Rotate(drawingRoom, room.RotatedOn);
+
+            foreach (var block in room.blocks)
             {
-                drawingBlock.transform.Rotate(Vector3.forward, 90);
+                DrawDoors(block);
             }
         }
 
@@ -86,25 +65,37 @@ namespace Assets.Scripts.MapDrawer
         {
             foreach (var door in block.doors)
             {
-                GameObject drawingDoor = GameObject.Instantiate(Resources.Load<GameObject>(SIMPLE_ROOM_PATH), _miniMap.transform);
-                drawingDoor.GetComponent<Image>().color = door.isLeadSomeWhere ? Color.green : Color.red;
-                drawingDoor.GetComponent<RectTransform>().sizeDelta = new Vector2(5, 5);
                 Vector2 blockPos = GetBlockPosition(block);
-                drawingDoor.transform.localPosition = new Vector2(blockPos.x + door.direction.x * TEXTURE_BLOCK_SIZE / 2,
-                    blockPos.y + door.direction.y * TEXTURE_BLOCK_SIZE / 2);
+
+                GameObject drawingDoor = Instantiater.Instantiate<GameObject>(_config.doorPath, _miniMap.transform);
+                drawingDoor.GetComponent<Image>().color = door.isLeadSomeWhere ? Color.green : Color.red;
+                drawingDoor.GetComponent<RectTransform>().sizeDelta = new Vector2(5, 5);                
+                drawingDoor.transform.localPosition = new Vector2(blockPos.x + door.direction.x * _config.textureBlockSize / 4,
+                    blockPos.y + door.direction.y * _config.textureBlockSize / 4);
+
+                if (door.isLeadSomeWhere)
+                {
+                    GameObject drawingHall = Instantiater.Instantiate<GameObject>(_config.hallPath, _miniMap.transform);
+                    drawingHall.GetComponent<RectTransform>().sizeDelta = new Vector2(_config.textureBlockSize, _config.textureBlockSize);
+
+                    Rotate(drawingHall, DirectionHandler.GetNameDirection(door.direction));
+
+                    drawingHall.transform.localPosition = new Vector2(blockPos.x + door.direction.x * (_config.textureBlockSize + _config.hallOffset),
+                    blockPos.y + door.direction.y * (_config.textureBlockSize + _config.hallOffset));
+                }
             }
         }
 
         private Vector2 GetBlockPosition(Block block)
         {
-            return new Vector2(block.position.x, block.position.y) * TEXTURE_BLOCK_SIZE;
+            return new Vector2(block.position.x, block.position.y) * _config.textureBlockSize;
         }
 
         private void DrawPlayer()
         {
-            _player = GameObject.Instantiate(Resources.Load<GameObject>(PLAYER_PATH), _miniMap.transform);
+            _player = Instantiater.Instantiate<GameObject>(_config.playerPath, _miniMap.transform);
             IntVector2 playerPosition = Game.GetInteractor<PlayerPositionInteractor>().position;
-            _player.transform.localPosition = new Vector2(playerPosition.x, playerPosition.y) * TEXTURE_BLOCK_SIZE;
+            _player.transform.localPosition = new Vector2(playerPosition.x, playerPosition.y) * _config.textureBlockSize;
         }
         private void MovePlayer()
         {
@@ -119,9 +110,17 @@ namespace Assets.Scripts.MapDrawer
 
             pos /= room.blocks.Count;
 
-            _player.transform.localPosition = new Vector2(pos.x, pos.y) * TEXTURE_BLOCK_SIZE;
+            _player.transform.localPosition = new Vector2(pos.x, pos.y) * _config.textureBlockSize;
 
             Debug.Log($"{room.type}");
+        }
+
+        private void Rotate(GameObject obj, Direction direction)
+        {
+            for (int i = 0; i < (int)direction; i++)
+            {
+                obj.transform.Rotate(Vector3.forward, 90);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Assets.Scripts.LabyrinthGenerator.RoomCreators
     {
         public RoomCreatorConfigExample() : base()
         {
-            _chanceMap.Add(0.5f, CreateRoom<SimpleRoom>);
+            _chanceMap.Add(0.5f, CreateRoom<SimpleRoomA>);
             _chanceMap.Add(0.5f, CreateRoom<SimpleRoomB>);
             _chanceMap.Add(0.25f, CreateRoom<LongRoomA>);
             _chanceMap.Add(0.25f, CreateRoom<LongRoomB>);

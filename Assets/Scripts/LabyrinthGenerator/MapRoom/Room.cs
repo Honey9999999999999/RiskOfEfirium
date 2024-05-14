@@ -6,20 +6,36 @@ namespace Assets.Scripts.LabyrinthGenerator
 {
     public abstract class Room
     {
+        protected ControlRandomList<RoomType> variableTypes;
+
         public Room(List<Block> blocks)
         {
             this.blocks = blocks;
             CalculateCountDoors();
             position = new(0, 0);
             variableTypes = new();
+
+            IntVector2 size = new(0, 0);
+
+            foreach (var block in blocks)
+            {
+                size = new IntVector2(size.x < block.offsetFromCenter.x ? block.offsetFromCenter.x : size.x,
+                    size.y < block.offsetFromCenter.y ? block.offsetFromCenter.y : size.y);
+            }
+
+            size += new IntVector2(1, 1);
+
+            width = size.x;
+            height = size.y;
         }
 
         public List<Block> blocks { get; }
         public int countDoors { get; private set; }
         public IntVector2 position { get; private set; }
-
         public RoomType type { get; private set; }
-        protected ControlRandomList<RoomType> variableTypes;
+        public Direction RotatedOn { get; private set; }
+        public int width { get; }
+        public int height { get; }
 
 
         public void RandomRotate()
@@ -38,6 +54,9 @@ namespace Assets.Scripts.LabyrinthGenerator
             {
                 block.Rotate();
             }
+
+            int rotation = (int)RotatedOn + 1;
+            RotatedOn = (Direction)(rotation >= 4 ? 0 : rotation);
         }
 
         public void SetInPosition(IntVector2 position)
