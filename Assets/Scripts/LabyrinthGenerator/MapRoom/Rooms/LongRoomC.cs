@@ -7,8 +7,8 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
     {
         public LongRoomC() : base(new List<Block>()
         {
-            new CorridorEnd1(new(0, 1), Direction.Top),
-            new CorridorEnd0(new(0, 0), Direction.Down)
+            new SimpleBlock1(new(0, 1), Direction.Top),
+            new SimpleBlock0(new(0, 0))
         })
         {
             variableTypes.Add(0.5f, RoomType.CargoRoom);

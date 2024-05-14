@@ -6,10 +6,10 @@ namespace Assets.Scripts.LabyrinthGenerator
     {
         public MediumRoom() : base(new()
         {
-            new InterGBlock1(new(0, 1), Direction.Top),
-            new InterGBlock1(new(1, 1), Direction.Right),
-            new InterGBlock1(new(1, 0), Direction.Down),
-            new InterGBlock1(new(0, 0), Direction.Left)
+            new SimpleBlock1(new(0, 1), Direction.Top),
+            new SimpleBlock1(new(1, 1), Direction.Right),
+            new SimpleBlock1(new(1, 0), Direction.Down),
+            new SimpleBlock1(new(0, 0), Direction.Left)
         })
         {
             variableTypes.Add(0.5f, RoomType.RecreationRoom);

@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
-    public class TBlock : Block
+    public class SimpleBlock3 : Block
     {
-        public TBlock(IntVector2 offsetFromCenter, Direction direction) : base(offsetFromCenter, direction, new List<Door>()
+        public SimpleBlock3(IntVector2 offsetFromCenter, Direction direction) : base(offsetFromCenter, direction, new List<Door>()
         {
             new(Direction.Left),
             new(Direction.Right),
