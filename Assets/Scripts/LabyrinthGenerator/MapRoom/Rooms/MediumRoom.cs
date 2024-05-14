@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.LabyrinthGenerator
+﻿using System;
+
+namespace Assets.Scripts.LabyrinthGenerator
 {
     public class MediumRoom : Room
     {
@@ -10,6 +12,13 @@
             new InterGBlock1(new(0, -1), Direction.Left)
         })
         {
+            variableTypes.Add(0.5f, RoomType.RecreationRoom);
+            variableTypes.Add(0.5f, RoomType.ResidentialRoom);
+        }
+
+        protected override void SetRandomTypeRoom()
+        {
+            SetTypeRoom(variableTypes.GetValue());
         }
     }
 }

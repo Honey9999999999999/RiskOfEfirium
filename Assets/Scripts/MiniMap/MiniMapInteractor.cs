@@ -5,18 +5,21 @@ namespace Assets.Scripts.MapDrawer
 {
     public class MiniMapInteractor : Interactor
     {
+        public MiniMapDrawer drawer { get; private set; }
         public GameObject miniMap { get; private set; }
 
         public override void OnCreate()
         {
             base.OnCreate();
 
-            miniMap = MiniMapDrawer.CreateMiniMap();
+            drawer = new();
         }
 
         public override void Initialize()
         {
             base.Initialize();
+
+            miniMap = drawer.CreateMiniMap();
 
             Debug.Log("MiniMap Initialized!");
         }
@@ -30,7 +33,7 @@ namespace Assets.Scripts.MapDrawer
         {
             GameObject.Destroy(miniMap);
 
-            miniMap = MiniMapDrawer.CreateMiniMap();
+            miniMap = drawer.CreateMiniMap();
         }
     }
 }

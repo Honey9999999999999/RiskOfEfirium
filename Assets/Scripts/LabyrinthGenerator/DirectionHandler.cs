@@ -4,7 +4,7 @@
     {
         Top,
         Left,
-        Down,        
+        Down,
         Right
     }
     public static class DirectionHandler

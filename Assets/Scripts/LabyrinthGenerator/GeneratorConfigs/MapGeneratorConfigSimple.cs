@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
+using System;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.LabyrinthGenerator
@@ -23,10 +24,15 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             while (rooms.Count < MAX_ROOMS)
             {
-                CreateRoom(roomCreatorConfig.CreateRandomRoom());                
-            }
+                CreateRoom(roomCreatorConfig.CreateRandomRoom());
+            }            
 
             AddCloseRooms();
+
+            foreach (var room in rooms)
+            {
+                room.DefineRoomType();
+            }
 
             return rooms;
         }
@@ -54,7 +60,10 @@ namespace Assets.Scripts.LabyrinthGenerator
                     {
                         rooms.Add(room);
                         freeDoor.isLeadSomeWhere = true;
+                        freeDoor.targetRoom = room;
+
                         chekingDoor.isLeadSomeWhere = true;
+                        chekingDoor.targetRoom = GetRoom(freeDoor.selfPosition);
 
                         break;
                     }
@@ -84,8 +93,9 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var door in freeDoors)
             {
-                CreateRoomInDoor(door, new CloseRoom());
+                CreateRoomInDoor(door, random.Next(0, 2) == 1 ? new CloseRoom() : new LongRoomC());
+                //rooms[rooms.Count - 1].DefineRoomType();
             }
-        }
+        }       
     }
 }

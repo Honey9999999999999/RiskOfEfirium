@@ -85,5 +85,29 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             return true;
         }
+
+        public Room GetRoom(IntVector2 position)
+        {
+            if (FindRoom(position, out Room room))
+            {
+                return room;
+            }
+
+            throw new System.Exception("This room does not exist");
+        }
+        public bool FindRoom(IntVector2 position, out Room room)
+        {
+            foreach (var r in rooms)
+            {
+                if (r.TryGetBlock(position, out _))
+                {
+                    room = r;
+                    return true;
+                }
+            }
+
+            room = null;
+            return false;
+        }
     }
 }
