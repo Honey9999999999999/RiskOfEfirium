@@ -1,4 +1,5 @@
 ﻿using Architecture;
+using Assets.Scripts.LabyrinthGenerator.RoomCreators;
 using UnityEngine;
 
 namespace Assets.Scripts.LabyrinthGenerator
@@ -18,7 +19,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             base.OnCreate();
 
-            levelMap = new(new MapGeneratorConfigAdvanced());
+            levelMap = new(new MapGeneratorConfigSimple(new RoomCreatorConfigExample()));
         }
 
         public override void OnStart()

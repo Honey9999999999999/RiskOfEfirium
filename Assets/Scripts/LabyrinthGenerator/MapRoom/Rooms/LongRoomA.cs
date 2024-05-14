@@ -6,20 +6,16 @@ namespace Assets.Scripts.LabyrinthGenerator
     {
         public LongRoomA() : base(new List<Block>()
         {
-            new Block(new(0, 0), new List<Door>()
-            {
-                new(Direction.Left),
-                new(Direction.Top),
-                new(Direction.Down)
-            }),
-            new Block(new(1, 0), new List<Door>()
-            {
-                new(Direction.Right),
-                new(Direction.Top),
-                new(Direction.Down)
-            })
+            new SimpleBlock3(new(0, 1), Direction.Top),
+            new SimpleBlock3(new(0, 0), Direction.Down)
         })
         {
+            variableTypes.Add(0.5f, RoomType.CargoRoom);
+        }
+
+        protected override void SetRandomTypeRoom()
+        {
+            SetTypeRoom(variableTypes.GetValue());
         }
     }
 }

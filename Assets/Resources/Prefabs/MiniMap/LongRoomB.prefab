@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6350979768900076211}
   - component: {fileID: 4271699003167122164}
   m_Layer: 0
-  m_Name: LongRoom
+  m_Name: LongRoomB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: ace38779d2bedc24fbc77c090c59fe0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cc098c6e69f88d4d8c54595d3b34be5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

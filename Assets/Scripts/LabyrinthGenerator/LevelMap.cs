@@ -20,5 +20,20 @@ namespace Assets.Scripts.LabyrinthGenerator
                 room.Rotate();
             }
         }
+
+        public bool TryGetRoom(IntVector2 position, out Room room)
+        {
+            foreach (var r in rooms)
+            {
+                if(r.position == position)
+                {
+                    room = r;
+                    return true;
+                }
+            }
+
+            room = null;
+            return false;
+        }
     }
 }

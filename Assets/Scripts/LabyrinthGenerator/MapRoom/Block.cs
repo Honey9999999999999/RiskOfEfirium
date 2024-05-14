@@ -2,12 +2,12 @@
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
-    public class Block
+    public abstract class Block
     {
-        private IntVector2 _position;        
+        private IntVector2 _position;
         private IntVector2 _offset;
 
-        public Block(IntVector2 offsetFromCenter, List<Door> doors)
+        public Block(IntVector2 offsetFromCenter, Direction direction, List<Door> doors)
         {
             _position = new(0, 0);
             _offset = offsetFromCenter;
@@ -18,12 +18,14 @@ namespace Assets.Scripts.LabyrinthGenerator
             }
 
             this.doors = doors;
+
+            RotateToDirection(direction);
         }
 
         public List<Door> doors { get; }
 
         public IntVector2 position => _position + offsetFromCenter;
-        public IntVector2 offsetFromCenter 
+        public IntVector2 offsetFromCenter
         {
             get
             {
@@ -35,6 +37,41 @@ namespace Assets.Scripts.LabyrinthGenerator
                 SetDoorsInPosition();
             }
         }
+        public Direction RotatedOn { get; private set; }
+
+        private void RotateToDirection(Direction direction)
+        {
+            int rotationCount = (int)direction;
+
+            for (int i = 0; i < rotationCount; i++)
+            {
+                RotateDoors();
+            }
+
+            RotatedOn = direction;
+        }
+
+        public int GetCountDoors()
+        {
+            return doors.Count;
+        }
+
+        public bool TryGetDoorLeadsTo(Direction direction, out Door door)
+        {
+            IntVector2 dir = DirectionHandler.GetDirection(direction);
+
+            foreach (var d in doors)
+            {
+                if(d.isLeadSomeWhere && d.direction == dir)
+                {
+                    door = d;
+                    return true;
+                }
+            }
+
+            door = null;
+            return false;
+        }
 
         internal void Rotate()
         {
@@ -43,6 +80,13 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             offsetFromCenter = new(x, y);
 
+            RotateDoors();
+
+            int rotation = (int)RotatedOn + 1;
+            RotatedOn = (Direction)(rotation >= 4 ? 0 : rotation);
+        }
+        private void RotateDoors()
+        {
             foreach (var door in doors)
             {
                 door.Rotate();
@@ -61,11 +105,6 @@ namespace Assets.Scripts.LabyrinthGenerator
             {
                 door.selfPosition = position;
             }
-        }
-
-        public int GetCountDoors()
-        {
-            return doors.Count;
         }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1968457576330705111}
   - component: {fileID: 6641854838297700213}
   m_Layer: 0
-  m_Name: SimpleRoom
+  m_Name: SimpleRoomC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: ace38779d2bedc24fbc77c090c59fe0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a6c0fbf0849e8341aa83069d7673808, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

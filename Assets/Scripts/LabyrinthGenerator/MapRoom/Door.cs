@@ -14,6 +14,8 @@
         public IntVector2 targetPosition => selfPosition + direction;
         public bool isLeadSomeWhere { get; set; }
 
+        public Room targetRoom { get; internal set; }
+
         internal void Rotate()
         {
             int x = -direction.y;
