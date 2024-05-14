@@ -11,6 +11,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         })
         {
             variableTypes.Add(0.5f, RoomType.Diner);
+            variableTypes.Add(0.5f, RoomType.CargoRoom);
         }
 
         protected override void SetRandomTypeRoom()
