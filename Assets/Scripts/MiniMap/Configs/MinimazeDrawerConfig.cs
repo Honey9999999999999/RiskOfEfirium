@@ -11,26 +11,26 @@ namespace Assets.Scripts.MiniMap.Configs
         public int textureBlockSize => 64;
         public int hallOffset => -10;
 
-        public string minimapPath => "Prefabs/MiniMap/Minimap";
+        public string minimapPath => "Prefabs/MiniMap/Minimaze/Minimap";
 
-        public string hallPath => "Prefabs/MiniMap/Hall";
+        public string hallPath => "Prefabs/MiniMap/Minimaze/Hall";
 
-        public string doorPath => "Prefabs/MiniMap/Door";
+        public string doorPath => "Prefabs/MiniMap/Minimaze/Door";
 
-        public string playerPath => "Prefabs/MiniMap/Player";
+        public string playerPath => "Prefabs/MiniMap/Minimaze/Player";
 
         public Dictionary<Type, string> roomPrefabMap => new()
         {
-            [typeof(SimpleRoomA)] = "Prefabs/MiniMap/SimpleRoomA",
-            [typeof(SimpleRoomB)] = "Prefabs/MiniMap/SimpleRoomB",
-            [typeof(SimpleRoomC)] = "Prefabs/MiniMap/SimpleRoomC",
+            [typeof(SimpleRoomA)] = "Prefabs/MiniMap/Minimaze/SimpleRoomA",
+            [typeof(SimpleRoomB)] = "Prefabs/MiniMap/Minimaze/SimpleRoomB",
+            [typeof(SimpleRoomC)] = "Prefabs/MiniMap/Minimaze/SimpleRoomC",
 
-            [typeof(LongRoomA)] = "Prefabs/MiniMap/LongRoomA",
-            [typeof(LongRoomB)] = "Prefabs/MiniMap/LongRoomB",
-            [typeof(LongRoomC)] = "Prefabs/MiniMap/LongRoomC",
+            [typeof(LongRoomA)] = "Prefabs/MiniMap/Minimaze/LongRoomA",
+            [typeof(LongRoomB)] = "Prefabs/MiniMap/Minimaze/LongRoomB",
+            [typeof(LongRoomC)] = "Prefabs/MiniMap/Minimaze/LongRoomC",
 
-            [typeof(MediumRoom)] = "Prefabs/MiniMap/MediumRoom",
-            [typeof(BigRoom)] = "Prefabs/MiniMap/BigRoom",
+            [typeof(MediumRoom)] = "Prefabs/MiniMap/Minimaze/MediumRoom",
+            [typeof(BigRoom)] = "Prefabs/MiniMap/Minimaze/BigRoom",
         };
 
         public Dictionary<RoomType, Color32> roomColorMap => new()
