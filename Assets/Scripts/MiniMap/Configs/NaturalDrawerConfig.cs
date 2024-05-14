@@ -35,7 +35,7 @@ namespace Assets.Scripts.MiniMap.Configs
 
         public Dictionary<RoomType, Color32> roomColorMap => new()
         {
-            [RoomType.Armory] = new Color32(255, 255, 255, 255),
+            [RoomType.Armory] = new Color32(55, 25, 5, 255),
             [RoomType.Bathroom] = new Color32(255, 255, 255, 255),
             [RoomType.CargoRoom] = new Color32(255, 255, 255, 255),
             [RoomType.CommandRoom] = new Color32(255, 255, 255, 255),
