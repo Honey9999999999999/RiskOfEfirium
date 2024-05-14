@@ -6,7 +6,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 {
     internal class MapGeneratorConfigSimple : MapGeneratorConfig
     {
-        public const int MAX_ROOMS = 30;
+        public const int MAX_ROOMS = 10;
 
         public MapGeneratorConfigSimple(RoomCreatorConfigBase roomCreatorConfig) : base(roomCreatorConfig)
         {
