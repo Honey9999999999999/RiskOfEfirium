@@ -169,6 +169,24 @@ namespace Assets.Scripts.LabyrinthGenerator
             return roomTypes;
         }
 
+        internal bool TryGetFreeDoor(out Door freeDoor)
+        {
+            foreach (var block in blocks)
+            {
+                foreach (var door in block.doors)
+                {
+                    if (!door.isLeadSomeWhere)
+                    {
+                        freeDoor = door;
+                        return true;
+                    }
+                }
+            }
+
+            freeDoor = null;
+            return false;
+        }
+
         public override string ToString()
         {
             return GetType().ToString();

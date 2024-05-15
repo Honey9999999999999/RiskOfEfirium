@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools
 {    
-    public class ControlRandomList <T>
+    public class ControlRandomList <T> : IEnumerable
     {
         private class ControlRandomValue
         {
@@ -17,6 +18,38 @@ namespace Assets.Scripts.Tools
             public float defaultChance { get; }
             public float chance { get; set; }
             public T value { get; set; }
+        }
+
+        private class MyEnumerator : IEnumerator<ControlRandomValue>
+        {
+            private List<ControlRandomValue> controlRandomValues;
+            private int currentIndex;
+
+            public MyEnumerator(List<ControlRandomValue> controlRandomValues)
+            {
+                this.controlRandomValues = controlRandomValues;
+                currentIndex = -1;
+            }
+
+            public ControlRandomValue Current => controlRandomValues[currentIndex];
+
+            object IEnumerator.Current => Current;
+
+            public bool MoveNext()
+            {
+                currentIndex++;
+                return currentIndex < controlRandomValues.Count;
+            }
+
+            public void Reset()
+            {
+                currentIndex = -1;
+            }
+
+            public void Dispose()
+            {
+                // Освобождение ресурсов, если необходимо
+            }
         }
 
         private List<ControlRandomValue> controlRandomValues;
@@ -65,6 +98,16 @@ namespace Assets.Scripts.Tools
             {
                 crValue.chance = crValue.defaultChance / summ;
             }
+        }
+
+        private IEnumerator<ControlRandomValue> GetEnumerator()
+        {
+            return new MyEnumerator(controlRandomValues);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

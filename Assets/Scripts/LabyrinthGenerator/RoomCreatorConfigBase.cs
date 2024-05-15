@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Tools;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace Assets.Scripts.LabyrinthGenerator
@@ -7,20 +8,21 @@ namespace Assets.Scripts.LabyrinthGenerator
     public abstract class RoomCreatorConfigBase
     {
         protected delegate Room RoomCreator<T>();
-        protected readonly ControlRandomList<RoomCreator<Room>> _chanceMap;
+        protected readonly Dictionary<RoomType, ControlRandomList<RoomType>> _roomMap;
+        protected readonly Dictionary<RoomType, ControlRandomList<RoomCreator<Room>>> _sizeMap;
 
         protected RoomCreatorConfigBase()
         {
-            _chanceMap = new();
+            _sizeMap = new();
         }
 
         protected static Room CreateRoom<TType>() where TType : Room, new()
         {
             return new TType();
         }
-        public Room CreateRandomRoom()
+        public Room CreateRandomRoomAt(RoomType roomType)
         {
-            return _chanceMap.GetValue().Invoke();
+            return _sizeMap[_roomMap[roomType].GetValue()].Invoke();
         }
     }
 }

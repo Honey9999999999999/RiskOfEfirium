@@ -1,18 +1,18 @@
-﻿using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
-using System.Collections.Generic;
-
-namespace Assets.Scripts.LabyrinthGenerator.RoomCreators
+﻿namespace Assets.Scripts.LabyrinthGenerator.RoomCreators
 {
     public class RoomCreatorConfigExample : RoomCreatorConfigBase
     {
         public RoomCreatorConfigExample() : base()
         {
-            _chanceMap.Add(0.5f, CreateRoom<SimpleRoomA>);
-            _chanceMap.Add(0.5f, CreateRoom<SimpleRoomB>);
-            _chanceMap.Add(0.25f, CreateRoom<LongRoomA>);
-            _chanceMap.Add(0.25f, CreateRoom<LongRoomB>);
-            _chanceMap.Add(0.15f, CreateRoom<MediumRoom>);
-            _chanceMap.Add(0.05f, CreateRoom<BigRoom>);
+            _roomMap.Add(RoomType.CargoRoom, new()
+            {
+                { 1f, RoomType.CargoRoom }
+            });
+
+            _sizeMap.Add(RoomType.CargoRoom, new()
+            {
+                { 0.4f, CreateRoom<SimpleRoomA> }
+            });
         }
     }
 }

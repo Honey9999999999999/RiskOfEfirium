@@ -11,9 +11,8 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
             new SimpleBlock0(new(0, 0))
         })
         {
-            variableTypes.Add(0.5f, RoomType.CargoRoom);
-            variableTypes.Add(0.2f, RoomType.Bathroom);
-            variableTypes.Add(0.3f, RoomType.Diner);
+            variableTypes.Add(0.3f, RoomType.Bathroom);
+            variableTypes.Add(0.2f, RoomType.Diner);
         }
 
         protected override void SetRandomTypeRoom()
@@ -24,11 +23,18 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
             {
                 if (type == RoomType.ResidentialRoom)
                 {
-                    SetTypeRoom(RoomType.Diner);
+                    SetTypeRoom(variableTypes.GetValue());
+                }
+                if(type == RoomType.CargoRoom)
+                {
+                    SetTypeRoom(RoomType.CargoRoom);
                 }
             }
-
-            SetTypeRoom(variableTypes.GetValue());
+            
+            if (type == RoomType.UnTyped)
+            {
+                SetTypeRoom(variableTypes.GetValue());
+            }                
         }
     }
 }

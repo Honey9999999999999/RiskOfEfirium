@@ -11,9 +11,7 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
         })
         {
             variableTypes.Add(0.3f, RoomType.Bathroom);
-            variableTypes.Add(0.5f, RoomType.CargoRoom);
-            variableTypes.Add(0.4f, RoomType.HibernationRoom);
-            variableTypes.Add(0.1f, RoomType.EngineeringRoom);
+            variableTypes.Add(0.2f, RoomType.HibernationRoom);
             variableTypes.Add(0.3f, RoomType.Restroom);
         }
 
@@ -25,7 +23,14 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
             {
                 if(type == RoomType.SecurityRoom)
                 {
-                    SetTypeRoom(RoomType.Armory);
+                    if (new Random().Next(0, 2) == 1)
+                    {
+                        SetTypeRoom(RoomType.Armory);                        
+                    }
+                    else
+                    {
+                        SetTypeRoom(RoomType.EngineeringRoom);
+                    }
                 }
                 if (type == RoomType.MedicalRoom)
                 {
@@ -33,7 +38,15 @@ namespace Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms
                 }
                 if (type == RoomType.ResidentialRoom)
                 {
-                    SetTypeRoom(RoomType.Bathroom);
+                    SetTypeRoom(variableTypes.GetValue());
+                }
+                if (type == RoomType.CargoRoom)
+                {
+                    SetTypeRoom(RoomType.CargoRoom);
+                }
+                if(type == RoomType.Diner)
+                {
+                    SetTypeRoom(RoomType.Restroom);
                 }
             }
 

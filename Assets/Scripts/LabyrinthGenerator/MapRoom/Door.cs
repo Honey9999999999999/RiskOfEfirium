@@ -23,5 +23,27 @@
 
             direction = new(x, y);
         }
+
+        public static bool operator ==(Door door1, Door door2)
+        {
+            return door1.selfPosition == door2.selfPosition && door1.direction == door2.direction;
+        }
+
+        public static bool operator !=(Door door1, Door door2)
+        {
+            return door1.selfPosition != door2.selfPosition || door1.direction != door2.direction;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Door)
+            {
+                return false;
+            }
+
+            Door other = (Door)obj;
+
+            return selfPosition == other.selfPosition && direction == other.direction;
+        }
     }
 }
