@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.LabyrinthGenerator;
-using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,6 +34,9 @@ namespace Assets.Scripts.MiniMap.Configs
 
         public Dictionary<RoomType, Color32> roomColorMap => new()
         {
+            [RoomType.Arboretum] = new Color32(60, 120, 30, 255),
+            [RoomType.Gateway] = new Color32(240, 220, 130, 255),
+            [RoomType.LifeSupportRoom] = new Color32(25, 235, 175, 255),
             [RoomType.Armory] = new Color32(200, 0, 0, 255),
             [RoomType.Bathroom] = new Color32(255, 255, 255, 255),
             [RoomType.CargoRoom] = new Color32(170, 110, 60, 255),

@@ -1,14 +1,13 @@
-﻿using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
     internal class MapGeneratorConfigSimple : MapGeneratorConfig
     {
-        public const int MAX_ROOMS = 10;
+        public const int MAX_ROOMS = 30;        
 
-        public MapGeneratorConfigSimple(RoomCreatorConfigBase roomCreatorConfig) : base(roomCreatorConfig)
+        public MapGeneratorConfigSimple(RoomCreatorConfigBase mainRoomCreatorConfig) : base(mainRoomCreatorConfig)
         {
         }
 
@@ -16,33 +15,15 @@ namespace Assets.Scripts.LabyrinthGenerator
 
         public override List<Room> CreateLevelMap()
         {
-            rooms = new List<Room>()
-            {
-                new SimpleRoomA()
-            };
-            rooms[0].RandomRotate();
-
-            while (rooms.Count < MAX_ROOMS)
-            {
-                CreateRoom(roomCreatorConfig.CreateRandomRoom());
-            }            
-
+            InitializeMap();
+            AddMainRooms();
+            AddRequredRooms();
             AddCloseRooms();
-
-            foreach (var room in rooms)
-            {
-                room.DefineRoomType();
-            }
 
             return rooms;
         }
 
-        private void CreateRoom(Room room)
-        {
-            Door freeDoor = GetRandomFreeDoor();
-            CreateRoomInDoor(freeDoor, room);
-        }
-        private void CreateRoomInDoor(Door freeDoor, Room room)
+        private bool TryPasteRoomInDoor(Door freeDoor, Room room)
         {
             room.RandomRotate();
             room.SetInPosition(freeDoor.targetPosition);
@@ -65,7 +46,7 @@ namespace Assets.Scripts.LabyrinthGenerator
                         chekingDoor.isLeadSomeWhere = true;
                         chekingDoor.targetRoom = GetRoom(freeDoor.selfPosition);
 
-                        break;
+                        return true;
                     }
                     else
                     {
@@ -85,17 +66,62 @@ namespace Assets.Scripts.LabyrinthGenerator
                     break;
                 }
             }
+
+            return false;
+        }
+
+        private void InitializeMap()
+        {
+            rooms = new List<Room>()
+            {
+                new SimpleRoomC()
+            };
+            rooms[0].RandomRotate();
+            rooms[0].SetTypeRoom(RoomType.Gateway);
+        }
+
+        private void AddMainRooms()
+        {
+            while (rooms.Count < MAX_ROOMS)
+            {
+                Door freeDoor = GetRandomFreeDoor();
+                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomRoomAt(roomType));
+            }
+        }
+
+        private void AddRequredRooms()
+        {
+            Dictionary<RoomType, bool> isRoomAddedMap = new()
+            {
+                [RoomType.CommandRoom] = false
+            };
+
+            foreach (var room in rooms)
+            {
+                isRoomAddedMap[room.type] = true;
+            }
+
+            foreach (var key in isRoomAddedMap.Keys.ToArray())
+            {
+                while (!isRoomAddedMap[key])
+                {
+                    Door freeDoor = GetRandomFreeDoor();
+
+                    isRoomAddedMap[key] = TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRoom(key));
+                }
+            }
         }
 
         private void AddCloseRooms()
         {
             List<Door> freeDoors = GetFreeDoors();
 
-            foreach (var door in freeDoors)
+            foreach (var freeDoor in freeDoors)
             {
-                CreateRoomInDoor(door, random.Next(0, 2) == 1 ? new SimpleRoomC() : new LongRoomC());
-                //rooms[rooms.Count - 1].DefineRoomType();
+                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomEndRoomAt(roomType));
             }
-        }       
+        }   
     }
 }

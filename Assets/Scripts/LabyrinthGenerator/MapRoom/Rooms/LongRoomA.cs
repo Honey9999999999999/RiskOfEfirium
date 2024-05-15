@@ -10,12 +10,6 @@ namespace Assets.Scripts.LabyrinthGenerator
             new SimpleBlock3(new(0, 0), Direction.Down)
         })
         {
-            variableTypes.Add(0.5f, RoomType.CargoRoom);
-        }
-
-        protected override void SetRandomTypeRoom()
-        {
-            SetTypeRoom(variableTypes.GetValue());
         }
     }
 }

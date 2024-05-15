@@ -12,13 +12,6 @@ namespace Assets.Scripts.LabyrinthGenerator
             new SimpleBlock1(new(0, 0), Direction.Left)
         })
         {
-            variableTypes.Add(0.5f, RoomType.RecreationRoom);
-            variableTypes.Add(0.5f, RoomType.ResidentialRoom);
-        }
-
-        protected override void SetRandomTypeRoom()
-        {
-            SetTypeRoom(variableTypes.GetValue());
         }
     }
 }

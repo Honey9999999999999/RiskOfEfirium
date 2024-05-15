@@ -6,14 +6,11 @@ namespace Assets.Scripts.LabyrinthGenerator
 {
     public abstract class Room
     {
-        protected ControlRandomList<RoomType> variableTypes;
-
         public Room(List<Block> blocks)
         {
             this.blocks = blocks;
             CalculateCountDoors();
             position = new(0, 0);
-            variableTypes = new();
 
             IntVector2 size = new(0, 0);
 
@@ -139,14 +136,6 @@ namespace Assets.Scripts.LabyrinthGenerator
             }
         }
 
-        internal void DefineRoomType()
-        {
-            if (type == RoomType.UnTyped)
-            {
-                SetRandomTypeRoom();
-            }
-        }
-        protected abstract void SetRandomTypeRoom();
         internal void SetTypeRoom(RoomType type)
         {
             this.type = type;
@@ -167,6 +156,24 @@ namespace Assets.Scripts.LabyrinthGenerator
             }
 
             return roomTypes;
+        }
+
+        internal bool TryGetFreeDoor(out Door freeDoor)
+        {
+            foreach (var block in blocks)
+            {
+                foreach (var door in block.doors)
+                {
+                    if (!door.isLeadSomeWhere)
+                    {
+                        freeDoor = door;
+                        return true;
+                    }
+                }
+            }
+
+            freeDoor = null;
+            return false;
         }
 
         public override string ToString()
