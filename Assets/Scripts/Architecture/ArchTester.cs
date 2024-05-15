@@ -9,8 +9,8 @@ namespace Assets.Scripts.Architecture
     public class ArchTester : MonoBehaviour
     {
         BankInteractor bank;
-        MiniMapInteractor mapInteractor;
-        LabyrinthInteractor labyrinthInteractor;
+        //MiniMapInteractor mapInteractor;
+        //LabyrinthInteractor labyrinthInteractor;
         PlayerPositionInteractor player;
 
         private void Start()
@@ -18,8 +18,8 @@ namespace Assets.Scripts.Architecture
             Game.Run();
 
             bank = Game.GetInteractor<BankInteractor>();
-            mapInteractor = Game.GetInteractor<MiniMapInteractor>();
-            labyrinthInteractor = Game.GetInteractor<LabyrinthInteractor>();
+            //mapInteractor = Game.GetInteractor<MiniMapInteractor>();
+            //labyrinthInteractor = Game.GetInteractor<LabyrinthInteractor>();
             player = Game.GetInteractor<PlayerPositionInteractor>();
         }
 
@@ -27,11 +27,11 @@ namespace Assets.Scripts.Architecture
         {
             if (!Game.sceneManager.isLoading)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    labyrinthInteractor.OnCreate();
-                    mapInteractor.ReDrawMap();
-                }
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //{
+                //    labyrinthInteractor.OnCreate();
+                //    mapInteractor.ReDrawMap();
+                //}
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     player.GoOn(Direction.Top);

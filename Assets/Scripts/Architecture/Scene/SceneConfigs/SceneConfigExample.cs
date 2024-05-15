@@ -16,8 +16,8 @@ namespace Architecture
             _interactorsMap = new Dictionary<Type, Interactor>();
 
             CreateInteractor<BankInteractor>();
-            CreateInteractor<LabyrinthInteractor>();
-            CreateInteractor<MiniMapInteractor>();
+            //CreateInteractor<LabyrinthInteractor>();
+            //CreateInteractor<MiniMapInteractor>();
             CreateInteractor<PlayerPositionInteractor>();
 
             return _interactorsMap;
