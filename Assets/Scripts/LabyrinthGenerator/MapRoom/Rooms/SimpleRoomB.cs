@@ -7,7 +7,7 @@ namespace Assets.Scripts.LabyrinthGenerator
     {
         public SimpleRoomB() : base(new()
         {
-            new SimpleBlock2(new(0, 0), Direction.Top)
+            new SimpleBlock2(new(0, 0), Direction.Top, 0)
         })
         {
         }

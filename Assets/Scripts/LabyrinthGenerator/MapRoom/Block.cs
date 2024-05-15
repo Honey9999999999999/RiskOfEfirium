@@ -7,14 +7,15 @@ namespace Assets.Scripts.LabyrinthGenerator
         private IntVector2 _position;
         private IntVector2 _offset;
 
-        public Block(IntVector2 offsetFromCenter, Direction direction, List<Door> doors)
+        public Block(IntVector2 offsetFromCenter, Direction direction, List<Door> doors, int countDoors)
         {
             _position = new(0, 0);
             _offset = offsetFromCenter;
 
-            foreach (var door in doors)
+            for (int i = 0; i < doors.Count; i++)
             {
-                door.selfPosition = position;
+                doors[i].selfPosition = position;
+                doors[i].index += countDoors + i;
             }
 
             this.doors = doors;

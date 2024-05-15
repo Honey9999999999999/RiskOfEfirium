@@ -7,7 +7,7 @@ namespace Assets.Scripts.LabyrinthGenerator
     {
         public LongRoomC() : base(new List<Block>()
         {
-            new SimpleBlock1(new(0, 1), Direction.Top),
+            new SimpleBlock1(new(0, 1), Direction.Top, 0),
             new SimpleBlock0(new(0, 0))
         })
         {
