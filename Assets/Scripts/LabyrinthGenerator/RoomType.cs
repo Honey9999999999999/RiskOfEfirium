@@ -3,6 +3,7 @@
     public enum RoomType
     {
         UnTyped,
+        Gateway,
         Armory,
         Bathroom,
         CargoRoom,
@@ -12,6 +13,8 @@
         HibernationRoom,
         Laboratory,
         MedicalRoom,
+        LifeSupportRoom,
+        Arboretum,
         RecreationRoom,
         ResidentialRoom,
         Restroom,

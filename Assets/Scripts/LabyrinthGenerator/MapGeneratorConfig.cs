@@ -93,7 +93,7 @@ namespace Assets.Scripts.LabyrinthGenerator
                 return room;
             }
 
-            throw new System.Exception("This room does not exist");
+            throw new Exception("This room does not exist");
         }
         public bool FindRoom(IntVector2 position, out Room room)
         {

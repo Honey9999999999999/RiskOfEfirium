@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.LabyrinthGenerator;
-using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

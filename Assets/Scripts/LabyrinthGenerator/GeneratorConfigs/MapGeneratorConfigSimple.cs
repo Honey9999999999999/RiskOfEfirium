@@ -1,16 +1,13 @@
-﻿using Assets.Scripts.LabyrinthGenerator.MapRoom.Rooms;
-using Assets.Scripts.Tools;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
     internal class MapGeneratorConfigSimple : MapGeneratorConfig
     {
-        public const int MAX_ROOMS = 10;        
+        public const int MAX_ROOMS = 30;        
 
-        public MapGeneratorConfigSimple(RoomCreatorConfigBase roomCreatorConfig) : base(roomCreatorConfig)
+        public MapGeneratorConfigSimple(RoomCreatorConfigBase mainRoomCreatorConfig) : base(mainRoomCreatorConfig)
         {
         }
 
@@ -18,40 +15,15 @@ namespace Assets.Scripts.LabyrinthGenerator
 
         public override List<Room> CreateLevelMap()
         {
-            rooms = new List<Room>()
-            {
-                new SimpleRoomA()
-            };
-            rooms[0].RandomRotate();
-
-            while (rooms.Count < MAX_ROOMS)
-            {
-                CreateRoom(roomCreatorConfig.CreateRandomRoomAt(RoomType.CargoRoom));
-            }
-
-            foreach (var room in rooms)
-            {
-                room.DefineRoomType();
-            }
-
-            CreateRequestRooms();
-
+            InitializeMap();
+            AddMainRooms();
+            AddRequredRooms();
             AddCloseRooms();
-
-            foreach (var room in rooms)
-            {
-                room.DefineRoomType();
-            }
 
             return rooms;
         }
 
-        private void CreateRoom(Room room)
-        {
-            Door freeDoor = GetRandomFreeDoor();
-            CreateRoomInDoor(freeDoor, room);
-        }
-        private void CreateRoomInDoor(Door freeDoor, Room room)
+        private bool TryPasteRoomInDoor(Door freeDoor, Room room)
         {
             room.RandomRotate();
             room.SetInPosition(freeDoor.targetPosition);
@@ -74,7 +46,7 @@ namespace Assets.Scripts.LabyrinthGenerator
                         chekingDoor.isLeadSomeWhere = true;
                         chekingDoor.targetRoom = GetRoom(freeDoor.selfPosition);
 
-                        break;
+                        return true;
                     }
                     else
                     {
@@ -94,65 +66,49 @@ namespace Assets.Scripts.LabyrinthGenerator
                     break;
                 }
             }
+
+            return false;
         }
 
-        private void CreateRequestRooms()
+        private void InitializeMap()
         {
-            Dictionary<RoomType, bool> roomCheckMap = new()
+            rooms = new List<Room>()
             {
-                [RoomType.Armory] = false,
-                [RoomType.Laboratory] = false,
-                [RoomType.EngineeringRoom] = false
+                new SimpleRoomC()
             };
+            rooms[0].RandomRotate();
+            rooms[0].SetTypeRoom(RoomType.Gateway);
+        }
 
-            Dictionary<RoomType, RoomType> roomMap = new()
+        private void AddMainRooms()
+        {
+            while (rooms.Count < MAX_ROOMS)
             {
-                [RoomType.Armory] = RoomType.SecurityRoom,
-                [RoomType.Laboratory] = RoomType.MedicalRoom,
-                [RoomType.EngineeringRoom] = RoomType.SecurityRoom
-            };
+                Door freeDoor = GetRandomFreeDoor();
+                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomRoomAt(roomType));
+            }
+        }
 
-            List<Door> usedDoors = new();
+        private void AddRequredRooms()
+        {
+            Dictionary<RoomType, bool> isRoomAddedMap = new()
+            {
+                [RoomType.CommandRoom] = false
+            };
 
             foreach (var room in rooms)
             {
-                roomCheckMap[room.type] = true;
+                isRoomAddedMap[room.type] = true;
             }
 
-            foreach (var type in roomCheckMap.Keys.ToArray())
+            foreach (var key in isRoomAddedMap.Keys.ToArray())
             {
-                while (!roomCheckMap[type])
+                while (!isRoomAddedMap[key])
                 {
-                    Door door = GetRandomFreeDoor();
+                    Door freeDoor = GetRandomFreeDoor();
 
-                    if(!usedDoors.Contains(door))
-                    {
-                        List<IntVector2> ocupPos = new()
-                        {
-                            new(0, 0),
-                            door.direction
-                        };
-
-                        for (int i = 0; i < ocupPos.Count; i++)
-                        {
-                            ocupPos[i] += door.targetPosition;
-                        }
-
-                        if (IsFitRoom(ocupPos))
-                        {
-                            CreateRoomInDoor(door, new SimpleRoomB());
-                            Room room = GetRoom(door.targetPosition);
-                            room.SetTypeRoom(roomMap[type]);
-                            usedDoors.Add(door);
-
-                            room.TryGetFreeDoor(out door);
-                            CreateRoomInDoor(door, new SimpleRoomC());
-                            room = GetRoom(door.targetPosition);
-                            room.SetTypeRoom(type);
-
-                            roomCheckMap[type] = true;
-                        }
-                    }
+                    isRoomAddedMap[key] = TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRoom(key));
                 }
             }
         }
@@ -161,21 +117,11 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             List<Door> freeDoors = GetFreeDoors();
 
-            foreach (var door in freeDoors)
+            foreach (var freeDoor in freeDoors)
             {
-                Room room = GetRoom(door.selfPosition);
-
-                if(room.type == RoomType.MedicalRoom || room.type == RoomType.SecurityRoom)
-                {
-                    CreateRoomInDoor(door, new SimpleRoomC());
-                }
-                else
-                {
-                    CreateRoomInDoor(door, random.Next(0, 2) == 1 ? new SimpleRoomC() : new LongRoomC());
-                }
-                
-                //rooms[rooms.Count - 1].DefineRoomType();
+                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomEndRoomAt(roomType));
             }
-        }       
+        }   
     }
 }

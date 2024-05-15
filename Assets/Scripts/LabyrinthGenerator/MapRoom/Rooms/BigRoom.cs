@@ -19,12 +19,6 @@
             new SimpleBlock0(new(1, 1))
         })
         {
-            variableTypes.Add(0.1f, RoomType.CommandRoom);
-        }
-
-        protected override void SetRandomTypeRoom()
-        {
-            SetTypeRoom(variableTypes.GetValue());
         }
     }
 }
