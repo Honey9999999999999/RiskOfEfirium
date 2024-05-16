@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Bank;
 using Assets.Scripts.LabyrinthGenerator;
+using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ namespace Architecture
         {
             _interactorsMap = new Dictionary<Type, Interactor>();
 
-            CreateInteractor<BankInteractor>();
-            //CreateInteractor<LabyrinthInteractor>();
-            //CreateInteractor<MiniMapInteractor>();
-            CreateInteractor<PlayerPositionInteractor>();
+            CreateInteractor<PlayerInteractor>();
+            CreateInteractor<CameraInteractor>();
+            CreateInteractor<LabyrinthInteractor>();
+            CreateInteractor<MapInteractor>();
+            CreateInteractor<MiniMapInteractor>();
+            //CreateInteractor<PlayerPositionInteractor>();
 
             return _interactorsMap;
         }

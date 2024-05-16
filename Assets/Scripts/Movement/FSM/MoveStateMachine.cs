@@ -18,12 +18,16 @@ namespace MoveFSM
         {
             var type = typeof(TState);
 
-            if(type != currentState.GetType() && _states.TryGetValue(type, out State state))
+            if(type != currentState?.GetType() && _states.TryGetValue(type, out State state))
             {
                 currentState?.Exit();
                 currentState = state;
                 currentState.Enter();
             }
+        }
+        public TState GetState<TState>() where TState : State
+        {
+            return (TState)_states[typeof(TState)];
         }
 
         public void Update()
@@ -31,11 +35,12 @@ namespace MoveFSM
             currentState.Update();
         }
 
-        public void AddState<TState>() where TState : State, new()
+        public void AddState(State state)
         {
-            if(!_states.TryGetValue(typeof(TState), out _))
+            var type = state.GetType();
+            if(!_states.TryGetValue(type, out _))
             {
-                _states.Add(typeof(TState), new TState());
+                _states.Add(type, state);
             }            
         }
     }

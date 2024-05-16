@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.LabyrinthGenerator
 {
@@ -37,7 +37,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
         public void RandomRotate()
         {
-            int count = new Random().Next(4);
+            int count = new System.Random().Next(4);
 
             for (int i = 0; i < count; i++)
             {
@@ -174,6 +174,20 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             freeDoor = null;
             return false;
+        }
+
+        public Vector2 GetRoomPosition()
+        {
+            Vector2 position = Vector2.zero;
+
+            foreach (var block in blocks)
+            {
+                position += new Vector2(block.position.x, block.position.y);
+            }
+
+            position /= blocks.Count;
+
+            return position;
         }
 
         public override string ToString()

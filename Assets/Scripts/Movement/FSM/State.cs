@@ -2,7 +2,7 @@ namespace MoveFSM
 {
     public abstract class State
     {
-        private MoveStateMachine _stateMachine;
+        protected MoveStateMachine _stateMachine;
 
         public State(MoveStateMachine stateMachine)
         {

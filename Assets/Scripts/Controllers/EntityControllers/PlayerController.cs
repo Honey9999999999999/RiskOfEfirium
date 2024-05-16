@@ -1,50 +1,80 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PlayerController : EntityController
     {
-        private System.Numerics.Vector2 _verticalInput;
-        private System.Numerics.Vector2 _horizontalInput;
+        public override event Action OnCameraInput;
 
-        public override System.Numerics.Vector2 moveInput { get => _moveInput; }
+        [SerializeField] private Vector2 _verticalInput;
+        [SerializeField] private Vector2 _horizontalInput;
 
-        public override bool isWalk { get => _moveInput.LengthSquared() > 0.01f; }
+        public override Vector2 moveInput { get => _moveInput; }
 
-        //System.Numerics.Vector2 moveInput { get => _moveInput; }
-        //bool isWalk { get => _moveInput.LengthSquared() > 0.01f; }
+        public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
 
-        private System.Numerics.Vector2 _moveInput => System.Numerics.Vector2.Normalize(_verticalInput + _horizontalInput);
+        public override Vector2 CameraControlInput => GetCameraInput();
+        private Vector3 _cameraPositionOld;
+
+        private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
 
         private void Update()
         {
-            if (Input.anyKey)
+            if (Input.GetMouseButton(1))
+            {
+                OnCameraInput?.Invoke();
+            }
+
+            if (Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S))
             {
                 if (Input.GetKey(KeyCode.W))
                 {
-                    _verticalInput = new System.Numerics.Vector2(0, 1);
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    _verticalInput = new System.Numerics.Vector2(0, -1);
+                    _verticalInput = new Vector2(0, 1);
                 }
                 else
                 {
-                    _verticalInput = new System.Numerics.Vector2(0, 0);
-                }
+                    _verticalInput = new Vector2(0, -1);
+                }                    
+            }
+            else
+            {
+                _verticalInput = new Vector2(0, 0);
+            }
 
+            if (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D))
+            {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    _horizontalInput = new System.Numerics.Vector2(-1, 0);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    _horizontalInput = new System.Numerics.Vector2(1, 0);
+                    _horizontalInput = new Vector2(-1, 0);
                 }
                 else
                 {
-                    _horizontalInput = new System.Numerics.Vector2(0, 0);
-                }
+                    _horizontalInput = new Vector2(1, 0);
+                }                    
+            }
+            else
+            {
+                _horizontalInput = new Vector2(0, 0);
+            }
+        }
+
+        private Vector3 GetCameraInput()
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                _cameraPositionOld = Input.mousePosition;
+            }
+            if (Input.GetMouseButton(1))
+            {
+                Vector3 mousePositionDelta = _cameraPositionOld - Input.mousePosition;
+                _cameraPositionOld = Input.mousePosition;
+                return mousePositionDelta;
+            }
+            else
+            {
+                _cameraPositionOld = Vector3.zero;
+                return Vector3.zero;
             }
         }
     }

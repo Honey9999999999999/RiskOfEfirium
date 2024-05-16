@@ -6,7 +6,7 @@ namespace Assets.Scripts.LabyrinthGenerator
     {
         public SimpleRoomA() : base(new List<Block>()
         {
-            new SimpleBlock4(new(0, 0), 0)
+            new SimpleBlock4(new(0, 0))
         })
         {
         }

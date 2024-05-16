@@ -1,14 +1,30 @@
+using Assets.Scripts.Controllers.EntityControllers;
+using Assets.Scripts.Entities;
+using Assets.Scripts.Movement;
+using UnityEngine;
+
 namespace MoveFSM
 {
     public class IdleState : State
     {
-        public IdleState(MoveStateMachine stateMachine) : base(stateMachine)
+        private EntityController controller;
+        MoveFSMInstance instance;
+        Rigidbody rigidbody;
+
+        public IdleState(MoveStateMachine stateMachine, LivingEntity entity) : base(stateMachine)
         {
+            controller = entity.GetEntityController();
+            instance = entity.GetMover();
+            rigidbody = instance.gameObject.GetComponent<Rigidbody>();
         }
 
         public override void Enter()
         {
             base.Enter();
+
+            rigidbody.velocity = Vector3.zero;
+
+            Debug.Log("Enter in Idle State");
         }
 
         public override void Exit()
@@ -20,6 +36,12 @@ namespace MoveFSM
         {
             base.Update();
 
+            if (controller.isWalk)
+            {
+                _stateMachine.EnterIn<WalkState>();
+
+                return;
+            }
         }
     }
 }
