@@ -21,7 +21,6 @@ namespace Architecture
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
-            //CreateInteractor<PlayerPositionInteractor>();
 
             return _interactorsMap;
         }

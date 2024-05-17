@@ -27,10 +27,14 @@ namespace Assets.Scripts.MapDrawer
 
         public GameObject CreateMiniMap()
         {
-            GameObject minimapCanvas = Instantiater.Instantiate<GameObject>(_config.minimapPath);
+            RectTransform minimapCanvas = Instantiater.Instantiate<RectTransform>(_config.minimapPath);
+            RectTransform mask = Instantiater.Instantiate<RectTransform>(_config.maskPath, minimapCanvas.transform);
+            mask.position = new Vector2(10 + mask.rect.width / 2, minimapCanvas.rect.height - 10 - mask.rect.height / 2);
+
             miniMap = new GameObject("MiniMap");
-            miniMap.transform.parent = minimapCanvas.transform;
-            miniMap.transform.localPosition = Vector3.zero;
+            miniMap.transform.parent = mask.transform;
+            miniMap.transform.localPosition = Vector3.zero;            
+
             _map = Game.GetInteractor<LabyrinthInteractor>().levelMap;
 
             foreach (var room in _map.rooms)

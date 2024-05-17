@@ -10,6 +10,7 @@ namespace Assets.Scripts.MiniMap.Configs
         public int textureBlockSize { get; }
         public int hallOffset { get; }
         public string minimapPath { get; }
+        public string maskPath { get; }
         public string hallPath { get; }
         public string doorPath { get; }
         public string playerPath { get; }
