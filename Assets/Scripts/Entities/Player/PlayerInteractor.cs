@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInteractor : Interactor
 {
-    private const string PLAYER_PATH = "Prefabs/Player/Player";
+    private const string PLAYER_PATH = "Prefabs/Entities/Player/Player";
     private Player _player;
     public Player player => _player;
 

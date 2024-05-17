@@ -1,11 +1,49 @@
-﻿using System.Numerics;
+﻿using System;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
-    public class EnemyController
+    [RequireComponent(typeof(NavMeshAgent), typeof(SphereCollider))]
+    public class EnemyController : EntityController
     {
-        public Vector2 moveInput => throw new System.NotImplementedException();
+        private NavMeshAgent agent;
 
-        public bool isWalk => throw new System.NotImplementedException();
+        public override Vector2 CameraControlInput => throw new NotImplementedException();
+
+        public override Vector2 moveInput => GetDirection();
+
+        private bool _isWalk;
+        public override bool isWalk => _isWalk;
+
+        public override event Action OnCameraInput;
+
+
+        private void Awake()
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.TryGetComponent<Player>(out _))
+            {
+                _isWalk = true;
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.TryGetComponent<Player>(out _))
+            {
+                _isWalk = false;
+            }
+        }
+
+        private Vector2 GetDirection()
+        {
+            NavMeshAgent agent = GetComponent<NavMeshAgent>();
+
+            return Vector2.zero;
+        }
     }
 }
