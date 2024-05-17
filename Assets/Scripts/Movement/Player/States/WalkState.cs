@@ -10,13 +10,13 @@ namespace FSM
         LivingEntity entity;
         private EntityController controller;
         Transform movebleObject;
-        MoveFSMInstance instance;
+        MovePlayerFSMInstance instance;
         Rigidbody rigidbody;
 
         public WalkState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
         {
             this.entity = entity;
-            controller = entity.GetEntityController();
+            controller = entity.GetEntityController<PlayerController>();
             movebleObject = entity.gameObject.transform;
             instance = entity.GetMover();
             rigidbody = instance.gameObject.GetComponent<Rigidbody>();
@@ -25,8 +25,6 @@ namespace FSM
         public override void Enter()
         {
             base.Enter();
-            
-            Debug.Log("Enter in Walk State");
         }
 
         public override void Exit()
@@ -56,7 +54,7 @@ namespace FSM
 
         protected void ViewOnDirection()
         {
-            entity.transform.eulerAngles = controller.ViewDirection;
+            entity.transform.LookAt(movebleObject.position + controller.viewDirection);
         }
     }
 }

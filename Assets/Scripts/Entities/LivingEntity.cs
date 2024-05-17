@@ -9,13 +9,13 @@ namespace Assets.Scripts.Entities
     public abstract class LivingEntity: MonoBehaviour
     {
         [SerializeField] protected EntityController _entityController;
-        [SerializeField] protected MoveFSMInstance _mover;        
+        [SerializeField] protected MovePlayerFSMInstance _mover;        
 
-        public EntityController GetEntityController()
+        public T GetEntityController<T>() where T : EntityController
         {
-            return _entityController;
+            return (T)_entityController;
         }
-        public MoveFSMInstance GetMover()
+        public MovePlayerFSMInstance GetMover()
         {
             return _mover;
         }

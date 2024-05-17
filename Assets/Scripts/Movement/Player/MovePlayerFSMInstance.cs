@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Assets.Scripts.Movement
 {
     [RequireComponent(typeof(Rigidbody), typeof(LivingEntity))]
-    public class MoveFSMInstance : FSMExample<MoveState>
+    public class MovePlayerFSMInstance : FSMExample<MoveState>
     {
         public event Action OnInitialized;
 

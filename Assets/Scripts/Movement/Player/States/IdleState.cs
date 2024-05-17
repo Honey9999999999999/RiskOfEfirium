@@ -8,12 +8,12 @@ namespace FSM
     public class IdleState : MoveState
     {
         private EntityController controller;
-        MoveFSMInstance instance;
+        MovePlayerFSMInstance instance;
         Rigidbody rigidbody;
 
         public IdleState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
         {
-            controller = entity.GetEntityController();
+            controller = entity.GetEntityController<PlayerController>();
             instance = entity.GetMover();
             rigidbody = instance.gameObject.GetComponent<Rigidbody>();
         }
@@ -23,8 +23,6 @@ namespace FSM
             base.Enter();
 
             rigidbody.velocity = Vector3.zero;
-
-            Debug.Log("Enter in Idle State");
         }
 
         public override void Exit()

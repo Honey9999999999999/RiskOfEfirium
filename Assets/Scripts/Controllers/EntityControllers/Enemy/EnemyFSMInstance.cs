@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Controllers.EntityControllers.Enemy.States;
+using Assets.Scripts.Entities;
+using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,14 +10,17 @@ namespace Assets.Scripts.Controllers.EntityControllers.Enemy
     [RequireComponent(typeof(Collider), typeof(NavMeshAgent))]
     public class EnemyFSMInstance : FSMExample<EnemyState>
     {
-        private Collider _target;
+        [SerializeField] private LivingEntity _entity;
+        [SerializeField] private ShellValue<Transform> _target;
 
-        public bool isTarget => _target != null;
+        public bool isTarget => _target.value != null;
 
         private void Start()
         {
-            _stateMachine.AddState(new SearchingTargetState(_stateMachine, _target));
-            _stateMachine.AddState(new PursuitTarget(_stateMachine, _target));
+            _target = new();
+
+            _stateMachine.AddState(new SearchingTargetState(_stateMachine, _entity, _target));
+            _stateMachine.AddState(new PursuitTarget(_stateMachine, _entity, _target));
 
             _stateMachine.EnterIn<SearchingTargetState>();
         }
@@ -24,20 +29,24 @@ namespace Assets.Scripts.Controllers.EntityControllers.Enemy
         {
             if (other.gameObject.TryGetComponent<Player>(out _))
             {
-                _target = other;
+                _target.value = other.gameObject.transform;
             }
         }
         private void OnTriggerExit(Collider other)
         {
             if (other.gameObject.TryGetComponent<Player>(out _))
             {
-                _target = null;
+                _target.value = null;
             }
         }
 
-        public Vector3 GetDirectionToTarget()
+        public Transform GetTarget()
         {
-            return _stateMachine.currentState.GetDirectionToTarget().normalized;
+            return _target.value;
+        }
+        public Vector3 GetTargetPosition()
+        {
+            return _stateMachine.currentState.GetTargetPosition();
         }
     }
 }

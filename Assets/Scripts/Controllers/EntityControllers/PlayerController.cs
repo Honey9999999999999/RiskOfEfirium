@@ -15,7 +15,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
         public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
 
-        public override Vector3 ViewDirection => GetViewDirection();
+        public override Vector3 viewDirection => GetViewDirection();
 
         private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
 
@@ -61,10 +61,11 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
         private Vector3 GetViewDirection()
         {
-            Vector3 ViewDirection = new (0, _cameraController.transform.eulerAngles.y, 0);
+            Vector3 cameraDirection = _cameraController.transform.forward;
+            Vector3 viewDirection = new Vector3(cameraDirection.x, 0, cameraDirection.z).normalized;
             _cameraController.transform.localEulerAngles = Vector3.zero;
 
-            return ViewDirection;
+            return viewDirection;
         }
     }
 }

@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            PlayerInteractor.OnInitialized += () => ((PlayerController)Game.GetInteractor<PlayerInteractor>().player.GetEntityController()).OnCameraInput += Rotate;
+            PlayerInteractor.OnInitialized += () => ((PlayerController)Game.GetInteractor<PlayerInteractor>().player.GetEntityController<PlayerController>()).OnCameraInput += Rotate;
         }
         else
         {

@@ -21,6 +21,7 @@ namespace Architecture
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
+            CreateInteractor<NavMeshInteractor>();
 
             return _interactorsMap;
         }

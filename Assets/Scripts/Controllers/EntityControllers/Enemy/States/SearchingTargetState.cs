@@ -1,37 +1,43 @@
-using Assets.Scripts.Controllers.EntityControllers.Enemy;
-using Assets.Scripts.Controllers.EntityControllers.Enemy.States;
+using Architecture;
+using Assets.Scripts.Entities;
+using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
 
-public class SearchingTargetState : EnemyState
+namespace Assets.Scripts.Controllers.EntityControllers.Enemy.States
 {
-    public SearchingTargetState(FinalStateMachine<EnemyState> stateMachine, Collider target) : base(stateMachine, target)
+    public class SearchingTargetState : EnemyState
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        if(_target != null)
+        public SearchingTargetState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target) : base(stateMachine, entity, target)
         {
-            _stateMachine.EnterIn<PursuitTarget>();
-
-            return;
         }
-        else
+
+        public override void Enter()
         {
-            _targetPosition = Vector3.zero;
+            base.Enter();
+
+            Debug.Log("Serching target");
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (_target.value != null)
+            {
+                _stateMachine.EnterIn<PursuitTarget>();
+
+                return;
+            }
+            else
+            {
+                _targetPosition = _entity.transform.position;         
+            }
         }
     }
 }

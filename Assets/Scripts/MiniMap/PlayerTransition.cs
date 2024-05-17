@@ -45,7 +45,7 @@ public class PlayerTransition : MonoBehaviour
 
                 IntVector2 reverseDirection = (oldPosition - position).GetNormilize();
 
-                Vector3 targetPosition = new(position.x * MapCreator.OFFSET, 1, position.y * MapCreator.OFFSET);
+                Vector3 targetPosition = new Vector3(position.x, 0, position.y) * MapCreator.OFFSET;
                 targetPosition += new Vector3(reverseDirection.x, 0, reverseDirection.y) * MapCreator.OFFSET / 4;
                 _player.transform.position = targetPosition;
 

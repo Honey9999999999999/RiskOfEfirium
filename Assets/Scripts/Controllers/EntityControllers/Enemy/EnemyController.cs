@@ -5,37 +5,48 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
-    [RequireComponent(typeof(NavMeshAgent), typeof(SphereCollider))]
+    [RequireComponent(typeof(SphereCollider))]
     public class EnemyController : EntityController
     {
-        [SerializeField] private NavMeshAgent agent;
-        [SerializeField] private EnemyFSMInstance fSMInstance;
+        [SerializeField] private EnemyFSMInstance _fSMInstance;
 
         private Vector2 _moveInput;
-        private bool _isWalk;
 
-        public override Vector3 ViewDirection => fSMInstance.GetDirectionToTarget();
+        public override Vector3 viewDirection => Vector3.forward;
         public override Vector2 moveInput => _moveInput;
-        public override bool isWalk => _isWalk;
-
-
-        private void Awake()
-        {
-            agent = GetComponent<NavMeshAgent>();
-        }
+        public override bool isWalk => IsCurrentPosition();
+        public bool isTarget => _fSMInstance.isTarget;
 
         private void Update()
         {
-            if (fSMInstance.isTarget)
+            if (_fSMInstance.isTarget)
             {
                 _moveInput = new Vector2(0, 1);
-                _isWalk = true;
             }
             else
             {
                 _moveInput = Vector2.zero;
-                _isWalk = false;
             }
+        }
+
+        public bool TryGetTarget(out Transform target)
+        {
+            if (_fSMInstance.isTarget)
+            {
+                target = GetTarget();
+                return true;
+            }
+
+            target = null;
+            return false;
+            
+        }
+        public Transform GetTarget() => _fSMInstance.GetTarget();
+
+        private bool IsCurrentPosition()
+        {
+            Vector3 vector = _fSMInstance.GetTargetPosition() - transform.position;
+            return (vector.x * vector.x + vector.y * vector.y) < 0.01f;
         }
     }
 }
