@@ -1,20 +1,18 @@
 ﻿using Assets.Scripts.Entities;
-using MoveFSM;
+using FSM;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
 {
     [RequireComponent(typeof(Rigidbody), typeof(LivingEntity))]
-    public class MoveFSMInstance : MonoBehaviour
+    public class MoveFSMInstance : FSMExample<MoveState>
     {
         public event Action OnInitialized;
 
         [SerializeField] private LivingEntity entity;
 
         [SerializeField] private float _walkSpeed;
-
-        private MoveStateMachine _stateMachine = new();
         
         private void Awake()
         {
@@ -31,16 +29,6 @@ namespace Assets.Scripts.Movement
             _stateMachine.EnterIn<IdleState>();
 
             OnInitialized?.Invoke();
-        }
-
-        private void Update()
-        {
-            _stateMachine.currentState.Update();
-        }
-
-        public TState GetState<TState>() where TState : State
-        {
-            return _stateMachine.GetState<TState>();
         }
 
         public float GetWalkSpeed() => _walkSpeed;

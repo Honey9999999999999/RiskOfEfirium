@@ -1,22 +1,19 @@
 ﻿using Assets.Scripts.Controllers.EntityControllers;
 using Assets.Scripts.Entities;
 using Assets.Scripts.Movement;
-using System;
 using UnityEngine;
 
-namespace MoveFSM
+namespace FSM
 {
-    internal class WalkState : State
+    internal class WalkState : MoveState
     {
-        public event Action OnWalk;
-
         LivingEntity entity;
         private EntityController controller;
         Transform movebleObject;
         MoveFSMInstance instance;
         Rigidbody rigidbody;
 
-        public WalkState(MoveStateMachine stateMachine, LivingEntity entity) : base(stateMachine)
+        public WalkState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
         {
             this.entity = entity;
             controller = entity.GetEntityController();
@@ -48,13 +45,18 @@ namespace MoveFSM
                 return;
             }
 
-            OnWalk?.Invoke();
+            ViewOnDirection();
 
             Vector3 forward = movebleObject.forward * controller.moveInput.y;
             Vector3 right = movebleObject.right * controller.moveInput.x;
             Vector3 direction = forward + right;
 
             rigidbody.velocity = direction * instance.GetWalkSpeed();
+        }
+
+        protected void ViewOnDirection()
+        {
+            entity.transform.eulerAngles = controller.ViewDirection;
         }
     }
 }

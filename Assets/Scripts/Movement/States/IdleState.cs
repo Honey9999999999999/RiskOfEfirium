@@ -3,15 +3,15 @@ using Assets.Scripts.Entities;
 using Assets.Scripts.Movement;
 using UnityEngine;
 
-namespace MoveFSM
+namespace FSM
 {
-    public class IdleState : State
+    public class IdleState : MoveState
     {
         private EntityController controller;
         MoveFSMInstance instance;
         Rigidbody rigidbody;
 
-        public IdleState(MoveStateMachine stateMachine, LivingEntity entity) : base(stateMachine)
+        public IdleState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
         {
             controller = entity.GetEntityController();
             instance = entity.GetMover();

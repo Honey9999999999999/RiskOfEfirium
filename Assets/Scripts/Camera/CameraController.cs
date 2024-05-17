@@ -13,12 +13,14 @@ public class CameraController : MonoBehaviour
 
     public static CameraController instance;
 
+    private Vector3 _cameraPositionOld;
+
     private void Start()
     {
         if (instance == null)
         {
             instance = this;
-            PlayerInteractor.OnInitialized += () => Game.GetInteractor<PlayerInteractor>().player.GetEntityController().OnCameraInput += Rotate;
+            PlayerInteractor.OnInitialized += () => ((PlayerController)Game.GetInteractor<PlayerInteractor>().player.GetEntityController()).OnCameraInput += Rotate;
         }
         else
         {
@@ -28,7 +30,25 @@ public class CameraController : MonoBehaviour
 
     private void Rotate()
     {
-        Vector3 rotation = new(0, -controller.CameraControlInput.x * _sensivity, 0);
+        Vector3 rotation;
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            _cameraPositionOld = Input.mousePosition;
+        }
+        if (Input.GetMouseButton(1))
+        {
+            Vector3 mousePositionDelta = _cameraPositionOld - Input.mousePosition;
+            _cameraPositionOld = Input.mousePosition;
+            rotation = mousePositionDelta;
+        }
+        else
+        {
+            _cameraPositionOld = Vector3.zero;
+            rotation = Vector3.zero;
+        }
+
+        rotation = new(0, -rotation.x * _sensivity, 0);
         transform.Rotate(rotation);
 
         OnCameraRotated?.Invoke(rotation);

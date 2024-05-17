@@ -5,17 +5,17 @@ namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PlayerController : EntityController
     {
-        public override event Action OnCameraInput;
+        public event Action OnCameraInput;
 
         [SerializeField] private Vector2 _verticalInput;
         [SerializeField] private Vector2 _horizontalInput;
+        [SerializeField] private CameraController _cameraController;
 
         public override Vector2 moveInput { get => _moveInput; }
 
         public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
 
-        public override Vector2 CameraControlInput => GetCameraInput();
-        private Vector3 _cameraPositionOld;
+        public override Vector3 ViewDirection => GetViewDirection();
 
         private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
 
@@ -59,23 +59,12 @@ namespace Assets.Scripts.Controllers.EntityControllers
             }
         }
 
-        private Vector3 GetCameraInput()
+        private Vector3 GetViewDirection()
         {
-            if (Input.GetMouseButtonDown(1))
-            {
-                _cameraPositionOld = Input.mousePosition;
-            }
-            if (Input.GetMouseButton(1))
-            {
-                Vector3 mousePositionDelta = _cameraPositionOld - Input.mousePosition;
-                _cameraPositionOld = Input.mousePosition;
-                return mousePositionDelta;
-            }
-            else
-            {
-                _cameraPositionOld = Vector3.zero;
-                return Vector3.zero;
-            }
+            Vector3 ViewDirection = new (0, _cameraController.transform.eulerAngles.y, 0);
+            _cameraController.transform.localEulerAngles = Vector3.zero;
+
+            return ViewDirection;
         }
     }
 }

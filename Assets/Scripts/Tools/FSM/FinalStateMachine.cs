@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MoveFSM
+namespace FSM
 {
-    public class MoveStateMachine
+    public class FinalStateMachine<TState> where TState : IState
     {
-        private Dictionary<Type, State> _states;
+        private Dictionary<Type, TState> _states;
 
-        public MoveStateMachine()
+        public FinalStateMachine()
         {
             _states = new();
         }
 
-        public State currentState { get; private set; }
+        public TState currentState { get; private set; }
 
-        public void EnterIn<TState>() where TState : State
+        public void EnterIn<T>() where T : TState
         {
-            var type = typeof(TState);
+            var type = typeof(T);
 
-            if(type != currentState?.GetType() && _states.TryGetValue(type, out State state))
+            if(type != currentState?.GetType() && _states.TryGetValue(type, out TState state))
             {
                 currentState?.Exit();
                 currentState = state;
                 currentState.Enter();
             }
         }
-        public TState GetState<TState>() where TState : State
+        public TState GetState<T>() where T : TState
         {
-            return (TState)_states[typeof(TState)];
+            return (T)_states[typeof(T)];
         }
 
         public void Update()
@@ -35,7 +35,7 @@ namespace MoveFSM
             currentState.Update();
         }
 
-        public void AddState(State state)
+        public void AddState(TState state)
         {
             var type = state.GetType();
             if(!_states.TryGetValue(type, out _))
