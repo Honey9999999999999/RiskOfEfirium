@@ -2,9 +2,9 @@
 
 namespace FSM
 {
-    public abstract class FSMExample<TState> : MonoBehaviour where TState : IState
+    public abstract class FSMExample<TFSM, TState> : MonoBehaviour where TFSM : FinalStateMachine<TState>, new() where TState : IState
     {
-        protected FinalStateMachine<TState> _stateMachine = new();
+        protected TFSM _stateMachine = new();
 
         protected void Update()
         {

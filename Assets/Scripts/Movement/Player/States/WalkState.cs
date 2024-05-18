@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Movement;
+﻿using Assets.Scripts.Entities;
+using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace FSM
     {
         private Transform _movebleObject;
 
-        public WalkState(FinalStateMachine<PlayerMoveState> stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
+        public WalkState(FSMMove stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
         {
             _movebleObject = entity.transform;
         }

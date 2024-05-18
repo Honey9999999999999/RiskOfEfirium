@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Entities
 {
     [Serializable]
-    public class EntitiesHealth
+    public class EntityHealth
     {
         public event Action OnHealthDown;
 
@@ -20,8 +20,8 @@ namespace Assets.Scripts.Entities
         private Timer _timer;
         private Coroutine _regenerationAsync;
 
-        public EntitiesHealth() : this(100, 5, 5) { }
-        public EntitiesHealth(float maxHealth, float regenerationPerSec, float regenerationCooldown)
+        public EntityHealth() : this(100, 5, 5) { }
+        public EntityHealth(float maxHealth, float regenerationPerSec, float regenerationCooldown)
         {
             if(maxHealth <= 0)
             {

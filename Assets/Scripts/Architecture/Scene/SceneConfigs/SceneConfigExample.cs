@@ -15,7 +15,7 @@ namespace Architecture
         public override Dictionary<Type, Interactor> CreateAllInteractors()
         {
             _interactorsMap = new Dictionary<Type, Interactor>();
-                        
+            
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();

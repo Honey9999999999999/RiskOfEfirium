@@ -6,11 +6,11 @@ namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PlayerController : EntityController
     {
-        public event Action OnCameraInput;
+        public event Action OnCameraFirstInput;
+        public event Action OnCameraInput;        
 
         [SerializeField] private Vector2 _verticalInput;
         [SerializeField] private Vector2 _horizontalInput;
-        [SerializeField] private CameraController _cameraController;
 
         public Vector2 moveInput { get => _moveInput; }
 
@@ -22,6 +22,11 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
         private void Update()
         {
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                OnCameraFirstInput?.Invoke();
+            }
             if (Input.GetMouseButton(1))
             {
                 OnCameraInput?.Invoke();
@@ -62,9 +67,9 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
         private Vector3 GetViewDirection()
         {
-            Vector3 cameraDirection = _cameraController.transform.forward;
+            Vector3 cameraDirection = CameraController.instance.transform.forward;
             Vector3 viewDirection = new Vector3(cameraDirection.x, 0, cameraDirection.z).normalized;
-            _cameraController.transform.localEulerAngles = Vector3.zero;
+            CameraController.instance.transform.localEulerAngles = Vector3.zero;
 
             return viewDirection;
         }

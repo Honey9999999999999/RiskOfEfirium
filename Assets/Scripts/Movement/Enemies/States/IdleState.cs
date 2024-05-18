@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Entities;
-using Assets.Scripts.Movement;
+﻿using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace EnemyMoveStates
 {
     internal class IdleState : EnemyMoveState
     {
-        public IdleState(FinalStateMachine<EnemyMoveState> stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, entity, agent, speed)
+        public IdleState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, entity, agent, speed)
         {
         }
 

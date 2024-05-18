@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FSM
 {
-    public class FinalStateMachine<TState> where TState : IState
+    public abstract class FinalStateMachine<TState> where TState : IState
     {
         private Dictionary<Type, TState> _states;
 

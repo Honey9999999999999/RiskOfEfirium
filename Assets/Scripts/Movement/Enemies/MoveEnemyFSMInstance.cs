@@ -2,9 +2,8 @@ using Assets.Scripts.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveEnemyFSMInstance : MoveFSMInstance<EnemyMoveState>
+public class MoveEnemyFSMInstance : MoveFSMInstance<Enemy>
 {
-    [SerializeField] private Enemy _entity;
     [SerializeField] private NavMeshAgent _agent;
 
     private void Start()
