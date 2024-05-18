@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
+using EntityControllers;
 using FSM;
 using UnityEngine;
 

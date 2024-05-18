@@ -1,25 +1,16 @@
-﻿using Assets.Scripts.Controllers.EntityControllers;
-using Assets.Scripts.Entities;
-using Assets.Scripts.Movement;
+﻿using Assets.Scripts.Movement;
+using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace FSM
 {
-    internal class WalkState : MoveState
+    internal class WalkState : PlayerMoveState
     {
-        LivingEntity entity;
-        private EntityController controller;
-        Transform movebleObject;
-        MovePlayerFSMInstance instance;
-        Rigidbody rigidbody;
+        private Transform _movebleObject;
 
-        public WalkState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
+        public WalkState(FinalStateMachine<PlayerMoveState> stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
         {
-            this.entity = entity;
-            controller = entity.GetEntityController<PlayerController>();
-            movebleObject = entity.gameObject.transform;
-            instance = entity.GetMover();
-            rigidbody = instance.gameObject.GetComponent<Rigidbody>();
+            _movebleObject = entity.transform;
         }
 
         public override void Enter()
@@ -36,7 +27,7 @@ namespace FSM
         {
             base.Update();
 
-            if (!controller.isWalk)
+            if (!_controller.isWalk)
             {
                 _stateMachine.EnterIn<IdleState>();
 
@@ -45,16 +36,16 @@ namespace FSM
 
             ViewOnDirection();
 
-            Vector3 forward = movebleObject.forward * controller.moveInput.y;
-            Vector3 right = movebleObject.right * controller.moveInput.x;
+            Vector3 forward = _movebleObject.forward * _controller.moveInput.y;
+            Vector3 right = _movebleObject.right * _controller.moveInput.x;
             Vector3 direction = forward + right;
 
-            rigidbody.velocity = direction * instance.GetWalkSpeed();
+            _rigidbody.velocity = direction * _speed.value;
         }
 
         protected void ViewOnDirection()
         {
-            entity.transform.LookAt(movebleObject.position + controller.viewDirection);
+            _entity.transform.LookAt(_movebleObject.position + _controller.viewDirection);
         }
     }
 }

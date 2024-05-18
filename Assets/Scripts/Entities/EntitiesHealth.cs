@@ -1,0 +1,103 @@
+﻿using CoroutineManager;
+using MyTimer;
+using System;
+using System.Collections;
+using UnityEngine;
+
+namespace Assets.Scripts.Entities
+{
+    [Serializable]
+    public class EntitiesHealth
+    {
+        public event Action OnHealthDown;
+
+        [SerializeField, Min(0)] private float _health;
+        [SerializeField, Min(0)] private float _maxHealth;
+
+        [SerializeField, Min(0)] private float _regenerationPerSec;
+        [SerializeField, Min(0)] private float _regenerationCooldown;
+
+        private Timer _timer;
+        private Coroutine _regenerationAsync;
+
+        public EntitiesHealth() : this(100, 5, 5) { }
+        public EntitiesHealth(float maxHealth, float regenerationPerSec, float regenerationCooldown)
+        {
+            if(maxHealth <= 0)
+            {
+                maxHealth = 100;
+            }
+
+            _maxHealth = maxHealth;
+            _health = _maxHealth;
+
+            _regenerationPerSec = regenerationPerSec;
+            _regenerationCooldown = regenerationCooldown;
+
+            _timer = new();
+            _timer.OnStoped += StartRegeneration;
+        }
+
+        public float health => _health;
+        public bool isMaxHealth => _health >= _maxHealth;
+
+        public void TakenDamage(float damage)
+        {
+            if(damage > _health)
+            {
+                damage -= damage - _health;
+            }
+
+            _health -= damage;
+
+            if(_health <= 0)
+            {
+                OnHealthDown?.Invoke();
+                _timer.Reset();
+
+                return;
+            }
+
+            StartCooldownRegeneration();
+        }
+
+        private void StartCooldownRegeneration()
+        {
+            if (_timer.isStarted)
+            {
+                _timer.Reset();
+            }
+
+            _timer.Start(_regenerationCooldown);
+            StopRegeneration();
+        }
+
+        private void StartRegeneration()
+        {
+            _regenerationAsync = Coroutines.StartRoutine(RegenerationRoutine());
+        }
+
+        private void StopRegeneration()
+        {
+            if(_regenerationAsync != null)
+            {
+                Coroutines.StopRoutine(_regenerationAsync);
+            }
+        }
+
+        private IEnumerator RegenerationRoutine()
+        {
+            while (!isMaxHealth)
+            {
+                _health += Time.deltaTime * _regenerationPerSec;
+
+                if(_health > _maxHealth)
+                {
+                    _health = _maxHealth;
+                }
+
+                yield return null;
+            }
+        }
+    }
+}

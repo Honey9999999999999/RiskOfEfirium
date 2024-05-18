@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityControllers;
+using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers
@@ -11,11 +12,11 @@ namespace Assets.Scripts.Controllers.EntityControllers
         [SerializeField] private Vector2 _horizontalInput;
         [SerializeField] private CameraController _cameraController;
 
-        public override Vector2 moveInput { get => _moveInput; }
+        public Vector2 moveInput { get => _moveInput; }
 
         public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
 
-        public override Vector3 viewDirection => GetViewDirection();
+        public Vector3 viewDirection => GetViewDirection();
 
         private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
 

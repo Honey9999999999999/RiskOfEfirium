@@ -3,7 +3,7 @@ using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers.EntityControllers.Enemy
+namespace EntityControllers
 {
     public class EnemyState : IState
     {        

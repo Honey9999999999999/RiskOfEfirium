@@ -15,13 +15,14 @@ namespace Architecture
         public override Dictionary<Type, Interactor> CreateAllInteractors()
         {
             _interactorsMap = new Dictionary<Type, Interactor>();
-
-            CreateInteractor<PlayerInteractor>();
-            CreateInteractor<CameraInteractor>();
+                        
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
             CreateInteractor<NavMeshInteractor>();
+
+            CreateInteractor<PlayerInteractor>();
+            CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;
         }

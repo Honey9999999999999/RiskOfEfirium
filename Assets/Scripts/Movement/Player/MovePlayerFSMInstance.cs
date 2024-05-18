@@ -1,36 +1,26 @@
 ﻿using Assets.Scripts.Entities;
 using FSM;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
 {
     [RequireComponent(typeof(Rigidbody), typeof(LivingEntity))]
-    public class MovePlayerFSMInstance : FSMExample<MoveState>
+    public class MovePlayerFSMInstance : MoveFSMInstance<PlayerMoveState>
     {
-        public event Action OnInitialized;
-
-        [SerializeField] private LivingEntity entity;
-
-        [SerializeField] private float _walkSpeed;
-        
+        [SerializeField] private Player _entity;
         private void Awake()
         {
-            if(entity == null)
+            if(_entity == null)
             {
-                entity = gameObject.GetComponent<LivingEntity>();
+                _entity = gameObject.GetComponent<Player>();
             }
         }
         private void Start()
         {
-            _stateMachine.AddState(new IdleState(_stateMachine, entity));
-            _stateMachine.AddState(new WalkState(_stateMachine, entity));
+            _stateMachine.AddState(new IdleState(_stateMachine, _entity, _speed));
+            _stateMachine.AddState(new WalkState(_stateMachine, _entity, _speed));
 
             _stateMachine.EnterIn<IdleState>();
-
-            OnInitialized?.Invoke();
         }
-
-        public float GetWalkSpeed() => _walkSpeed;
     }
 }

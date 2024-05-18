@@ -1,28 +1,20 @@
-using Assets.Scripts.Controllers.EntityControllers;
-using Assets.Scripts.Entities;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace FSM
 {
-    public class IdleState : MoveState
+    public class IdleState : PlayerMoveState
     {
-        private EntityController controller;
-        MovePlayerFSMInstance instance;
-        Rigidbody rigidbody;
-
-        public IdleState(FinalStateMachine<MoveState> stateMachine, LivingEntity entity) : base(stateMachine)
+        public IdleState(FinalStateMachine<PlayerMoveState> stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
         {
-            controller = entity.GetEntityController<PlayerController>();
-            instance = entity.GetMover();
-            rigidbody = instance.gameObject.GetComponent<Rigidbody>();
         }
 
         public override void Enter()
         {
             base.Enter();
 
-            rigidbody.velocity = Vector3.zero;
+            _rigidbody.velocity = Vector3.zero;
         }
 
         public override void Exit()
@@ -34,7 +26,7 @@ namespace FSM
         {
             base.Update();
 
-            if (controller.isWalk)
+            if (_controller.isWalk)
             {
                 _stateMachine.EnterIn<WalkState>();
 

@@ -1,23 +1,35 @@
-﻿using Assets.Scripts.Controllers.EntityControllers;
-using Assets.Scripts.Movement;
+﻿using EntityControllers;
 using System;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
     [Serializable]
-    public abstract class LivingEntity: MonoBehaviour
+    [RequireComponent(typeof(Rigidbody))]
+    public abstract class LivingEntity : MonoBehaviour
     {
         [SerializeField] protected EntityController _entityController;
-        [SerializeField] protected MovePlayerFSMInstance _mover;        
+        [SerializeField] protected EntitiesHealth _health = new();
 
-        public T GetEntityController<T>() where T : EntityController
+        public LivingEntity()
         {
-            return (T)_entityController;
+            _health.OnHealthDown += OnDeath;
         }
-        public MovePlayerFSMInstance GetMover()
+
+        public EntityController GetEntityController() => _entityController;
+
+        public Rigidbody GetRigidbody()
         {
-            return _mover;
+            return GetComponent<Rigidbody>();
+        }
+
+        public void TakenDamage(float damage)
+        {
+            _health.TakenDamage(damage);
+        }
+
+        protected virtual void OnDeath()
+        {
         }
     }
 }

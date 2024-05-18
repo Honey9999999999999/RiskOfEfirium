@@ -9,8 +9,6 @@ namespace Assets.Scripts.Map
         public override void Initialize()
         {
             base.Initialize();
-
-            mapCreator.Create3DMap();
         }
 
         public override void OnCreate()
@@ -18,6 +16,7 @@ namespace Assets.Scripts.Map
             base.OnCreate();
 
             mapCreator = new MapCreator(new RoomCreatorConfigExample());
+            mapCreator.Create3DMap();
         }
 
         public override void OnStart()

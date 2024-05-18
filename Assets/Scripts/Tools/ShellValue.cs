@@ -1,7 +1,10 @@
-﻿namespace Assets.Scripts.Tools
+﻿using System;
+
+namespace Assets.Scripts.Tools
 {
+    [Serializable]
     public class ShellValue<T>
     {
-        public T value { get; set; }
+        public T value;
     }
 }

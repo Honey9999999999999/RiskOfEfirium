@@ -1,5 +1,6 @@
 using Architecture;
 using Assets.Scripts.Controllers.EntityControllers;
+using EntityControllers;
 using System;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class CameraController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            PlayerInteractor.OnInitialized += () => ((PlayerController)Game.GetInteractor<PlayerInteractor>().player.GetEntityController<PlayerController>()).OnCameraInput += Rotate;
+            PlayerInteractor.OnInitialized += () => Game.GetInteractor<PlayerInteractor>().player.GetPlayerController().OnCameraInput += Rotate;
         }
         else
         {

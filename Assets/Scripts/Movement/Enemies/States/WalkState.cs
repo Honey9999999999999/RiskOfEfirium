@@ -1,19 +1,24 @@
 ﻿using Assets.Scripts.Entities;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Tools;
 using FSM;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace EnemyMoveStates
 {
     internal class WalkState : EnemyMoveState
     {
-        public WalkState(FinalStateMachine<EnemyMoveState> stateMachine, Enemy entity, NavMeshAgent agent) : base(stateMachine, entity, agent)
+        public WalkState(FinalStateMachine<EnemyMoveState> stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, entity, agent, speed)
         {
         }
 
         public override void Enter()
         {
             base.Enter();
+
+            _rigidbody.velocity = Vector3.zero;
+            _agent.speed = _speed.value;
         }
 
         public override void Exit()
@@ -25,14 +30,17 @@ namespace EnemyMoveStates
         {
             base.Update();
 
-            if (!_controller.isTarget)
+            if (!_controller.isWalk)
             {
                 _stateMachine.EnterIn<IdleState>();
 
                 return;
             }
 
-            _agent.SetDestination(_controller.GetTarget().position);            
+            if (NavMeshInteractor.isInitialized)
+            {
+                _agent.SetDestination(_controller.targetPosition);
+            }            
         }
     }
 }

@@ -9,5 +9,13 @@ namespace Assets.Scripts.Architecture
         {
             Game.Run();
         }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Game.GetInteractor<PlayerInteractor>().player.TakenDamage(10);
+            }
+        }
     }
 }

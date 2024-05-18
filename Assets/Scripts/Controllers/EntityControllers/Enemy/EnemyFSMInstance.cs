@@ -1,16 +1,15 @@
 ﻿using Assets.Scripts.Controllers.EntityControllers.Enemy.States;
-using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Scripts.Controllers.EntityControllers.Enemy
+namespace EntityControllers
 {
     [RequireComponent(typeof(Collider), typeof(NavMeshAgent))]
     public class EnemyFSMInstance : FSMExample<EnemyState>
     {
-        [SerializeField] private LivingEntity _entity;
+        [SerializeField] private Enemy _entity;
         [SerializeField] private ShellValue<Transform> _target;
 
         public bool isTarget => _target.value != null;
