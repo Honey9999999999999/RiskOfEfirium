@@ -16,6 +16,8 @@ public class CameraInteractor : Interactor
 
         _camera.Follow = viewPort;
         _camera.LookAt = viewPort;
+
+        Camera.SetupCurrent(_camera.GetComponent<Camera>());
     }
 
     public override void OnCreate()

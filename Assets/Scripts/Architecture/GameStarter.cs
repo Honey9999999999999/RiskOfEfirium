@@ -1,6 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem;
-using Assets.Scripts.InventorySystem.Items;
 using Assets.Scripts.Tools;
 using UI.Cursor;
 using UnityEngine;
@@ -16,11 +14,11 @@ namespace Assets.Scripts.Architecture
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && CursorHitHandler.Raycast(out RaycastHit hit))
+            if (Input.GetKeyDown(KeyCode.Space) && CursorHitHandler.RaycastNoTriggers(out RaycastHit hit))
             {
                 Debug.Log(hit.point);
 
-                if(!hit.collider.isTrigger && hit.collider.TryGetComponent<Enemy>(out _))
+                if(hit.collider.TryGetComponent<Enemy>(out _))
                 {
                     Debug.Log("I see Enemy");
                 }

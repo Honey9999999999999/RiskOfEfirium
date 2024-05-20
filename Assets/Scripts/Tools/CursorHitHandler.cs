@@ -10,20 +10,45 @@ namespace Assets.Scripts.Tools
 
             if (Physics.Raycast(ray, out hit))
             {
-                //if (hit.collider.gameObject.TryGetComponent<Enemy>(out _))
-                //{
-                //    worldPosition = hit.collider.transform.position + new Vector3(0, 1, 0);
-                //}
-                //else
-                //{
-                //    worldPosition = hit.point + new Vector3(0, 1, 0);
-                //}
 
                 return true;
             }
-
-            //worldPosition = Vector3.zero;            
+        
             return false;
+        }
+
+        public static bool RaycastNoTriggers(out RaycastHit hit)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit[] raycastHits = new RaycastHit[5];
+            Physics.RaycastNonAlloc(ray, raycastHits);
+
+            hit = new();
+            float distance = 9999f;
+            Vector3 cameraPosition = Camera.current.transform.position;
+
+            foreach (var _hit in raycastHits)
+            {
+                if (_hit.collider != null && !_hit.collider.isTrigger)
+                {
+                    Vector3 ab = _hit.point - cameraPosition;
+                    float length = ab.x * ab.x + ab.y * ab.y;
+
+                    if(length < distance)
+                    {
+                        hit = _hit;
+                        distance = length;
+                    }
+                }
+            }
+
+            if(hit.collider == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
