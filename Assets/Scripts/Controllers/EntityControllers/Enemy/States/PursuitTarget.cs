@@ -15,8 +15,6 @@ namespace Assets.Scripts.Controllers.EntityControllers.Enemy.States
         public override void Enter()
         {
             base.Enter();
-
-            Debug.Log("Pursuit target");
         }
 
         public override void Exit()

@@ -10,8 +10,7 @@ namespace Assets.Scripts.Entities
     public abstract class LivingEntity : MonoBehaviour
     {
         [SerializeField] protected EntityHealth _health = new();
-        [SerializeField] protected EntityController _entityController;
-        [SerializeField] protected MoveFSMInstance<LivingEntity> _moveInstance;
+        [SerializeField] protected EntityController _entityController;        
         
         public LivingEntity()
         {
@@ -32,7 +31,7 @@ namespace Assets.Scripts.Entities
 
         protected virtual void OnDeath()
         {
-            _moveInstance.EntityDead();
+
         }
     }
 }

@@ -26,8 +26,6 @@ namespace Assets.Scripts.Controllers.EntityControllers.Enemy.States
             base.Enter();
 
             _timer.Start(INTERVAL_SEARCHING);
-
-            Debug.Log("Serching target");
         }
 
         public override void Exit()

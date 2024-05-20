@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensivity: 0.2
-  controller: {fileID: 0}
 --- !u!1 &5831561263479057030
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,12 +284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4454809da3a7f34bac77ad0039c284b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityController: {fileID: 6673800383883333299}
   _health:
     _health: 100
     _maxHealth: 100
     _regenerationPerSec: 5
     _regenerationCooldown: 5
+  _entityController: {fileID: 6673800383883333299}
   _moveInstance: {fileID: 5096596363493482393}
   _viewDirection: {fileID: 9089228559610109873}
 --- !u!114 &6673800383883333299
@@ -307,7 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalInput: {x: 0, y: 0}
   _horizontalInput: {x: 0, y: 0}
-  _cameraController: {fileID: 7913535726562950173}
 --- !u!114 &5096596363493482393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,9 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09eac7b60435c944dad913bd2592f395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed:
-    value: 6
   _entity: {fileID: 5634911306522840006}
+  _speed:
+    value: 0
+  _baseSpeed: 6
 --- !u!54 &3026261379260145341
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -349,7 +348,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &2761584940448225470
 CapsuleCollider:
   m_ObjectHideFlags: 0

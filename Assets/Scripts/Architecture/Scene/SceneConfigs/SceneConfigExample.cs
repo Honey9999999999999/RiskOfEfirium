@@ -1,9 +1,11 @@
 ﻿using Assets.Scripts.Bank;
+using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
 using System;
 using System.Collections.Generic;
+using UI.Cursor;
 
 namespace Architecture
 {
@@ -22,7 +24,10 @@ namespace Architecture
             CreateInteractor<NavMeshInteractor>();
 
             CreateInteractor<PlayerInteractor>();
+            CreateInteractor<InventoryInteractor>();
             CreateInteractor<CameraInteractor>();
+
+            CreateInteractor<CursorInteractor>();
 
             return _interactorsMap;
         }
