@@ -1,4 +1,4 @@
-using Architecture;
+using Assets.Scripts.InputManager;
 using System;
 using UnityEngine;
 
@@ -17,8 +17,8 @@ public class CameraController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            PlayerInteractor.OnInitialized += () => Game.GetInteractor<PlayerInteractor>().player.GetPlayerController().OnCameraFirstInput += SaveCameraPosition;
-            PlayerInteractor.OnInitialized += () => Game.GetInteractor<PlayerInteractor>().player.GetPlayerController().OnCameraInput += Rotate;
+            InputHandler.OnCameraFirstInput += SaveCameraPosition;
+            InputHandler.OnCameraInput += Rotate;
         }
         else
         {

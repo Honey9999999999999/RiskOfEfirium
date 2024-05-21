@@ -8,9 +8,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float damage;
     private Timer _lifeTimer;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.collider.TryGetComponent(out LivingEntity entity))
+        if (!other.isTrigger && other.TryGetComponent(out LivingEntity entity))
         {
             entity.TakenDamage(damage);
             DestroyBullet();

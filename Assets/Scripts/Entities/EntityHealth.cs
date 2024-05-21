@@ -23,7 +23,7 @@ namespace Assets.Scripts.Entities
         public EntityHealth() : this(100, 5, 5) { }
         public EntityHealth(float maxHealth, float regenerationPerSec, float regenerationCooldown)
         {
-            if(maxHealth <= 0)
+            if (maxHealth <= 0)
             {
                 maxHealth = 100;
             }
@@ -43,14 +43,14 @@ namespace Assets.Scripts.Entities
 
         public void TakenDamage(float damage)
         {
-            if(damage > _health)
+            if (damage > _health)
             {
                 damage -= damage - _health;
             }
 
             _health -= damage;
 
-            if(_health <= 0)
+            if (_health <= 0)
             {
                 OnHealthDown?.Invoke();
                 _timer.Reset();
@@ -79,7 +79,7 @@ namespace Assets.Scripts.Entities
 
         private void StopRegeneration()
         {
-            if(_regenerationAsync != null)
+            if (_regenerationAsync != null)
             {
                 Coroutines.StopRoutine(_regenerationAsync);
             }
@@ -91,7 +91,7 @@ namespace Assets.Scripts.Entities
             {
                 _health += Time.deltaTime * _regenerationPerSec;
 
-                if(_health > _maxHealth)
+                if (_health > _maxHealth)
                 {
                     _health = _maxHealth;
                 }

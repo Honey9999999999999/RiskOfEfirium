@@ -1,4 +1,4 @@
-﻿namespace UI.Cursor
+﻿namespace UICursor
 {
     public enum CursorMode
     {

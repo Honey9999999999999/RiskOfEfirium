@@ -18,7 +18,7 @@ namespace FSM
         {
             var type = typeof(T);
 
-            if(type != currentState?.GetType() && _states.TryGetValue(type, out TState state))
+            if (type != currentState?.GetType() && _states.TryGetValue(type, out TState state))
             {
                 currentState?.Exit();
                 currentState = state;
@@ -38,10 +38,15 @@ namespace FSM
         public void AddState(TState state)
         {
             var type = state.GetType();
-            if(!_states.TryGetValue(type, out _))
+            if (!_states.TryGetValue(type, out _))
             {
                 _states.Add(type, state);
-            }            
+            }
+        }
+
+        public void ClearStates()
+        {
+            _states.Clear();
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using Assets.Scripts.Bank;
+using Assets.Scripts.InputManager;
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
+using Assets.Scripts.UI;
 using System;
 using System.Collections.Generic;
-using UI.Cursor;
+using UICursor;
 
 namespace Architecture
 {
@@ -17,7 +19,12 @@ namespace Architecture
         public override Dictionary<Type, Interactor> CreateAllInteractors()
         {
             _interactorsMap = new Dictionary<Type, Interactor>();
-            
+
+            CreateInteractor<InputInteractor>();
+
+            CreateInteractor<UICanvasIntaractor>();
+            CreateInteractor<CursorInteractor>();
+
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
@@ -26,8 +33,6 @@ namespace Architecture
             CreateInteractor<PlayerInteractor>();
             CreateInteractor<InventoryInteractor>();
             CreateInteractor<CameraInteractor>();
-
-            CreateInteractor<CursorInteractor>();
 
             return _interactorsMap;
         }

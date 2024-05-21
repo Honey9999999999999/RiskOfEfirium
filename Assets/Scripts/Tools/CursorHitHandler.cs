@@ -13,7 +13,7 @@ namespace Assets.Scripts.Tools
 
                 return true;
             }
-        
+
             return false;
         }
 
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Tools
                     Vector3 ab = _hit.point - cameraPosition;
                     float length = ab.x * ab.x + ab.y * ab.y;
 
-                    if(length < distance)
+                    if (length < distance)
                     {
                         hit = _hit;
                         distance = length;
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Tools
                 }
             }
 
-            if(hit.collider == null)
+            if (hit.collider == null)
             {
                 return false;
             }

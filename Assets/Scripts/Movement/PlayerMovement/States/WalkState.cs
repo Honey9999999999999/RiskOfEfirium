@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Movement;
+﻿using Assets.Scripts.InputManager;
+using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
@@ -42,8 +43,8 @@ namespace PlayerMoveStates
 
             ViewOnDirection();
 
-            Vector3 forward = _movebleObject.forward * _controller.moveInput.y;
-            Vector3 right = _movebleObject.right * _controller.moveInput.x;
+            Vector3 forward = _movebleObject.forward * InputHandler.instance.moveVector.y;
+            Vector3 right = _movebleObject.right * InputHandler.instance.moveVector.x;
             Vector3 direction = forward + right;
 
             _rigidbody.velocity = direction * _speed.value;

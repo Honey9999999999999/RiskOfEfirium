@@ -1,6 +1,5 @@
-﻿using Architecture;
+﻿using Assets.Scripts.InputManager;
 using Assets.Scripts.Tools;
-using UI.Cursor;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers
@@ -20,15 +19,14 @@ namespace Assets.Scripts.Controllers.EntityControllers
         {
             base.Enter();
 
-            Game.GetInteractor<CursorInteractor>().cursor.SetMode(UI.Cursor.CursorMode.Battle);
-            _controller.OnAttackInput += Fire;
+            InputHandler.OnAttackInput += Fire;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            _controller.OnAttackInput -= Fire;
+            InputHandler.OnAttackInput -= Fire;
         }
 
         public override void Update()
@@ -55,7 +53,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
                 }
                 else
                 {
-                    _targetPosition.value = hit.point + new Vector3(0, 1, 0);
+                    _targetPosition.value = new Vector3(hit.point.x, _gun.transform.position.y, hit.point.z);
                 }
             }
         }

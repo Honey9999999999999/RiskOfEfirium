@@ -1,6 +1,5 @@
 ﻿using Architecture;
 using Assets.Scripts.Entities;
-using FSM;
 using PlayerMoveStates;
 using UnityEngine;
 
@@ -14,9 +13,9 @@ namespace Assets.Scripts.Movement
 
         private void Awake()
         {
-            if(_entity == null)
+            if (_entity == null)
             {
-                Game.OnGameInitialized += () => _entity = Game.GetInteractor<PlayerInteractor>().player;                
+                Game.OnGameInitialized += () => _entity = Game.GetInteractor<PlayerInteractor>().player;
             }
 
             Initialize();
@@ -39,7 +38,7 @@ namespace Assets.Scripts.Movement
         public float GetBaseSpeed() => _baseSpeed;
         public void SetSpeed(float value)
         {
-            if(value >= 0)
+            if (value >= 0)
             {
                 _speed.value = value;
             }

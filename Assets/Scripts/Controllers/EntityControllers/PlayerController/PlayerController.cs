@@ -1,78 +1,19 @@
-﻿using EntityControllers;
-using System;
+﻿using Assets.Scripts.InputManager;
+using EntityControllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PlayerController : EntityController
     {
-        public event Action OnAttackInput;
-
-        public event Action OnCameraFirstInput;
-        public event Action OnCameraInput;
-
-        [SerializeField] private Vector2 _verticalInput;
-        [SerializeField] private Vector2 _horizontalInput;
-
         public Vector3 viewDirection => GetViewDirection();
-        private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
-        public Vector2 moveInput { get => _moveInput; }
 
-        public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
-        public bool isBattle { get; private set; }        
+        public override bool isWalk { get => !InputHandler.instance.isMoveDeadZone; }
+        public bool isBattle { get; private set; }
 
-        private void Update()
+        public void Start()
         {
-            if (Input.GetMouseButton(0))
-            {
-                OnAttackInput?.Invoke();
-            }
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                OnCameraFirstInput?.Invoke();
-            }
-            if (Input.GetMouseButton(1))
-            {
-                OnCameraInput?.Invoke();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                isBattle = !isBattle;
-            }
-
-            if (Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S))
-            {
-                if (Input.GetKey(KeyCode.W))
-                {
-                    _verticalInput = new Vector2(0, 1);
-                }
-                else
-                {
-                    _verticalInput = new Vector2(0, -1);
-                }                    
-            }
-            else
-            {
-                _verticalInput = new Vector2(0, 0);
-            }
-
-            if (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D))
-            {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    _horizontalInput = new Vector2(-1, 0);
-                }
-                else
-                {
-                    _horizontalInput = new Vector2(1, 0);
-                }                    
-            }
-            else
-            {
-                _horizontalInput = new Vector2(0, 0);
-            }
+            InputHandler.OnTabInput += () => isBattle = !isBattle;
         }
 
         private Vector3 GetViewDirection()

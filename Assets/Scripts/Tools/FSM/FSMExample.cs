@@ -6,7 +6,7 @@ namespace FSM
     {
         protected TFSM _stateMachine = new();
 
-        protected void Update()
+        protected void FixedUpdate()
         {
             _stateMachine.currentState.Update();
         }

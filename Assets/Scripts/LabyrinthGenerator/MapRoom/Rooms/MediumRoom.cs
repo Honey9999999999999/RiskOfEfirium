@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Assets.Scripts.LabyrinthGenerator
+﻿namespace Assets.Scripts.LabyrinthGenerator
 {
     public class MediumRoom : Room
     {
@@ -10,7 +8,7 @@ namespace Assets.Scripts.LabyrinthGenerator
             new SimpleBlock1(new(0, 1), Direction.Top),
             new SimpleBlock1(new(1, 1), Direction.Right),
             new SimpleBlock1(new(1, 0), Direction.Down)
-            
+
         })
         {
         }

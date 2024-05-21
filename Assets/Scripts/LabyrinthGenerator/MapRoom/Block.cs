@@ -62,7 +62,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var d in doors)
             {
-                if(d.isLeadSomeWhere && d.direction == dir)
+                if (d.isLeadSomeWhere && d.direction == dir)
                 {
                     door = d;
                     return true;

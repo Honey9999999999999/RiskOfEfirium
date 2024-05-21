@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Tools;
+﻿using Assets.Scripts.Controllers.EntityControllers;
+using Assets.Scripts.Tools;
 using UnityEngine;
-using Assets.Scripts.Controllers.EntityControllers;
 
 namespace Assets.Scripts.Movement
 {

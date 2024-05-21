@@ -1,4 +1,3 @@
-using Assets.Scripts.Entities;
 using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;

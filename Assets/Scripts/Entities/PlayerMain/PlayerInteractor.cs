@@ -1,6 +1,5 @@
 using Architecture;
 using Assets.Scripts.Tools;
-using System;
 using UnityEngine;
 
 public class PlayerInteractor : Interactor
@@ -18,10 +17,10 @@ public class PlayerInteractor : Interactor
     {
         base.OnCreate();
 
-        GameObject playerObj = Instantiater.Instantiate<GameObject>(PLAYER_PATH);
+        GameObject playerObj = ResourceLoader.Load<GameObject>(PLAYER_PATH);
         playerObj.transform.position = new Vector3(0, 1, 0);
-        
-        if(!playerObj.TryGetComponent(out _player))
+
+        if (!playerObj.TryGetComponent(out _player))
         {
             throw new System.Exception("playerObj has't script \"Player\"");
         }

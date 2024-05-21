@@ -25,7 +25,7 @@ public class PlayerTransition : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.TryGetComponent<Player>(out _))
+        if (other.gameObject.TryGetComponent<Player>(out _))
         {
             GoOn();
         }
@@ -36,7 +36,7 @@ public class PlayerTransition : MonoBehaviour
         IntVector2 dir = DirectionHandler.GetDirection(direction);
         LevelMap map = Game.GetInteractor<LabyrinthInteractor>().levelMap;
 
-        if(map.TryGetRoom(position, out Room playerRoom))
+        if (map.TryGetRoom(position, out Room playerRoom))
         {
             if (playerRoom.TryGetDoorLeadsTo(direction, out Door door))
             {

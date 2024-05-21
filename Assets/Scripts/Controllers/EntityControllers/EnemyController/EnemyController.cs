@@ -21,7 +21,7 @@ namespace EntityControllers
             }
 
             target = null;
-            return false;            
+            return false;
         }
 
         private bool IsCurrentPosition()

@@ -7,7 +7,7 @@ namespace Assets.Scripts.Tools
         public static event Action<T> OnResourceAmountChanged;
         public static event Action<T> OnResourceAdded;
         public static event Action<T> OnResourceTaked;
-        
+
         private int _amount;
 
         public Resource() : this(0, 64) { }
@@ -18,11 +18,13 @@ namespace Assets.Scripts.Tools
         }
 
         public int maxStack { get; }
-        public int amount { get => _amount; set 
+        public int amount
+        {
+            get => _amount; set
             {
                 value = Math.Clamp(value, 0, maxStack);
 
-                if(_amount != value)
+                if (_amount != value)
                 {
                     int oldValue = _amount;
                     _amount = value;
@@ -37,8 +39,8 @@ namespace Assets.Scripts.Tools
                     }
 
                     OnResourceAmountChanged?.Invoke((T)this);
-                }                
-            } 
+                }
+            }
         }
     }
 }

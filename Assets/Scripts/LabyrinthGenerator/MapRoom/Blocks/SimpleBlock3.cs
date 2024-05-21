@@ -8,7 +8,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             new(Direction.Left),
             new(Direction.Top),
-            new(Direction.Right)            
+            new(Direction.Right)
         })
         {
         }

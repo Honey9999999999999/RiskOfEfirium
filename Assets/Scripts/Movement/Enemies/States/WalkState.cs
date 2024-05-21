@@ -38,7 +38,7 @@ namespace EnemyMoveStates
             if (NavMeshInteractor.isInitialized)
             {
                 _agent.SetDestination(_controller.targetPosition);
-            }            
+            }
         }
     }
 }

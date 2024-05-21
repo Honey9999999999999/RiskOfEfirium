@@ -12,7 +12,7 @@ namespace Maps
 
         public GameObject GetRoom(RoomType type, Type room)
         {
-            return Instantiater.Instantiate<GameObject>(roomMap[type][room].GetValue());
+            return ResourceLoader.Load<GameObject>(roomMap[type][room].GetValue());
         }
     }
 }

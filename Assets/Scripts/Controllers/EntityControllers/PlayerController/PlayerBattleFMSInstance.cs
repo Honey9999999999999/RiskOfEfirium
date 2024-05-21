@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Tools;
 using FSM;
-using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers

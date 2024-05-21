@@ -18,7 +18,7 @@
 
             ///Основной генератор - размеры
 
-            
+
             _sizeMap.Add(RoomType.ResidentialRoom, new()
             {
                 { 0.4f, CreateRoom<SimpleRoomA> },

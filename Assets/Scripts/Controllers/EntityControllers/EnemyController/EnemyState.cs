@@ -6,7 +6,7 @@ using UnityEngine;
 namespace EntityControllers
 {
     public class EnemyState : IState
-    {        
+    {
         protected FinalStateMachine<EnemyState> _stateMachine;
 
         protected LivingEntity _entity;

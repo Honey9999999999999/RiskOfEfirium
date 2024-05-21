@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.Tools
 {
-    public static class Instantiater
+    public static class ResourceLoader
     {
-        public static T Instantiate<T>(string path) where T : Object
+        public static T Load<T>(string path) where T : Object
         {
             return GameObject.Instantiate(Resources.Load<T>(path));
         }

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace UI.Cursor.Configs
+namespace UICursor.Configs
 {
-    public class CursorSimpleConfig : CursorConfig
+    public class SkinPresetSimpleConfig : SkinPresetConfig
     {
         public override Dictionary<CursorMode, string> cursorsMap => new()
         {

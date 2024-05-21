@@ -24,7 +24,7 @@ public class CameraInteractor : Interactor
     {
         base.OnCreate();
 
-        GameObject cameraObj = Instantiater.Instantiate<GameObject>(MAIN_CAMERA_PATH);
+        GameObject cameraObj = ResourceLoader.Load<GameObject>(MAIN_CAMERA_PATH);
         cameraObj.transform.position = new Vector3(0, 1, 0);
 
         if (!cameraObj.TryGetComponent(out _camera))

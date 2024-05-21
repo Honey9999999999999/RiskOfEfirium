@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Movement;
-using EntityControllers;
+﻿using EntityControllers;
 using System;
 using UnityEngine;
 
@@ -10,8 +9,8 @@ namespace Assets.Scripts.Entities
     public abstract class LivingEntity : MonoBehaviour
     {
         [SerializeField] protected EntityHealth _health = new();
-        [SerializeField] protected EntityController _entityController;        
-        
+        [SerializeField] protected EntityController _entityController;
+
         public LivingEntity()
         {
             _health.OnHealthDown += OnDeath;

@@ -1,6 +1,5 @@
 ﻿using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ namespace Maps
             GameObject map = new GameObject("Map");
 
             foreach (var room in _levelMap.rooms)
-            {                
+            {
                 GameObject roomObj = _config.GetRoom(room.type, room.GetType());
                 roomObj.transform.parent = map.transform;
 
@@ -47,7 +46,7 @@ namespace Maps
                 {
                     transition.Rotate();
                 }
-            }            
+            }
         }
     }
 }

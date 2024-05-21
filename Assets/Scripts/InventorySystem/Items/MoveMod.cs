@@ -5,7 +5,7 @@ namespace Assets.Scripts.InventorySystem.Items
 {
     internal class MoveMod : Item
     {
-        private float _procent = 0.25f; 
+        private float _procent = 0.25f;
 
         public override void Effect()
         {

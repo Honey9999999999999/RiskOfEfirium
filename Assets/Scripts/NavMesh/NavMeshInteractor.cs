@@ -16,7 +16,7 @@ public class NavMeshInteractor : Interactor
     {
         base.OnCreate();
 
-        _navMesh = Instantiater.Instantiate<NavMeshSurface>(NAV_MESH_PATH);
+        _navMesh = ResourceLoader.Load<NavMeshSurface>(NAV_MESH_PATH);
         _navMesh.BuildNavMesh();
     }
 

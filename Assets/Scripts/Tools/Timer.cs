@@ -15,21 +15,21 @@ namespace MyTimer
 
         public bool isStarted => counter > 0;
 
-        public void Start(float sec) 
+        public void Start(float sec)
         {
             routine = Coroutines.StartRoutine(StartTimerRoutine(sec));
 
             OnStarted?.Invoke();
-        }        
-        public void Reset() 
+        }
+        public void Reset()
         {
-            if(routine != null)
+            if (routine != null)
             {
                 Coroutines.StopRoutine(routine);
                 counter = 0;
             }
         }
-        private void Stop() 
+        private void Stop()
         {
             counter = 0;
             OnStoped?.Invoke();

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UI.Cursor
+namespace UICursor
 {
-    public abstract class CursorConfig
+    public abstract class SkinPresetConfig
     {
         public abstract Dictionary<CursorMode, string> cursorsMap { get; }
 
         public Texture2D GetTexture2D(CursorMode mode)
         {
-            return Instantiater.Instantiate<Texture2D>(cursorsMap[mode]);
+            return ResourceLoader.Load<Texture2D>(cursorsMap[mode]);
         }
     }
 }

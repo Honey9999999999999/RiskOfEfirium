@@ -17,7 +17,7 @@ namespace Assets.Scripts.Architecture
             {
                 Debug.Log(hit.point);
 
-                if(hit.collider.TryGetComponent<Enemy>(out _))
+                if (hit.collider.TryGetComponent<Enemy>(out _))
                 {
                     Debug.Log("I see Enemy");
                 }

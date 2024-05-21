@@ -26,18 +26,18 @@ public class Gun : MonoBehaviour
         {
             Bullet bulletClon = Instantiate(_bullet);
             bulletClon.transform.position = transform.position + transform.forward * 0.5f;
-            bulletClon.Fire((position - bulletClon.transform.position) * _force);
+            bulletClon.Fire((position - bulletClon.transform.position).normalized * _force);
 
-            if(--_amountAmmo > 0)
+            if (--_amountAmmo > 0)
             {
-                _cooldownTimer.Start(_cooldown);                
+                _cooldownTimer.Start(_cooldown);
             }
             else
             {
                 Reload();
             }
-            
-        }        
+
+        }
     }
 
     public void Reload()

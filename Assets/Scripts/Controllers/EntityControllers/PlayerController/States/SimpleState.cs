@@ -1,8 +1,4 @@
-﻿using Architecture;
-using UI.Cursor;
-using UnityEngine;
-
-namespace Assets.Scripts.Controllers.EntityControllers
+﻿namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class SimpleState : PlayerState
     {
@@ -13,8 +9,6 @@ namespace Assets.Scripts.Controllers.EntityControllers
         public override void Enter()
         {
             base.Enter();
-
-            Game.GetInteractor<CursorInteractor>().cursor.SetMode(UI.Cursor.CursorMode.Standart);
         }
 
         public override void Exit()

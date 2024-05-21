@@ -1,24 +1,23 @@
 ﻿using Architecture;
-using UI.Cursor.Configs;
+using UnityEngine;
 
-namespace UI.Cursor
+namespace Assets.Scripts.InputManager
 {
-    public class CursorInteractor : Interactor
+    public class InputInteractor : Interactor
     {
-        public Cursor cursor { get; private set; }
-
+        public InputHandler input { get; private set; }
         public override void Initialize()
         {
             base.Initialize();
 
-            cursor.SetMode(CursorMode.Standart);
+            input = InputHandler.instance;
         }
 
         public override void OnCreate()
         {
             base.OnCreate();
 
-            cursor = new(new CursorSimpleConfig());
+            new GameObject("InputHandler").AddComponent<InputHandler>();
         }
 
         public override void OnStart()

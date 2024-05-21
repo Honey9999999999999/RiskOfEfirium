@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 8656334073073011824, guid: b8c836681723a774ea5f1fd543f420ac, type: 3}
-  _force: 5
+  _force: 50
   _rateFire: 30
   _maxAmmo: 6
   _amountAmmo: 0

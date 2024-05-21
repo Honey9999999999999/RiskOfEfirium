@@ -151,7 +151,7 @@ namespace Assets.Scripts.LabyrinthGenerator
                     if (door.isLeadSomeWhere)
                     {
                         roomTypes.Add(door.targetRoom.type);
-                    }                    
+                    }
                 }
             }
 

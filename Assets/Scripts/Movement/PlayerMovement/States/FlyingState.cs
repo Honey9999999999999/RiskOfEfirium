@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Movement;
+﻿using Assets.Scripts.InputManager;
+using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
@@ -40,8 +41,8 @@ namespace PlayerMoveStates
 
             Transform camera = Camera.current.transform;
 
-            Vector3 forward = new Vector3(camera.forward.x, 0, camera.forward.z) * _controller.moveInput.y;
-            Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * _controller.moveInput.x;
+            Vector3 forward = new Vector3(camera.forward.x, 0, camera.forward.z) * InputHandler.instance.moveVector.y;
+            Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * InputHandler.instance.moveVector.x;
             Vector3 direction = forward + right;
 
             _rigidbody.velocity = direction * (_speed.value * 0.75f);
