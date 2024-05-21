@@ -1,6 +1,5 @@
 ﻿using Architecture;
 using Assets.Scripts.Tools;
-using UI.Cursor;
 using UnityEngine;
 
 namespace Assets.Scripts.Architecture

@@ -20,7 +20,7 @@ namespace UI.Cursor
 
         public void SetMode(CursorMode mode)
         {
-            UnityEngine.Cursor.SetCursor(_cursorsMap[mode], Vector2.zero, UnityEngine.CursorMode.Auto);
+            UnityEngine.Cursor.SetCursor(_cursorsMap[mode], new Vector2(_cursorsMap[mode].width / 2, _cursorsMap[mode].height / 2), UnityEngine.CursorMode.Auto);
         }
     }
 }
