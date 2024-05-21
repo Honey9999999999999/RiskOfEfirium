@@ -6,22 +6,27 @@ namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PlayerController : EntityController
     {
+        public event Action OnAttackInput;
+
         public event Action OnCameraFirstInput;
-        public event Action OnCameraInput;        
+        public event Action OnCameraInput;
 
         [SerializeField] private Vector2 _verticalInput;
         [SerializeField] private Vector2 _horizontalInput;
 
+        public Vector3 viewDirection => GetViewDirection();
+        private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
         public Vector2 moveInput { get => _moveInput; }
 
         public override bool isWalk { get => (_moveInput.x * _moveInput.x) + (_moveInput.y * _moveInput.y) > 0.01f; }
-
-        public Vector3 viewDirection => GetViewDirection();
-
-        private Vector2 _moveInput => (_verticalInput + _horizontalInput).normalized;
+        public bool isBattle { get; private set; }        
 
         private void Update()
         {
+            if (Input.GetMouseButton(0))
+            {
+                OnAttackInput?.Invoke();
+            }
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -30,6 +35,11 @@ namespace Assets.Scripts.Controllers.EntityControllers
             if (Input.GetMouseButton(1))
             {
                 OnCameraInput?.Invoke();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                isBattle = !isBattle;
             }
 
             if (Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S))

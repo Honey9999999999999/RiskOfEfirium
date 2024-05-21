@@ -7,6 +7,7 @@ public class Player : LivingEntity
 {
     [SerializeField] protected MovePlayerFSMInstance _moveInstance;
     [SerializeField] private Transform _viewDirection;
+    [SerializeField] private PlayerBattleFMSInstance _battlerFSM;
 
     public PlayerController GetPlayerController()
     {
@@ -16,6 +17,7 @@ public class Player : LivingEntity
     {
         return _moveInstance;
     }
+    public PlayerBattleFMSInstance GetBattleFSM() => _battlerFSM;
 
     public Transform GetViewPort() => _viewDirection;
 

@@ -23,15 +23,6 @@ namespace Assets.Scripts.Architecture
                     Debug.Log("I see Enemy");
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.LeftShift))
-            {
-                Game.GetInteractor<CursorInteractor>().cursor.SetMode(UI.Cursor.CursorMode.Standart);
-            }
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                Game.GetInteractor<CursorInteractor>().cursor.SetMode(UI.Cursor.CursorMode.Battle);
-            }
         }
     }
 }

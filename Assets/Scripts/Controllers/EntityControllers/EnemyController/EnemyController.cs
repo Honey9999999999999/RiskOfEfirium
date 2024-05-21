@@ -5,7 +5,7 @@ namespace EntityControllers
     [RequireComponent(typeof(SphereCollider))]
     public class EnemyController : EntityController
     {
-        [SerializeField] private EnemyFSMInstance _fSMInstance;
+        [SerializeField] private EnemyBattleFSMInstance _fSMInstance;
 
         public override bool isWalk => !IsCurrentPosition();
         public bool isTarget => _fSMInstance.isTarget;

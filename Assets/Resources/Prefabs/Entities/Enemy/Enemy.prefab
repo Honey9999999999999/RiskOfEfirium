@@ -241,12 +241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6ad0103da406849811bf149c9b8895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityController: {fileID: 3066925985554810102}
   _health:
     _health: 100
     _maxHealth: 100
-    _regenerationPerSec: 5
-    _regenerationCooldown: 5
+    _regenerationPerSec: 2
+    _regenerationCooldown: 10
+  _entityController: {fileID: 3066925985554810102}
   _moveInstance: {fileID: 4545211509743940973}
 --- !u!114 &3066925985554810102
 MonoBehaviour:
@@ -288,9 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d634633653d3da146af973b07abb822b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entity: {fileID: 8047061338175391401}
   _speed:
     value: 4
-  _entity: {fileID: 8047061338175391401}
   _agent: {fileID: 3839693919432570989}
 --- !u!195 &3839693919432570989
 NavMeshAgent:

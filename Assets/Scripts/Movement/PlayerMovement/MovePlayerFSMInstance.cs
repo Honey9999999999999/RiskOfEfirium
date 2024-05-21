@@ -1,6 +1,7 @@
 ﻿using Architecture;
 using Assets.Scripts.Entities;
 using FSM;
+using PlayerMoveStates;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
@@ -8,6 +9,7 @@ namespace Assets.Scripts.Movement
     [RequireComponent(typeof(Rigidbody), typeof(LivingEntity))]
     public class MovePlayerFSMInstance : MoveFSMInstance<Player>
     {
+        [SerializeField] private Transform _playerModel;
         [SerializeField, Min(0)] private float _baseSpeed;
 
         private void Awake()
@@ -24,6 +26,7 @@ namespace Assets.Scripts.Movement
             Debug.Log(_stateMachine == null);
             _stateMachine.AddState(new IdleState(_stateMachine, _entity, _speed));
             _stateMachine.AddState(new WalkState(_stateMachine, _entity, _speed));
+            _stateMachine.AddState(new FlyingState(_stateMachine, _entity, _playerModel, _speed));
 
             _stateMachine.EnterIn<IdleState>();
         }

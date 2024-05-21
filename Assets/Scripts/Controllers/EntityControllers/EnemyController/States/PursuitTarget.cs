@@ -4,7 +4,7 @@ using EntityControllers;
 using FSM;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers.EntityControllers.Enemy.States
+namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PursuitTarget : EnemyState
     {

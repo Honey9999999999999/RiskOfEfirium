@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Controllers.EntityControllers.Enemy;
-using Assets.Scripts.Controllers.EntityControllers.Enemy.States;
+﻿using Assets.Scripts.Controllers.EntityControllers;
 using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
@@ -8,7 +7,7 @@ using UnityEngine.AI;
 namespace EntityControllers
 {
     [RequireComponent(typeof(Collider), typeof(NavMeshAgent))]
-    public class EnemyFSMInstance : FSMExample<FSMEnemy, EnemyState>
+    public class EnemyBattleFSMInstance : FSMExample<FSMEnemy, EnemyState>
     {
         [SerializeField] private Enemy _entity;
         [SerializeField] private ShellValue<Transform> _target;

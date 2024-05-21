@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.Entities;
-using Assets.Scripts.Movement;
+﻿using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
-namespace FSM
+namespace PlayerMoveStates
 {
     internal class WalkState : PlayerMoveState
     {
@@ -28,6 +27,12 @@ namespace FSM
         {
             base.Update();
 
+            if (_controller.isBattle)
+            {
+                _stateMachine.EnterIn<FlyingState>();
+
+                return;
+            }
             if (!_controller.isWalk)
             {
                 _stateMachine.EnterIn<IdleState>();
@@ -44,7 +49,7 @@ namespace FSM
             _rigidbody.velocity = direction * _speed.value;
         }
 
-        protected void ViewOnDirection()
+        private void ViewOnDirection()
         {
             _entity.transform.LookAt(_movebleObject.position + _controller.viewDirection);
         }

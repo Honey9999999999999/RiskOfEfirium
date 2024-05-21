@@ -5,7 +5,7 @@ using FSM;
 using MyTimer;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers.EntityControllers.Enemy.States
+namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class SearchingTargetState : EnemyState
     {

@@ -3,7 +3,7 @@ using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
-namespace FSM
+namespace PlayerMoveStates
 {
     public class IdleState : PlayerMoveState
     {
@@ -27,6 +27,12 @@ namespace FSM
         {
             base.Update();
 
+            if (_controller.isBattle)
+            {
+                _stateMachine.EnterIn<FlyingState>();
+
+                return;
+            }
             if (_controller.isWalk)
             {
                 _stateMachine.EnterIn<WalkState>();
