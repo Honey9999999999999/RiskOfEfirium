@@ -25,7 +25,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
         {
             base.Enter();
 
-            _timer.Start(INTERVAL_SEARCHING);
+            StartSearchTimer();
         }
 
         public override void Exit()
@@ -48,10 +48,15 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
             if (!_timer.isStarted)
             {
-                _timer.Start(INTERVAL_SEARCHING);
+                StartSearchTimer();
             }
         }
 
+
+        private void StartSearchTimer()
+        {
+            _timer.Start(Random.Range(INTERVAL_SEARCHING, INTERVAL_SEARCHING + 2));
+        }
         private void ChoiseTargetPosition()
         {
             _targetPosition = _entity.transform.position + new Vector3(Random.Range(-RADIUS_SEARCHING, RADIUS_SEARCHING), 0, Random.Range(-RADIUS_SEARCHING, RADIUS_SEARCHING));
