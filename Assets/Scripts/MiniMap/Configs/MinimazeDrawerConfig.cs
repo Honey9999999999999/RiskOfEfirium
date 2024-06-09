@@ -11,6 +11,7 @@ namespace Assets.Scripts.MiniMap.Configs
         public int hallOffset => -10;
 
         public string minimapPath => "Prefabs/MiniMap/Minimaze/Minimap";
+        public string maskPath => "Prefabs/MiniMap/Masks/CubeMask";
 
         public string hallPath => "Prefabs/MiniMap/Minimaze/Hall";
 

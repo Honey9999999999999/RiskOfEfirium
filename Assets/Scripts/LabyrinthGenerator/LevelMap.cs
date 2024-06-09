@@ -25,7 +25,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             foreach (var r in rooms)
             {
-                if(r.position == position)
+                if (r.position == position)
                 {
                     room = r;
                     return true;

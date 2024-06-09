@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Assets.Scripts.LabyrinthGenerator
+﻿namespace Assets.Scripts.LabyrinthGenerator
 {
     public class SimpleRoomC : Room
     {
