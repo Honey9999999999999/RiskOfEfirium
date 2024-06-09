@@ -116,7 +116,7 @@ Material:
     - _sizeFactor: 10
     - _speed: 2
     - _useChangingForm: 1
-    - _useClearBoundaries: 1
+    - _useClearBoundaries: 0
     - _useX: 1
     - _useY: 1
     - _useZ: 1
