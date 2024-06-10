@@ -86,6 +86,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -99,6 +100,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -110,17 +112,20 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
+    - _UVSec: 0
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
-    - _alpha: 0.4
-    - _intersectionDepth: 0.43
+    - _ZWriteControl: 0
+    - _alpha: 0
+    - _intersectionDepth: 0.6
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _baseColor: {r: 0, g: 1, b: 0.5137255, a: 0}
-    - _intersectionColor: {r: 0, g: 8.2415085, b: 13.735849, a: 0}
+    - _baseColor: {r: 0.6037736, g: 0.31972033, b: 0, a: 1}
+    - _intersectionColor: {r: 0, g: 0.89882344, b: 1.4980392, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2713138528685414865
 MonoBehaviour:
