@@ -1,8 +1,13 @@
 ﻿using Assets.Scripts.Bank;
+using Assets.Scripts.InputManager;
+using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
+using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
+using Assets.Scripts.UI;
 using System;
 using System.Collections.Generic;
+using UICursor;
 
 namespace Architecture
 {
@@ -15,10 +20,19 @@ namespace Architecture
         {
             _interactorsMap = new Dictionary<Type, Interactor>();
 
-            CreateInteractor<BankInteractor>();
+            CreateInteractor<InputInteractor>();
+
+            CreateInteractor<UICanvasIntaractor>();
+            CreateInteractor<CursorInteractor>();
+
             CreateInteractor<LabyrinthInteractor>();
+            CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
-            CreateInteractor<PlayerPositionInteractor>();
+            CreateInteractor<NavMeshInteractor>();
+
+            CreateInteractor<PlayerInteractor>();
+            CreateInteractor<InventoryInteractor>();
+            CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;
         }

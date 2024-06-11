@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.LabyrinthGenerator;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Assets.Scripts.MiniMap.Configs
 {
@@ -10,6 +10,7 @@ namespace Assets.Scripts.MiniMap.Configs
         public int textureBlockSize { get; }
         public int hallOffset { get; }
         public string minimapPath { get; }
+        public string maskPath { get; }
         public string hallPath { get; }
         public string doorPath { get; }
         public string playerPath { get; }

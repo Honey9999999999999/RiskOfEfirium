@@ -12,9 +12,9 @@ namespace Assets.Scripts.LabyrinthGenerator
             _position = new(0, 0);
             _offset = offsetFromCenter;
 
-            foreach (var door in doors)
+            for (int i = 0; i < doors.Count; i++)
             {
-                door.selfPosition = position;
+                doors[i].selfPosition = position;
             }
 
             this.doors = doors;
@@ -62,7 +62,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var d in doors)
             {
-                if(d.isLeadSomeWhere && d.direction == dir)
+                if (d.isLeadSomeWhere && d.direction == dir)
                 {
                     door = d;
                     return true;

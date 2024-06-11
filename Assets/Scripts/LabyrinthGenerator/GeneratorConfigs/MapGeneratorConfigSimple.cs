@@ -5,7 +5,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 {
     internal class MapGeneratorConfigSimple : MapGeneratorConfig
     {
-        public const int MAX_ROOMS = 30;        
+        public const int MAX_ROOMS = 30;
 
         public MapGeneratorConfigSimple(RoomCreatorConfigBase mainRoomCreatorConfig) : base(mainRoomCreatorConfig)
         {
@@ -122,6 +122,6 @@ namespace Assets.Scripts.LabyrinthGenerator
                 RoomType roomType = GetRoom(freeDoor.selfPosition).type;
                 TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomEndRoomAt(roomType));
             }
-        }   
+        }
     }
 }

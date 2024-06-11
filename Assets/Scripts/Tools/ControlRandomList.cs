@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Tools
-{    
-    public class ControlRandomList <T> : IEnumerable
+{
+    public class ControlRandomList<T> : IEnumerable
     {
         private class ControlRandomValue
         {

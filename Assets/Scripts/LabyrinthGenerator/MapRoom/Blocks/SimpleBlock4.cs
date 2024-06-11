@@ -7,8 +7,8 @@ namespace Assets.Scripts.LabyrinthGenerator
         public SimpleBlock4(IntVector2 offsetFromCenter) : base(offsetFromCenter, Direction.Top, new List<Door>()
         {
             new(Direction.Left),
-            new(Direction.Right),
             new(Direction.Top),
+            new(Direction.Right),
             new(Direction.Down)
         })
         {

@@ -19,7 +19,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             base.OnCreate();
 
-            levelMap = new(new MapGeneratorConfigSimple(new RoomCreatorConfigExample()));
+            levelMap = new(new MapGeneratorConfigSimple(new RoomCreatorConfigMini()));
         }
 
         public override void OnStart()
