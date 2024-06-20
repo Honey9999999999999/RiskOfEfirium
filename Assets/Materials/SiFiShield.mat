@@ -96,6 +96,8 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _FresnelEffectForce: 2
+    - _FresnelForce2: 0.35
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -105,9 +107,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Scale: 0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpeedAnimation: 3
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
@@ -116,11 +120,12 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BackColor: {r: 0, g: 1, b: 0.31828785, a: 1}
+    - _BackColor: {r: 0, g: 0.04157257, b: 4, a: 0.33333334}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 0.2971698, b: 0.2971698, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FrontColor: {r: 1, g: 0, b: 0, a: 1}
+    - _FresnelColor: {r: 0.6764121, g: 0, b: 1, a: 0}
+    - _FrontColor: {r: 0, g: 0.99443173, b: 1.4980394, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1019320055439001016
