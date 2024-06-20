@@ -115,7 +115,7 @@ Material:
     - _influenceSizeFactor: 1.15
     - _sizeFactor: 10
     - _speed: 6.7
-    - _useChangingForm: 0
+    - _useChangingForm: 1
     - _useClearBoundaries: 1
     - _useX: 1
     - _useY: 1
