@@ -41,7 +41,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
             if (_target.value != null)
             {
-                _stateMachine.EnterIn<PursuitTarget>();
+                _stateMachine.EnterIn<PursuitTargetState>();
 
                 return;
             }

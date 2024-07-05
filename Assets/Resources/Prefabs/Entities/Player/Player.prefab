@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 2761584940448225470}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,8 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825c2a196762bbb47ba1bcad5786de3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalInput: {x: 0, y: 0}
-  _horizontalInput: {x: 0, y: 0}
 --- !u!114 &1916749833604433472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,13 +398,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6266843565466388108}
     m_Modifications:
+    - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
+      propertyPath: _target
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
+      propertyPath: _distanceInstanceBulletAtCentre
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 2315751825214178856, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 2315751825214178856, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7478248706223742283, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.39999986
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478248706223742283, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
       propertyPath: m_LocalPosition.y

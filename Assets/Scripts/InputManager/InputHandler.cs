@@ -9,6 +9,7 @@ namespace Assets.Scripts.InputManager
         public static event Action OnCameraFirstInput;
         public static event Action OnCameraInput;
         public static event Action OnTabInput;
+        public static event Action OnMoveInput;
 
         public static InputHandler instance { get; private set; }
 
@@ -76,6 +77,7 @@ namespace Assets.Scripts.InputManager
                 {
                     _yMove = -1;
                 }
+                OnMoveInput?.Invoke();
             }
             else
             {
@@ -92,6 +94,7 @@ namespace Assets.Scripts.InputManager
                 {
                     _xMove = 1;
                 }
+                OnMoveInput?.Invoke();
             }
             else
             {

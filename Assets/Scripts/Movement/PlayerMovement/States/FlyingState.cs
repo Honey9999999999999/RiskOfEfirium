@@ -1,12 +1,15 @@
 ﻿using Assets.Scripts.InputManager;
 using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
+using System;
 using UnityEngine;
 
 namespace PlayerMoveStates
 {
     public class FlyingState : PlayerMoveState
     {
+        public static event Action OnPlayerRotated;
+
         private Transform _playerModel;
 
         public FlyingState(FSMMove stateMachine, Player entity, Transform playerModel, ShellValue<float> speed) : base(stateMachine, entity, speed)
@@ -54,6 +57,8 @@ namespace PlayerMoveStates
             target = new Vector3(target.x, 1, target.z);
 
             _playerModel.LookAt(target, Vector3.up);
+
+            OnPlayerRotated?.Invoke();
         }
     }
 }

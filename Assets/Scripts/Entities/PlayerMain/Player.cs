@@ -26,5 +26,6 @@ public class Player : LivingEntity
         base.OnDeath();
 
         _moveInstance.EntityDead();
+        _battlerFSM.enabled = false;
     }
 }
