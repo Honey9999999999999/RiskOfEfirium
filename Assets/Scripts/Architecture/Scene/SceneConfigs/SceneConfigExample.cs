@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Bank;
 using Assets.Scripts.InputManager;
 using Assets.Scripts.InventorySystem;
+using Assets.Scripts.InventorySystem.DropSystem;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
@@ -32,6 +33,7 @@ namespace Architecture
 
             CreateInteractor<PlayerInteractor>();
             CreateInteractor<InventoryInteractor>();
+            CreateInteractor<LootInteractor>();
             CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;
