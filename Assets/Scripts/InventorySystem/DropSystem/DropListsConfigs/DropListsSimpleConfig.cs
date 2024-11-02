@@ -6,7 +6,7 @@ namespace Assets.Scripts.InventorySystem
 {
     public class DropListsSimpleConfig : DropListsConfig
     {
-        public override Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap
+        protected override Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap
         {
             get => new()
             {

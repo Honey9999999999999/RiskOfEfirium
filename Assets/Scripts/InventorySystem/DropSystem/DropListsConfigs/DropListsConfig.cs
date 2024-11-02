@@ -6,6 +6,11 @@ namespace Assets.Scripts.InventorySystem
 {
     public abstract class DropListsConfig
     {
-        public abstract Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap { get; }
+        protected abstract Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap { get; }
+
+        public NamesOfDrop GetDropName(NamesOfEnemies enemyName)
+        {
+            return _dropListsMap[enemyName].GetValue();
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace Architecture
 
             CreateInteractor<PlayerInteractor>();
             CreateInteractor<InventoryInteractor>();
-            CreateInteractor<UIInventoryInteractor>();            
+            CreateInteractor<UIInventoryInteractor>();
             CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;

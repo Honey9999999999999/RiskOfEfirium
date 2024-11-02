@@ -1,11 +1,10 @@
-﻿using Assets.Scripts.InventorySystem;
-using Assets.Scripts.LabyrinthGenerator;
+﻿using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Tools;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Loot.Config
+namespace Assets.Scripts.InventorySystem
 {
-    public class TestLootConfig : RoomLootConfig
+    public class RoomLootConfigExample : RoomLootConfig
     {
         protected override Dictionary<RoomType, ControlRandomList<NamesOfDrop>> LootMap => _lootMap;
         private readonly Dictionary<RoomType, ControlRandomList<NamesOfDrop>> _lootMap = new()
@@ -15,7 +14,7 @@ namespace Assets.Scripts.Loot.Config
                 { 1, NamesOfDrop.AlienResources },
                 { 1, NamesOfDrop.ElectricResources },
                 { 1, NamesOfDrop.MechanicalResources }
-            }            
+            }
         };
     }
 }

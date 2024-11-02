@@ -1,9 +1,8 @@
-﻿using Assets.Scripts.InventorySystem;
-using Assets.Scripts.LabyrinthGenerator;
+﻿using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Tools;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Loot
+namespace Assets.Scripts.InventorySystem
 {
     public abstract class RoomLootConfig
     {
