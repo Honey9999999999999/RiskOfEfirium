@@ -1,13 +1,11 @@
 ﻿using Assets.Scripts.Entities;
-using Assets.Scripts.InventorySystem.Items;
 using Assets.Scripts.Tools;
-using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.InventorySystem.DropSystem.DropListsConfigs
+namespace Assets.Scripts.InventorySystem
 {
     public abstract class DropListsConfig
     {
-        public abstract Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap { get; }        
+        public abstract Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap { get; }
     }
 }

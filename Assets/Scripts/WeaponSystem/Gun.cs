@@ -1,4 +1,3 @@
-using Assets.Scripts.Entities;
 using MyTimer;
 using System;
 using System.Collections.Generic;

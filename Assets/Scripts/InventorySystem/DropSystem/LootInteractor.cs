@@ -1,10 +1,7 @@
 ﻿using Architecture;
 using Assets.Scripts.Entities;
-using Assets.Scripts.InventorySystem.DropSystem.DropItemsInfos;
-using Assets.Scripts.InventorySystem.DropSystem.DropListsConfigs;
-using Assets.Scripts.InventorySystem.Items;
 
-namespace Assets.Scripts.InventorySystem.DropSystem
+namespace Assets.Scripts.InventorySystem
 {
     internal class LootInteractor : Interactor
     {

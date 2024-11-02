@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Tools
 {
-    public abstract class Resource<T> where T : Resource<T>
+    public abstract class ResourceBase<T> where T : ResourceBase<T>
     {
         public static event Action<T> OnResourceAmountChanged;
         public static event Action<T> OnResourceAdded;
@@ -10,8 +10,8 @@ namespace Assets.Scripts.Tools
 
         private int _amount;
 
-        public Resource() : this(0, 64) { }
-        public Resource(int amount, int maxStack)
+        public ResourceBase() : this(0, 64) { }
+        public ResourceBase(int amount, int maxStack)
         {
             _amount = amount;
             this.maxStack = maxStack;

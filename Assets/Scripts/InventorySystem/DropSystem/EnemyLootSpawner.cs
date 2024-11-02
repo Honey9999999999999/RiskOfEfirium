@@ -1,16 +1,17 @@
 using Architecture;
 using Assets.Scripts.Entities;
-using Assets.Scripts.InventorySystem.DropSystem;
+using Assets.Scripts.InventorySystem;
 using Assets.Scripts.Tools;
 using UnityEngine;
 
 [RequireComponent(typeof(LivingEntity))]
-public class LootSpawner : MonoBehaviour
+public class EnemyLootSpawner : MonoBehaviour
 {
     [SerializeField] private NamesOfEnemies enemyName;
     [SerializeField] private int _countMaxLoot;
 
-    private LivingEntity _entity; 
+    private const float FORCE = 5;
+    private LivingEntity _entity;
 
     private void Start()
     {
@@ -28,8 +29,8 @@ public class LootSpawner : MonoBehaviour
             NamesOfDrop nameOfDrop = lootInteractor.GetDropName(enemyName);
             DropItem drop = ResourceLoader.Load<DropItem>(lootInteractor.GetPathToDrop(nameOfDrop));
 
-            drop.transform.position = _entity.transform.position + Vector3.up;
-            drop.GetComponent<Rigidbody>().AddForce((Vector3.up + new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f))) * 10, ForceMode.Impulse);
+            drop.transform.position = _entity.transform.position;// + Vector3.up;
+            drop.GetComponent<Rigidbody>().AddForce((Vector3.up + new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f))) * FORCE, ForceMode.Impulse);
         }
     }
 }

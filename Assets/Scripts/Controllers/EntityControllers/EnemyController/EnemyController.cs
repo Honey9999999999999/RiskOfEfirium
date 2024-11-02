@@ -9,9 +9,9 @@ namespace EntityControllers
 
         public override bool isWalk => !IsCurrentPosition();
         public bool isTarget => _fSMInstance.isTarget;
-        
+
         public Transform target => _fSMInstance.GetTarget();
-        public Vector3 targetPosition => _fSMInstance.GetTargetPosition();        
+        public Vector3 targetPosition => _fSMInstance.GetTargetPosition();
 
         public bool TryGetTarget(out Transform target)
         {

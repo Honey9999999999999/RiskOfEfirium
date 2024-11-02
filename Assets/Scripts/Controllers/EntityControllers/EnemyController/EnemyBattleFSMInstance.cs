@@ -2,7 +2,6 @@
 using Assets.Scripts.Controllers.EntityControllers.EnemyController.States;
 using Assets.Scripts.Tools;
 using FSM;
-using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 

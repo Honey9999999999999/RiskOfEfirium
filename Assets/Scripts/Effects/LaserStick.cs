@@ -20,7 +20,7 @@ public class LaserStick : MonoBehaviour
 
         _lineRenderer.enabled = false;
 
-        if(_endPoint != null)
+        if (_endPoint != null)
         {
             _endPoint.Stop();
         }
@@ -47,7 +47,7 @@ public class LaserStick : MonoBehaviour
     }
     private void ReplaceEndPoint()
     {
-        if(_endPoint != null)
+        if (_endPoint != null)
         {
             _endPoint.transform.position = _lineRenderer.GetPosition(1);
         }
@@ -57,9 +57,9 @@ public class LaserStick : MonoBehaviour
     {
         _lineRenderer.enabled = !_lineRenderer.enabled;
 
-        if(_endPoint != null)
+        if (_endPoint != null)
         {
-            if(_lineRenderer.enabled)
+            if (_lineRenderer.enabled)
             {
                 _endPoint.Play();
             }

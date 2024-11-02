@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _lifeTime = 2;
     private Timer _lifeTimer;
 
-    private Type target; 
+    private Type target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
             if (entity.GetType().Equals(target))
             {
                 entity.TakenDamage(_damage);
-            }            
+            }
             DestroyBullet();
         }
     }

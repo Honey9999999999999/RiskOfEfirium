@@ -16,7 +16,7 @@ public class Enemy : LivingEntity
     protected override void OnDeath()
     {
         base.OnDeath();
-        _moveInstance.EntityDead();        
+        _moveInstance.EntityDead();
         _entityController.enabled = false;
 
         OnEnemyDeath?.Invoke(this);

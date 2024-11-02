@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using FSM;
-using TMPro;
 using UnityEngine;
 
 namespace EntityControllers
@@ -31,6 +30,6 @@ namespace EntityControllers
         public Vector3 GetTargetPosition()
         {
             return _targetPosition;
-        }        
+        }
     }
 }

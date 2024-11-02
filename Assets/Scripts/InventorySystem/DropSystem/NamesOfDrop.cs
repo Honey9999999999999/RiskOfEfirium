@@ -1,10 +1,10 @@
-﻿namespace Assets.Scripts.InventorySystem.DropSystem
+﻿namespace Assets.Scripts.InventorySystem
 {
     public enum NamesOfDrop
     {
-        Unknowm,
         MechanicalResources,
         ElectricResources,
-        AlienResources
+        AlienResources,
+        MoveMod
     }
 }

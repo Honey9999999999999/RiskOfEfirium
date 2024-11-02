@@ -1,19 +1,14 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem.DropSystem;
-using Assets.Scripts.InventorySystem.Items;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {
     public class InventoryInteractor : Interactor
     {
-        private static Inventory _inventory;
+        private Inventory _inventory;
 
-        private Dictionary<NamesOfDrop, Action> _addDropMap = new()
-        {
-            [NamesOfDrop.AlienResources] = () => _inventory.AddItem<MoveMod>()
-        };
+        private Dictionary<NamesOfDrop, Action> _addDropMap;
 
         public void AddItem(NamesOfDrop nameOfDrop)
         {
@@ -23,13 +18,22 @@ namespace Assets.Scripts.InventorySystem
         public override void Initialize()
         {
             base.Initialize();
+
+            _inventory = new();
+
+            _addDropMap = new()
+            {
+                [NamesOfDrop.AlienResources] = () => _inventory.AddResource(NamesOfDrop.AlienResources),
+                [NamesOfDrop.ElectricResources] = () => _inventory.AddResource(NamesOfDrop.ElectricResources),
+                [NamesOfDrop.MechanicalResources] = () => _inventory.AddResource(NamesOfDrop.MechanicalResources),
+
+                [NamesOfDrop.MoveMod] = () => _inventory.AddItem<MoveMod>(),
+            };
         }
 
         public override void OnCreate()
         {
             base.OnCreate();
-
-            _inventory = new();
         }
 
         public override void OnStart()

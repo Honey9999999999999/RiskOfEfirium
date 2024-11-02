@@ -1,11 +1,11 @@
 ﻿using Architecture;
 using Assets.Scripts.Movement;
 
-namespace Assets.Scripts.InventorySystem.Items
+namespace Assets.Scripts.InventorySystem
 {
     internal class MoveMod : Item
     {
-        private float _procent = 0.25f;
+        private const float _procent = 0.25f;
 
         public override void Effect()
         {

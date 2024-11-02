@@ -40,7 +40,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
             }
 
             if (IsReadyAttack())
-            {                
+            {
                 _stateMachine.EnterIn<AttackState>();
 
                 return;

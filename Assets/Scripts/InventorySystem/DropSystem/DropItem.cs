@@ -1,6 +1,5 @@
 using Architecture;
 using Assets.Scripts.InventorySystem;
-using Assets.Scripts.InventorySystem.DropSystem;
 using System;
 using UnityEngine;
 
@@ -12,11 +11,11 @@ public class DropItem : MonoBehaviour
 
     [SerializeField] private NamesOfDrop _nameOfDrop;
 
-   
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.isTrigger && other.TryGetComponent<Player>(out _))
+        if (!other.isTrigger && other.TryGetComponent<Player>(out _))
         {
             Game.GetInteractor<InventoryInteractor>().AddItem(_nameOfDrop);
             Destroy(gameObject);

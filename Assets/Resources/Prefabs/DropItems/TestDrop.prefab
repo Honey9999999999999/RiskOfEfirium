@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd26c5daae4b48459b2123f1dd4f4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameOfDrop: 3
+  _nameOfDrop: 2
 --- !u!65 &3194370093489839103
 BoxCollider:
   m_ObjectHideFlags: 0

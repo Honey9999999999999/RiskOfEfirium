@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts.Tools;
 using Interfaces;
 
-namespace Assets.Scripts.InventorySystem.Items
+namespace Assets.Scripts.InventorySystem
 {
-    public abstract class Item : Resource<Item>, IEffecter
+    public abstract class Item : ResourceBase<Item>, IEffecter
     {
         public abstract void Effect();
         public abstract void ReverseEffect();
