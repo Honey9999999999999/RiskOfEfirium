@@ -9,11 +9,12 @@ namespace Assets.Scripts.InputManager
         public static event Action OnCameraFirstInput;
         public static event Action OnCameraInput;
         public static event Action OnTabInput;
+        public static event Action OnMoveInput;
 
         public static InputHandler instance { get; private set; }
 
         private float _xMove;
-        private float _yMove;        
+        private float _yMove;
 
         public Vector2 moveVector => new Vector2(_xMove, _yMove).normalized;
 
@@ -22,7 +23,7 @@ namespace Assets.Scripts.InputManager
 
         private void Awake()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = this;
             }
@@ -76,6 +77,7 @@ namespace Assets.Scripts.InputManager
                 {
                     _yMove = -1;
                 }
+                OnMoveInput?.Invoke();
             }
             else
             {
@@ -92,6 +94,7 @@ namespace Assets.Scripts.InputManager
                 {
                     _xMove = 1;
                 }
+                OnMoveInput?.Invoke();
             }
             else
             {

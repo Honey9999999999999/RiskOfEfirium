@@ -17,6 +17,8 @@ public class Enemy : LivingEntity
     {
         base.OnDeath();
         _moveInstance.EntityDead();
+        _entityController.enabled = false;
+
         OnEnemyDeath?.Invoke(this);
     }
 }

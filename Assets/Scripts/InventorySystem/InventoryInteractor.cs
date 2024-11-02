@@ -1,5 +1,6 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem.Items;
+using System;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {
@@ -7,21 +8,32 @@ namespace Assets.Scripts.InventorySystem
     {
         private Inventory _inventory;
 
-        public void AddItem<TItem>() where TItem : Item
+        private Dictionary<NamesOfDrop, Action> _addDropMap;
+
+        public void AddItem(NamesOfDrop nameOfDrop)
         {
-            _inventory.AddItem<TItem>();
+            _addDropMap[nameOfDrop]?.Invoke();
         }
 
         public override void Initialize()
         {
             base.Initialize();
+
+            _inventory = new();
+
+            _addDropMap = new()
+            {
+                [NamesOfDrop.AlienResources] = () => _inventory.AddResource(NamesOfDrop.AlienResources),
+                [NamesOfDrop.ElectricResources] = () => _inventory.AddResource(NamesOfDrop.ElectricResources),
+                [NamesOfDrop.MechanicalResources] = () => _inventory.AddResource(NamesOfDrop.MechanicalResources),
+
+                [NamesOfDrop.MoveMod] = () => _inventory.AddItem<MoveMod>(),
+            };
         }
 
         public override void OnCreate()
         {
             base.OnCreate();
-
-            _inventory = new();
         }
 
         public override void OnStart()

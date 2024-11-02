@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Movement;
+﻿using Architecture;
+using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.AI;
@@ -35,7 +36,7 @@ namespace EnemyMoveStates
                 return;
             }
 
-            if (NavMeshInteractor.isInitialized)
+            if (Game.GetInteractor<NavMeshInteractor>().IsInitialized)
             {
                 _agent.SetDestination(_controller.targetPosition);
             }

@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Entities;
+﻿using Assets.Scripts.Controllers.EntityControllers.EnemyController;
+using Assets.Scripts.Controllers.EntityControllers.EnemyController.States;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using EntityControllers;
 using FSM;
@@ -6,9 +8,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
-    public class PursuitTarget : EnemyState
+    public class PursuitTargetState : EnemyBattleState
     {
-        public PursuitTarget(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target) : base(stateMachine, entity, target)
+        public PursuitTargetState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance) : base(stateMachine, entity, target, attackDistance)
         {
         }
 
@@ -35,6 +37,13 @@ namespace Assets.Scripts.Controllers.EntityControllers
             else
             {
                 _targetPosition = _target.value.position;
+            }
+
+            if (IsReadyAttack())
+            {
+                _stateMachine.EnterIn<AttackState>();
+
+                return;
             }
         }
     }

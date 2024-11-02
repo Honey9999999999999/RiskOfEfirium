@@ -40,9 +40,12 @@ namespace Assets.Scripts.Entities
 
         public float health => _health;
         public bool isMaxHealth => _health >= _maxHealth;
+        public bool isAlive => _health > 0;
 
         public void TakenDamage(float damage)
         {
+            bool beAlive = isAlive;
+
             if (damage > _health)
             {
                 damage -= damage - _health;
@@ -50,7 +53,7 @@ namespace Assets.Scripts.Entities
 
             _health -= damage;
 
-            if (_health <= 0)
+            if (beAlive && _health <= 0)
             {
                 OnHealthDown?.Invoke();
                 _timer.Reset();

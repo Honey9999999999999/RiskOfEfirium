@@ -5,6 +5,7 @@ using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
 using Assets.Scripts.UI;
+using Assets.Scripts.UI.Inventory;
 using System;
 using System.Collections.Generic;
 using UICursor;
@@ -21,6 +22,7 @@ namespace Architecture
             _interactorsMap = new Dictionary<Type, Interactor>();
 
             CreateInteractor<InputInteractor>();
+            CreateInteractor<LootInteractor>();
 
             CreateInteractor<UICanvasIntaractor>();
             CreateInteractor<CursorInteractor>();
@@ -32,6 +34,7 @@ namespace Architecture
 
             CreateInteractor<PlayerInteractor>();
             CreateInteractor<InventoryInteractor>();
+            CreateInteractor<UIInventoryInteractor>();            
             CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;

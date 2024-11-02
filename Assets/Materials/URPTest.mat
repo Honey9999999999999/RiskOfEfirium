@@ -113,10 +113,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _influenceSizeFactor: 1.15
-    - _sizeFactor: 10
-    - _speed: 6.7
+    - _sizeFactor: 12
+    - _speed: 3
     - _useChangingForm: 1
-    - _useClearBoundaries: 1
+    - _useClearBoundaries: 0
     - _useX: 1
     - _useY: 1
     - _useZ: 1
@@ -125,7 +125,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _firstColor: {r: 0, g: 1, b: 0.47320843, a: 0}
+    - _firstColor: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 0}
     - _secondColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2062392180732280358
