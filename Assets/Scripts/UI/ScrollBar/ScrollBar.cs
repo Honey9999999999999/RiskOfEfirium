@@ -1,4 +1,3 @@
-using Assets.Scripts.InputManager;
 using System;
 using UnityEngine;
 
@@ -7,22 +6,29 @@ namespace Assets.Scripts.UI.Scroll
     [RequireComponent(typeof(RectTransform))]
     public class ScrollBar : MonoBehaviour
     {
-        public event Action<float> OnScroll;
+        public static ScrollBar ActiveScrollBar { get; private set; }
+
+        public event Action OnEnabled;
+        public event Action<float> OnProgressChanged;
 
         public Direction DirectionScroll { get => _direction; set => _direction = value; }
         [SerializeField] private Direction _direction;
-        public float Sensivity { get => _sensivity; set => _sensivity = Math.Clamp(value, 0, 1); }
-        [SerializeField, Range(0, 1f)] private float _sensivity;
-        public float Progress { get => _progress; set => _progress = Math.Clamp(value, 0, 1); }
-        [SerializeField, Range(0, 1f)] private float _progress;
 
-        public float ScrollRatio { get => _scrollRatio; set 
+        public float Progress { get => _progress; set
             {
-                _scrollRatio = Math.Clamp(value, 0, 1);
-                CalculateScrollSize();
+                _progress = Math.Clamp(value, 0, 1);
+                MovePosition();
             }
         }
-        private float _scrollRatio = 1;
+        [SerializeField, Range(0, 1f)] private float _progress = 0;
+
+        public float ScrollRatio { get => _scrollRatio; set
+            {
+                _scrollRatio = Math.Clamp(value, 0, 1);
+                CalculateSize();
+            }
+        }
+        private float _scrollRatio = .5f;
 
         [SerializeField] private RectTransform _scrollLine;
         [SerializeField] private Offset _offset;
@@ -32,48 +38,86 @@ namespace Assets.Scripts.UI.Scroll
                 : _scrollLine.rect.height - _offset.top - _offset.bottom;
 
         private float _currentScrollSize;
+        private float _minSize;
 
+        private Vector2 _axisScroll;
         private Vector2 _startScrollPos;
         private Vector2 _endScrollPos;
 
+        private bool _isActive;
+        private Vector2 _oldMousePos;
 
-        public void OnEnable()
+        public void Awake()
         {
-            Progress = 0;
-            Scroll(0);
+            RectTransform rect = GetComponent<RectTransform>();
+            _axisScroll = (int)_direction < 2 ? new(1, 0) : new(0, 1);
+            _minSize = Mathf.Min(rect.rect.height, rect.rect.width);
+            CalculateSize();
         }
 
-        public void TurnOn()
+        public void Update()
         {
-            InputHandler.OnScrollInput += Scroll;
-        }
-        public void TurnOff()
-        {
-            InputHandler.OnScrollInput -= Scroll;
+            if (_isActive)
+            {
+                if (Input.GetMouseButtonUp(0))
+                {
+                    _isActive = false;
+                    return;
+                }
+
+                Vector2 currentMousePos = Input.mousePosition;
+                Vector2 difference = currentMousePos - _oldMousePos;
+                _oldMousePos = currentMousePos;
+
+                Scroll(difference);
+
+                return;
+            }
+
+            if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition))
+            {
+                ActiveScrollBar = this;
+                _isActive = true;
+                _oldMousePos = Input.mousePosition;
+                OnEnabled?.Invoke();
+            }
         }
 
-        private void Scroll(float value)
+        private void Scroll(Vector3 value)
         {
-            Progress += -value * _sensivity * _scrollRatio;
-            transform.localPosition = Vector2.Lerp(_startScrollPos, _endScrollPos, Progress);
-            OnScroll?.Invoke(Progress);
+            value *= _axisScroll;
+
+            Vector2 pos = Vector2.ClampMagnitude(transform.localPosition + value, _startScrollPos.magnitude);
+            float a = (pos - _startScrollPos).magnitude;
+            float b = (_startScrollPos - _endScrollPos).magnitude;            
+
+            Progress = a / b;
+
+            OnProgressChanged?.Invoke(Progress);
         }
 
-        public void CalculateScrollSize()
+        private void MovePosition()
+        {
+            transform.localPosition = Vector2.Lerp(_startScrollPos, _endScrollPos, _progress);
+        }
+
+        public void CalculateSize()
         {
             RectTransform scrollRect = GetComponent<RectTransform>();
 
-            if ((int)_direction < 2)
-            {                
-                scrollRect.sizeDelta = Vector2.Lerp(new(scrollRect.rect.height, scrollRect.rect.height), new(_maxScrollDistance, scrollRect.rect.height), _scrollRatio);
-                _currentScrollSize = scrollRect.sizeDelta.x;
-            }
-            else
-            {
-                scrollRect.sizeDelta = Vector2.Lerp(new(scrollRect.rect.width, scrollRect.rect.width), new(scrollRect.rect.width, _maxScrollDistance), _scrollRatio);
-                _currentScrollSize = scrollRect.sizeDelta.y;
-            }
+            scrollRect.sizeDelta = Vector2.Lerp(
+                new(_minSize, _minSize), 
+                new(_axisScroll.x > 0 ? _maxScrollDistance : _minSize, 
+                    _axisScroll.y > 0 ? _maxScrollDistance : _minSize), 
+                _scrollRatio);
+            _currentScrollSize = _axisScroll.x > 0 ? scrollRect.sizeDelta.x : scrollRect.sizeDelta.y;
 
+            CalculatePath();
+            MovePosition();
+        }
+
+        private void CalculatePath()
+        {
             float distance = _maxScrollDistance - _currentScrollSize;
 
             _startScrollPos = _direction switch
@@ -92,8 +136,6 @@ namespace Assets.Scripts.UI.Scroll
                 Direction.BottomToTop => new Vector2(0, distance / 2),
                 _ => new Vector2(),
             };
-
-            Scroll(0);
         }
 
         [Serializable]

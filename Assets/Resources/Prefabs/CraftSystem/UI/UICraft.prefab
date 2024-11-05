@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 2
-  _sensivity: 0.1
   _progress: 0
   _scrollLine: {fileID: 2201639730649815983}
   _offset:
@@ -419,7 +418,7 @@ GameObject:
   - component: {fileID: 3712024888319991462}
   - component: {fileID: 921218093634990846}
   - component: {fileID: 1524864297878298332}
-  - component: {fileID: 1535205040107176950}
+  - component: {fileID: 7760119438171889516}
   m_Layer: 0
   m_Name: BlueprintsTable
   m_TagString: Untagged
@@ -499,7 +498,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548502426661457383}
   m_CullTransparentMesh: 1
---- !u!114 &1535205040107176950
+--- !u!114 &7760119438171889516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -511,8 +510,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a6ef314d426d447b01a3dcd9d3455a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scroller: {fileID: 7661152471934104192}
-  _root: {fileID: 4825612327495654430}
+  _content: {fileID: 4825612327495654430}
+  _isHorizontal: 0
+  _isVertical: 1
+  _scrollSensivity: 20
+  _verticalScrollBar: {fileID: 7661152471934104192}
+  _horizontalScrollBar: {fileID: 0}
 --- !u!1 &558952993416783891
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,8 +754,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a6ef314d426d447b01a3dcd9d3455a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scroller: {fileID: 1014043259989824608}
-  _root: {fileID: 4723139886942203795}
+  _content: {fileID: 4723139886942203795}
+  _isHorizontal: 0
+  _isVertical: 1
+  _scrollSensivity: 20
+  _verticalScrollBar: {fileID: 1014043259989824608}
+  _horizontalScrollBar: {fileID: 0}
 --- !u!1 &1121464213504978843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 2
-  _sensivity: 0.1
   _progress: 0
   _scrollLine: {fileID: 2863004660702003631}
   _offset:
@@ -3765,7 +3771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 2
-  _sensivity: 0.1
   _progress: 0
   _scrollLine: {fileID: 944380802477417273}
   _offset:
@@ -4391,7 +4396,7 @@ MonoBehaviour:
   _blueprintTable: {fileID: 4825612327495654430}
   _descriptor: {fileID: 8769665449963994841}
   _blueprintPlate: {fileID: 5612208110991221562, guid: 237ea3261f1ba2f4c8c495607b4b4892, type: 3}
-  _scrollRect: {fileID: 1535205040107176950}
+  _scrollRect: {fileID: 0}
 --- !u!1 &8784835570188555893
 GameObject:
   m_ObjectHideFlags: 0
@@ -4630,8 +4635,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93a6ef314d426d447b01a3dcd9d3455a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scroller: {fileID: 3511555615334994058}
-  _root: {fileID: 9005783108108477155}
+  _content: {fileID: 9005783108108477155}
+  _isHorizontal: 0
+  _isVertical: 1
+  _scrollSensivity: 20
+  _verticalScrollBar: {fileID: 3511555615334994058}
+  _horizontalScrollBar: {fileID: 0}
 --- !u!1 &8881785291664525246
 GameObject:
   m_ObjectHideFlags: 0

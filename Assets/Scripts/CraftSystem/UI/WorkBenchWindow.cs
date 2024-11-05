@@ -1,5 +1,4 @@
 using Assets.Scripts.CraftSystem;
-using Assets.Scripts.UI.Scroll;
 using UnityEngine;
 
 public class WorkBenchWindow : MonoBehaviour
@@ -8,7 +7,6 @@ public class WorkBenchWindow : MonoBehaviour
     [SerializeField] BlueprintDescriptor _descriptor;
 
     [SerializeField] private BlueprintPlate _blueprintPlate;
-    [SerializeField] private ScrollRect _scrollRect;
 
     public void AddBlueprint(Blueprint blueprint)
     {
@@ -19,7 +17,6 @@ public class WorkBenchWindow : MonoBehaviour
                 _descriptor.gameObject.SetActive(true);
             }
         );
-        _scrollRect.CalculateRatio();
     }
 
     public void Close()

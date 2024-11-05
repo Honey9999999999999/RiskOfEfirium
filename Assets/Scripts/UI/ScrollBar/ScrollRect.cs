@@ -1,4 +1,5 @@
 using Assets.Scripts.InputManager;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,33 +9,53 @@ namespace Assets.Scripts.UI.Scroll
     [RequireComponent(typeof(RectTransform), typeof(Mask))]
     public class ScrollRect : MonoBehaviour
     {
-        private static ScrollRect ActiveScrollRect { get; set; }
+        private static ScrollRect ActiveScrollRect { get; set; }        
+        
+        [SerializeField] private RectTransform _content;
+        [SerializeField] private bool _isHorizontal;
+        [SerializeField] private bool _isVertical;
 
-        [SerializeField] private ScrollBar _scroller;
-        [SerializeField] private RectTransform _root;
+        [Space]
+        [SerializeField, Range(0, 100)] private float _scrollSensivity;
+
+        [Space]
+        [SerializeField] private ScrollBar _verticalScrollBar;
+        [SerializeField] private ScrollBar _horizontalScrollBar;
 
         private Vector2 _stockPosition;
-        private float _distanceDifference;
+
+        private float _horizontalDistance;
+        private float _verticalDistance;
+
+        private float _offsetX;
+        private float _offsetY;
 
         public void Awake()
         {
-            _stockPosition = transform.position;
+            _stockPosition = _content.transform.position;
 
-            if (_scroller != null)
+            if (_verticalScrollBar != null)
             {
-                _scroller.OnScroll += Move;
+                _verticalScrollBar.OnProgressChanged += ScrollByProgress;
+                _verticalScrollBar.OnEnabled += ForciblySwitch;
+            }
+            if (_horizontalScrollBar != null)
+            {
+                _horizontalScrollBar.OnProgressChanged += ScrollByProgress;
+                _horizontalScrollBar.OnEnabled += ForciblySwitch;
             }
         }
         public void OnEnable()
         {
             InputHandler.OnAttackInput += Switch;
 
-            StartCoroutine(Calculate());
-            
+            ResetPosition();
+
+            StartCoroutine(Calculate());            
             IEnumerator Calculate()
             {
                 yield return null;
-                CalculateRatio();
+                CalculateScrollDistance();
             }
         }        
 
@@ -44,47 +65,113 @@ namespace Assets.Scripts.UI.Scroll
 
             if (ActiveScrollRect == this)
             {
-                ActiveScrollRect._scroller.TurnOff();
+                InputHandler.OnScrollInput -= Scroll;
                 ActiveScrollRect = null;
             }
         }
 
         private void Switch()
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition) && ActiveScrollRect != this)
+            if (RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition))
+            {
+                ForciblySwitch();
+            }
+        }
+
+        private void ForciblySwitch()
+        {
+            if (ActiveScrollRect != this)
             {
                 if (ActiveScrollRect != null)
                 {
-                    ActiveScrollRect._scroller.TurnOff();
+                    InputHandler.OnScrollInput -= ActiveScrollRect.Scroll;
                 }
 
-                _scroller.TurnOn();
+                InputHandler.OnScrollInput += Scroll;
                 ActiveScrollRect = this;
             }
         }
 
-        private void Move(float progress)
+        private void ScrollByProgress(float progress)
         {
-            Vector2 endPos = (int)_scroller.DirectionScroll < 2 
-                ? new(_stockPosition.x + (_scroller.DirectionScroll == Direction.LeftToRight ? _distanceDifference : -_distanceDifference), _stockPosition.y) 
-                : new(_stockPosition.x, _stockPosition.y + (_scroller.DirectionScroll == Direction.TopToBottom ? _distanceDifference : -_distanceDifference));
-            _root.position = Vector2.Lerp(_stockPosition, endPos, progress);
+            if (_isHorizontal && ScrollBar.ActiveScrollBar == _horizontalScrollBar)
+            {
+                _offsetX = Mathf.Lerp(0, _horizontalDistance, progress);
+            }
+            else
+            {
+                _offsetY = Mathf.Lerp(0, _verticalDistance, progress);
+            }
+
+            MoveContent();
         }
 
-        public void CalculateRatio()
+        private void Scroll(float value)
         {
-            if(_scroller != null)
+            if (_isHorizontal && ScrollBar.ActiveScrollBar == _horizontalScrollBar)
             {
-                RectTransform rect = GetComponent<RectTransform>();
-                float distance = (int)_scroller.DirectionScroll < 2 ? rect.rect.width : rect.rect.height;
+                _offsetX = Mathf.Clamp(_offsetX + -value * _scrollSensivity, 0, _horizontalDistance);
+            }
+            else
+            {
+                _offsetY = Mathf.Clamp(_offsetY + -value * _scrollSensivity, 0, _verticalDistance);                
+            }
 
-                Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(transform, transform);
-                float finalDistance = (int)_scroller.DirectionScroll < 2 ? bounds.min.x * -1 + bounds.max.x : bounds.min.y * -1 + bounds.max.y;
+            if (_horizontalScrollBar != null)
+            {
+                _verticalScrollBar.Progress = _offsetX == 0 ? 0 : _offsetX / _horizontalDistance;
+            }
+            if (_verticalScrollBar != null)
+            {
+                _verticalScrollBar.Progress = _offsetY == 0 ? 0 : _offsetY / _verticalDistance;
+            }
 
-                _distanceDifference = finalDistance - distance;
+            MoveContent();
+        }
 
-                _scroller.ScrollRatio = distance / finalDistance;
-            }            
+        private void MoveContent()
+        {
+            _content.transform.position = new Vector2(
+                    _stockPosition.x + _offsetX,
+                    _stockPosition.y + _offsetY
+                    );
+        }
+
+        private void ResetPosition()
+        {
+            _offsetX = 0;
+            _offsetY = 0;
+
+            Scroll(0);
+        }
+
+        public void CalculateScrollDistance()
+        {
+            RectTransform rect = GetComponent<RectTransform>();
+            Bounds bounds = RectTransformUtility.CalculateRelativeRectTransformBounds(transform, transform);
+
+            if (_isHorizontal)
+            {
+                float distance = rect.rect.width;                
+                float finalDistance = bounds.min.x * -1 + bounds.max.x;
+                _horizontalDistance = Mathf.Max(0, finalDistance - distance);
+
+                if(_horizontalScrollBar != null)
+                {
+                    _horizontalScrollBar.ScrollRatio = distance / finalDistance;
+                }
+            }
+            if (_isVertical)
+            {
+                float distance = rect.rect.height;
+                float finalDistance = bounds.min.y * -1 + bounds.max.y;
+                _verticalDistance = Mathf.Max(0, finalDistance - distance);
+
+                if (_verticalScrollBar != null)
+                {
+                    _verticalScrollBar.ScrollRatio = distance / finalDistance;
+                }
+            }
         }
     }
 }

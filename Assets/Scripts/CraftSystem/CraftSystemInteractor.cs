@@ -30,7 +30,7 @@ namespace Assets.Scripts.CraftSystem
 
             foreach (Blueprint blueprint in inventory.Blueprints)
             {
-                CraftWindow.AddBlueprint(blueprint);                     
+                CraftWindow.AddBlueprint(blueprint);
             }            
         }
     }
