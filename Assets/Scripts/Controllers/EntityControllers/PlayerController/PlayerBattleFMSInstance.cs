@@ -23,5 +23,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
             _stateMachine.EnterIn<SimpleState>();
         }
+
+        public Gun GetGun() => _gun;
     }
 }

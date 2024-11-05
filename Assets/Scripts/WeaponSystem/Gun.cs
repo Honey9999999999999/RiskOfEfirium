@@ -14,12 +14,11 @@ public class Gun : MonoBehaviour
     [SerializeField] Bullet _bullet;
     [SerializeField] Side _target;
 
-    [SerializeField] float _force;
-    [SerializeField] float _rateFire;
-    [SerializeField] int _maxAmmo;
-    [SerializeField] int _amountAmmo;
-    [SerializeField] float _reloadTime;
-
+    [SerializeField, Min(0)] private float _force;
+    [SerializeField, Min(0)] private float _rateFire;
+    [SerializeField, Min(0)] private int _maxAmmo;
+    [SerializeField, Min(0)] private int _amountAmmo;
+    [SerializeField, Min(0)] private float _reloadTime;
     [SerializeField] float _distanceInstanceBulletAtCentre;
 
     private Dictionary<Side, Type> _sidesMap = new()
@@ -31,10 +30,23 @@ public class Gun : MonoBehaviour
     private Timer _cooldownTimer;
     private float _cooldown => _rateFire / 60;
 
+    public int MaxAmmo => _maxAmmo;
+
+    public float StockRateFire { get; private set; }
+    public int StockMaxAmmo { get; private set; }
+    public float StockReloadTime { get; private set; }
+
     private void Awake()
     {
         _cooldownTimer = new();
         _amountAmmo = _maxAmmo;
+    }
+
+    public void OnEnable()
+    {
+        StockRateFire = _rateFire;
+        StockMaxAmmo = _maxAmmo;
+        StockReloadTime = _reloadTime;
     }
 
     public void Fire(Vector3 position)
@@ -68,5 +80,20 @@ public class Gun : MonoBehaviour
     {
         _cooldownTimer.OnStoped -= ReloadDone;
         _amountAmmo = _maxAmmo;
+    }
+
+    public void SetAmmoCount(int value)
+    {
+        if(value > 0)
+        {
+            _maxAmmo = value;
+        }
+    }
+    public void SetRateFire(float value)
+    {
+        if (value > 0)
+        {
+            _rateFire = value;
+        }
     }
 }

@@ -3,9 +3,11 @@ using Assets.Scripts.Movement;
 
 namespace Assets.Scripts.InventorySystem
 {
-    internal class MoveMod : Item
+    internal class SyneticMuscles : Item
     {
         private const float _procent = 0.25f;
+
+        public override NamesOfDrop Name => NamesOfDrop.SyneticMuscles;
 
         public override void Effect()
         {

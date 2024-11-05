@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.InventorySystem;
+using System;
 
 namespace Assets.Scripts.Tools
 {

@@ -5,6 +5,8 @@
         MechanicalResources,
         ElectricResources,
         AlienResources,
-        MoveMod
+        SyneticMuscles,
+        Thermostat,
+        ImprovedLaserBattery
     }
 }

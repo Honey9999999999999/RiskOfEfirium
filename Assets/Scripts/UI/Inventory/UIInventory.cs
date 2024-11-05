@@ -1,31 +1,41 @@
 using Assets.Scripts.InventorySystem;
+using Assets.Scripts.Tools;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Inventory
 {
     public class UIInventory : MonoBehaviour
     {
-        public TextMeshProUGUI alienCounter;
-        public TextMeshProUGUI ElectricalCounter;
-        public TextMeshProUGUI MechanicalCounter;
+        private readonly Dictionary<Type, TextMeshProUGUI> _countersMap = new();
+        private const string PATH_TO_COUNTER_PREFAB = "Prefabs/UI/Resource";
 
-        public void ChangeCountValue(Resource resource)
+        public void ChangeCountValue(Item item)
         {
-            switch (resource.Name)
+            if (!_countersMap.ContainsKey(item.GetType()))
             {
-                case NamesOfDrop.MechanicalResources:
-                    MechanicalCounter.text = resource.amount.ToString();
-                    break;
-                case NamesOfDrop.ElectricResources:
-                    ElectricalCounter.text = resource.amount.ToString();
-                    break;
-                case NamesOfDrop.AlienResources:
-                    alienCounter.text = resource.amount.ToString();
-                    break;
-                default:
-                    throw new System.Exception($"This {resource.Name} is not a resource");
+                AddCounter(item.GetType());
             }
+
+            if(item.amount <= 0)
+            {
+                Destroy(_countersMap[item.GetType()].transform.parent.gameObject);
+                _countersMap.Remove(item.GetType());
+            }
+            else
+            {
+                _countersMap[item.GetType()].text = item.amount.ToString();
+            }
+        }
+
+        private void AddCounter(Type dropName)
+        {
+            Image image = ResourceLoader.Load<Image>(PATH_TO_COUNTER_PREFAB, transform);
+            image.sprite = ResourceLoader.Load<Sprite>("Sprites/MiniMap/Minimaze/SimpleRoomA");
+            _countersMap[dropName] = image.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.Bank;
+using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InputManager;
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
 using Assets.Scripts.UI;
-using Assets.Scripts.UI.Inventory;
 using System;
 using System.Collections.Generic;
 using UICursor;
@@ -33,8 +33,8 @@ namespace Architecture
             CreateInteractor<NavMeshInteractor>();
 
             CreateInteractor<PlayerInteractor>();
-            CreateInteractor<InventoryInteractor>();
-            CreateInteractor<UIInventoryInteractor>();
+            CreateInteractor<InventorySystemInteractor>();
+            CreateInteractor<CraftSystemInteractor>();
             CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;

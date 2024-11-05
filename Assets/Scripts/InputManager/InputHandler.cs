@@ -6,9 +6,15 @@ namespace Assets.Scripts.InputManager
     public class InputHandler : MonoBehaviour
     {
         public static event Action OnAttackInput;
+        public static event Action<float> OnScrollInput;
+
         public static event Action OnCameraFirstInput;
         public static event Action OnCameraInput;
+
         public static event Action OnTabInput;
+        public static event Action OnEscInput;
+        public static event Action OnInteractionButtonInput;
+
         public static event Action OnMoveInput;
 
         public static InputHandler instance { get; private set; }
@@ -59,12 +65,25 @@ namespace Assets.Scripts.InputManager
             {
                 isCameraRotate = false;
             }
+
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                OnScrollInput?.Invoke(Input.mouseScrollDelta.y);
+            }
         }
         private void KeyBoardChecks()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 OnTabInput?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                OnInteractionButtonInput?.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnEscInput?.Invoke();
             }
 
             if (Input.GetKey(KeyCode.W) ^ Input.GetKey(KeyCode.S))

@@ -17,7 +17,7 @@ public class DropItem : MonoBehaviour
     {
         if (!other.isTrigger && other.TryGetComponent<Player>(out _))
         {
-            Game.GetInteractor<InventoryInteractor>().AddItem(DropName);
+            Game.GetInteractor<InventorySystemInteractor>().AddItem(DropName);
             Destroy(gameObject);
 
             OnDropGrabbed?.Invoke();

@@ -22,7 +22,6 @@ namespace Assets.Scripts.Movement
         }
         private void Start()
         {
-            Debug.Log(_stateMachine == null);
             _stateMachine.AddState(new IdleState(_stateMachine, _entity, _speed));
             _stateMachine.AddState(new WalkState(_stateMachine, _entity, _speed));
             _stateMachine.AddState(new FlyingState(_stateMachine, _entity, _playerModel, _speed));
