@@ -2558,7 +2558,6 @@ MonoBehaviour:
   _blueprintTable: {fileID: 4723139886942203795}
   _descriptor: {fileID: 255388875101166565}
   _blueprintPlate: {fileID: 5612208110991221562, guid: 237ea3261f1ba2f4c8c495607b4b4892, type: 3}
-  _scrollRect: {fileID: 3672005843575811739}
 --- !u!1 &5425470881508652020
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,7 +4395,6 @@ MonoBehaviour:
   _blueprintTable: {fileID: 4825612327495654430}
   _descriptor: {fileID: 8769665449963994841}
   _blueprintPlate: {fileID: 5612208110991221562, guid: 237ea3261f1ba2f4c8c495607b4b4892, type: 3}
-  _scrollRect: {fileID: 0}
 --- !u!1 &8784835570188555893
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,7 +4733,6 @@ MonoBehaviour:
   _blueprintTable: {fileID: 9005783108108477155}
   _descriptor: {fileID: 8217662961774637625}
   _blueprintPlate: {fileID: 5612208110991221562, guid: 237ea3261f1ba2f4c8c495607b4b4892, type: 3}
-  _scrollRect: {fileID: 1380796151699285952}
 --- !u!1 &8999752642890214320
 GameObject:
   m_ObjectHideFlags: 0

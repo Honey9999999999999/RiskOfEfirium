@@ -14,7 +14,6 @@ namespace Assets.Scripts.CraftSystem
 
         [SerializeField] private Transform _componentsTable;
         [SerializeField] private BlueprintComponent _componentBase;
-        [SerializeField] private Sprite _componentImageZatichka;
 
         [SerializeField] private Button _button;
 
@@ -23,6 +22,7 @@ namespace Assets.Scripts.CraftSystem
             InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
             ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(blueprint.ItemName);
 
+            _image.sprite = Resources.Load<Sprite>(info.IconPath);
             _itemName.text = info.Name;
             _description.text = info.Description;
 
@@ -36,15 +36,18 @@ namespace Assets.Scripts.CraftSystem
 
         private void SetRequredComponents(Blueprint blueprint)
         {
+            InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
+
             for (int i = 0; i < _componentsTable.transform.childCount; i++)
             {
                 Destroy(_componentsTable.transform.GetChild(i).gameObject);
             }
 
             foreach (NamesOfDrop component in blueprint.Components.Keys)
-            {
+            {                
+                ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(component);
                 Instantiate(_componentBase, _componentsTable).
-                SetComponent(_componentImageZatichka, blueprint.Components[component]);
+                SetComponent(info, blueprint.Components[component]);
             }
         }
 

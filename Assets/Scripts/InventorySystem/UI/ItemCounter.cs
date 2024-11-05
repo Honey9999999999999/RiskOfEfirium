@@ -1,23 +1,22 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.CraftSystem
+namespace Assets.Scripts.InventorySystem
 {
-    [RequireComponent(typeof(Image))]
-    public class BlueprintComponent : MonoBehaviour
+    public class ItemCounter : MonoBehaviour
     {
         [SerializeField] private Image _frame;
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _counter;
 
-        public void SetComponent(ItemInfo info, int count)
+        public void SetInfo(ItemInfo info)
         {
             _frame.sprite = Game.GetInteractor<InventorySystemInteractor>().GetSpriteFrame(info.Tier);
             _icon.sprite = Resources.Load<Sprite>(info.IconPath);
-            _counter.text = count.ToString();
         }
+
+        public TextMeshProUGUI GetCounter() => _counter;
     }
 }

@@ -1,9 +1,9 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem;
 using Assets.Scripts.Tools;
+using Assets.Scripts.UI;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Inventory
+namespace Assets.Scripts.InventorySystem
 {
     public class UIInventoryInteractor : Interactor
     {
