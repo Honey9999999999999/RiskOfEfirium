@@ -10,18 +10,5 @@ namespace Assets.Scripts.Architecture
         {
             Game.Run();
         }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && CursorHitHandler.RaycastNoTriggers(out RaycastHit hit))
-            {
-                Debug.Log(hit.point);
-
-                if (hit.collider.TryGetComponent<Enemy>(out _))
-                {
-                    Debug.Log("I see Enemy");
-                }
-            }
-        }
     }
 }

@@ -32,7 +32,6 @@ public class WorkBenchWindow : MonoBehaviour
     {
         currentBlueprint = null;
         gameObject.SetActive(false);
-        _lightsControl.SetNeutral();
         _descriptor.Crear();
         _tableProgressBars.Clear();
     }

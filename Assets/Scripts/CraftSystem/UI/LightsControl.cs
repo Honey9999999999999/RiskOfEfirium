@@ -13,7 +13,7 @@ namespace Assets.Scripts.CraftSystem.UI
 
         private Image image;
 
-        public void Awake()
+        public void Start()
         {
             image = GetComponent<Image>();
         }

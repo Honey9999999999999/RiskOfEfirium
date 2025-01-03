@@ -1,4 +1,5 @@
 ﻿using Architecture;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InventorySystem;
 using UnityEngine;
 
@@ -26,7 +27,7 @@ namespace Assets.Scripts.CraftSystem.UI
             foreach (var key in item.ImprovedCharacteristicsMap.Keys)
             {
                 CharacteristicProgressBar progressBar = Instantiate(_progressBar, transform);
-                progressBar.SetName(key.ToString());
+                progressBar.SetName(CharacteristicLocalizator.GetLocalWord(key));
 
                 float currentIndex = Game.GetInteractor<PlayerInteractor>().player.PersonalCCC.GetIndexOf(key);
                 progressBar.SetState(currentIndex, currentIndex + item.ImprovedCharacteristicsMap[key]);

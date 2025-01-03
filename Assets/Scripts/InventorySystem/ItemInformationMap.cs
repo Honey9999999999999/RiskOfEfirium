@@ -13,28 +13,28 @@ namespace Assets.Scripts.InventorySystem
                 "Добытая прямиком из инопланетной формы жизни, " +
                 "эта субъстанция способна быть одновременно как и невероятно мягкой, " +
                 "так и нев ероятно твердой",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconDNA"
             ),
             [NamesOfDrop.MechanicalResources] = new
             (
                 Tier.Common,
                 "Механические части",
                 "Шестеренки, пружины, и прочие железки",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconGear"
             ),
             [NamesOfDrop.ElectricResources] = new
             (
                 Tier.Common,
                 "Электрические компоненты",
                 "Всякие микроконтроллеры, резисторы, транзисторы ипрочая электроника",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconPlate"
             ),
             [NamesOfDrop.ImprovedLaserBattery] = new
             (
                 Tier.Uncommon,
                 "Улучшенная энергетическая батарея",
                 "Увеличивает количество выстрелов после перезарядки",
-                "Sprites/IsometricDiamond"
+                "Sprites/UI/Icons/Lines/iconCharge"
             ),
             [NamesOfDrop.SyneticMuscles] = new
             (
@@ -48,7 +48,7 @@ namespace Assets.Scripts.InventorySystem
                 Tier.Uncommon,
                 "Терморегулятор",
                 "Увеличивает скорострельность",
-                "Sprites/IsometricDiamond"
+                "Sprites/UI/Icons/Lines/iconRateOfFire"
             ),
         };
 

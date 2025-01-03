@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.CraftSystem.UI;
+using UnityEngine;
 
 namespace Assets.Scripts.CraftSystem
 {
@@ -8,13 +9,16 @@ namespace Assets.Scripts.CraftSystem
         [SerializeField] private WorkBenchWindow _workBenchEngineer;
         [SerializeField] private WorkBenchWindow _workBenchMedical;
 
+        [SerializeField] private BasesResourcesTable _resourcesTable;
+        [SerializeField] private LightsControl lightsControl;
+
         public void AddBlueprint(Blueprint blueprint)
         {
             WorkBenchWindow workBench = blueprint.WorkBenchType switch
             {
                 WorkBenchType.Armory => _workBenchArmory,
-                WorkBenchType.Medical => _workBenchArmory,
-                WorkBenchType.Engineer => _workBenchArmory,
+                WorkBenchType.Medical => _workBenchMedical,
+                WorkBenchType.Engineer => _workBenchEngineer,
                 _ => throw new System.Exception(),
             };
 
@@ -37,13 +41,17 @@ namespace Assets.Scripts.CraftSystem
                 default:
                     throw new System.Exception();
             }
+
+            _resourcesTable.OpenTable();
         }
 
         public void CloseWindow()
         {
+            _resourcesTable.CloseTable();
+
             _workBenchArmory.Close();
-            //_workBenchEngineer.Close();
-            //_workBenchMedical.Close();
+            _workBenchEngineer.Close();
+            _workBenchMedical.Close();
         }
     }
 }
