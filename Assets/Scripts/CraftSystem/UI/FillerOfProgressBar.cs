@@ -26,7 +26,6 @@ namespace Assets.Scripts.CraftSystem.UI
             Vector2 size = rect.sizeDelta;
             size.x = Mathf.Lerp(startWidth, startWidth + distance, index);
             rect.sizeDelta = size;
-            Debug.Log(index);
         }
     }
 }

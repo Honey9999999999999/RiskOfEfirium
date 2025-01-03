@@ -33,8 +33,6 @@ namespace Assets.Scripts.CharacterStatsSystem
         {
             float newIndex = index + percent;
 
-            Debug.Log($"Coming {newIndex} index");
-
             if (IsOutOfBounds(newIndex))
             {
                 throw new Exception($"The permissible values ​​of the characteristic are exceeded. Value : {newIndex}");
