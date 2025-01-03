@@ -1,13 +1,12 @@
-﻿using Assets.Scripts.InventorySystem;
-using System;
+﻿using System;
 
 namespace Assets.Scripts.Tools
 {
     public abstract class ResourceBase<T> where T : ResourceBase<T>
     {
         public static event Action<T> OnResourceAmountChanged;
-        public static event Action<T> OnResourceAdded;
-        public static event Action<T> OnResourceTaked;
+        public event Action<T> OnResourceAdded;
+        public event Action<T> OnResourceTaked;
 
         private int _amount;
 

@@ -336,8 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entity: {fileID: 5634911306522840006}
-  _speed:
-    value: 0
   _playerModel: {fileID: 6266843565466388108}
   _baseSpeed: 6
 --- !u!54 &3026261379260145341
@@ -403,8 +401,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8656334073073011824, guid: b8c836681723a774ea5f1fd543f420ac, type: 3}
     - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
+      propertyPath: _entity
+      value: 
+      objectReference: {fileID: 5634911306522840006}
+    - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
       propertyPath: _target
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
+      propertyPath: _offsetSpawnBulletAtCentre
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2270547359859598153, guid: d48bd75badcd99f4abf6053f7026af51, type: 3}
       propertyPath: _distanceInstanceBulletAtCentre

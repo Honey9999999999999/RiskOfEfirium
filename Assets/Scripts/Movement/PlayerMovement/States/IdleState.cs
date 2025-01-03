@@ -1,12 +1,12 @@
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Movement;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace PlayerMoveStates
 {
     public class IdleState : PlayerMoveState
     {
-        public IdleState(FSMMove stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
+        public IdleState(FSMMove stateMachine, Player entity, ImprovedCharacteristic speed) : base(stateMachine, entity, speed)
         {
         }
 

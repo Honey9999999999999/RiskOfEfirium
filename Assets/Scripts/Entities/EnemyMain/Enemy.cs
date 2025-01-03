@@ -1,3 +1,5 @@
+using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.CraftSystem.PersonalCards;
 using Assets.Scripts.Entities;
 using System;
 using UnityEngine;
@@ -6,6 +8,10 @@ using UnityEngine;
 public class Enemy : LivingEntity
 {
     [SerializeField] private MoveEnemyFSMInstance _moveInstance;
+
+    public override CharacterCharacteristicCard PersonalCCC => blobCCC;
+    private readonly BlobCCC blobCCC = new();
+
     public static event Action<Enemy> OnEnemyDeath;
 
     public MoveEnemyFSMInstance GetMoveInstance()

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Tools;
+﻿using Assets.Scripts.CharacterStatsSystem;
 using EntityControllers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,7 +12,7 @@ namespace Assets.Scripts.Movement
         protected Rigidbody _rigidbody;
         protected NavMeshAgent _agent;
 
-        protected EnemyMoveState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, speed)
+        protected EnemyMoveState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ImprovedCharacteristic speed) : base(stateMachine, speed)
         {
             _entity = entity;
             _controller = (EnemyController)_entity.GetEntityController();

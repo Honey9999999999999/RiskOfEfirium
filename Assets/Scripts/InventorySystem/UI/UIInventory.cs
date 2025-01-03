@@ -1,11 +1,9 @@
 using Architecture;
-using Assets.Scripts.InventorySystem;
 using Assets.Scripts.Tools;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts.InventorySystem
 {
@@ -21,7 +19,7 @@ namespace Assets.Scripts.InventorySystem
                 AddCounter(item);
             }
 
-            if(item.amount <= 0)
+            if (item.amount <= 0)
             {
                 Destroy(_countersMap[item.GetType()].transform.parent.gameObject);
                 _countersMap.Remove(item.GetType());

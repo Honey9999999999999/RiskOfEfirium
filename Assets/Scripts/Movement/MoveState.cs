@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Tools;
+﻿using Assets.Scripts.CharacterStatsSystem;
 using FSM;
 
 namespace Assets.Scripts.Movement
@@ -6,9 +6,9 @@ namespace Assets.Scripts.Movement
     public abstract class MoveState : IState
     {
         protected FSMMove _stateMachine;
-        protected ShellValue<float> _speed;
+        protected ImprovedCharacteristic _speed;
 
-        public MoveState(FSMMove stateMachine, ShellValue<float> speed) : base()
+        public MoveState(FSMMove stateMachine, ImprovedCharacteristic speed) : base()
         {
             _stateMachine = stateMachine;
             _speed = speed;

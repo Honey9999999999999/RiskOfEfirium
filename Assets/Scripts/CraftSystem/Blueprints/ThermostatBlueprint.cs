@@ -8,7 +8,7 @@ namespace Assets.Scripts.CraftSystem.Blueprints
         public override WorkBenchType WorkBenchType => WorkBenchType.Armory;
         public override NamesOfDrop ItemName => NamesOfDrop.Thermostat;
         public override Dictionary<NamesOfDrop, int> Components => _components;
-        
+
 
         private readonly Dictionary<NamesOfDrop, int> _components = new()
         {

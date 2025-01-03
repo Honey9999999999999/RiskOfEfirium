@@ -2,14 +2,14 @@
 
 namespace Assets.Scripts.InventorySystem
 {
-    public class ItemInformationCard
+    public class ItemInformationMap
     {
         private readonly Dictionary<NamesOfDrop, ItemInfo> _itemInfoMap = new()
         {
             [NamesOfDrop.AlienResources] = new
             (
                 Tier.Common,
-                "Часть чужого", 
+                "Часть чужого",
                 "Добытая прямиком из инопланетной формы жизни, " +
                 "эта субъстанция способна быть одновременно как и невероятно мягкой, " +
                 "так и нев ероятно твердой",
@@ -18,14 +18,14 @@ namespace Assets.Scripts.InventorySystem
             [NamesOfDrop.MechanicalResources] = new
             (
                 Tier.Common,
-                "Механические части", 
+                "Механические части",
                 "Шестеренки, пружины, и прочие железки",
                 "Sprites/Circle"
             ),
             [NamesOfDrop.ElectricResources] = new
             (
                 Tier.Common,
-                "Электрические компоненты", 
+                "Электрические компоненты",
                 "Всякие микроконтроллеры, резисторы, транзисторы ипрочая электроника",
                 "Sprites/Circle"
             ),
@@ -39,14 +39,14 @@ namespace Assets.Scripts.InventorySystem
             [NamesOfDrop.SyneticMuscles] = new
             (
                 Tier.Uncommon,
-                "Синтетические мышцы", 
+                "Синтетические мышцы",
                 "Увеличивает скорость передвижения",
                 "Sprites/IsometricDiamond"
             ),
             [NamesOfDrop.Thermostat] = new
             (
                 Tier.Uncommon,
-                "Терморегулятор", 
+                "Терморегулятор",
                 "Увеличивает скорострельность",
                 "Sprites/IsometricDiamond"
             ),

@@ -24,14 +24,14 @@ namespace Assets.Scripts.CraftSystem
         {
             base.OnStart();
 
-            Inventory inventory = Game.GetInteractor<InventorySystemInteractor>().Inventory;
+            Inventory inventory = Game.GetInteractor<InventorySystemInteractor>().PlayerInventory;
 
             inventory.OnBlueprintAdded += CraftWindow.AddBlueprint;
 
             foreach (Blueprint blueprint in inventory.Blueprints)
             {
                 CraftWindow.AddBlueprint(blueprint);
-            }            
+            }
         }
     }
 }

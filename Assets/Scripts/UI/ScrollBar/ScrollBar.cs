@@ -14,7 +14,9 @@ namespace Assets.Scripts.UI.Scroll
         public Direction DirectionScroll { get => _direction; set => _direction = value; }
         [SerializeField] private Direction _direction;
 
-        public float Progress { get => _progress; set
+        public float Progress
+        {
+            get => _progress; set
             {
                 _progress = Math.Clamp(value, 0, 1);
                 MovePosition();
@@ -22,7 +24,9 @@ namespace Assets.Scripts.UI.Scroll
         }
         [SerializeField, Range(0, 1f)] private float _progress = 0;
 
-        public float ScrollRatio { get => _scrollRatio; set
+        public float ScrollRatio
+        {
+            get => _scrollRatio; set
             {
                 _scrollRatio = Math.Clamp(value, 0, 1);
                 CalculateSize();
@@ -89,7 +93,7 @@ namespace Assets.Scripts.UI.Scroll
 
             Vector2 pos = Vector2.ClampMagnitude(transform.localPosition + value, _startScrollPos.magnitude);
             float a = (pos - _startScrollPos).magnitude;
-            float b = (_startScrollPos - _endScrollPos).magnitude;            
+            float b = (_startScrollPos - _endScrollPos).magnitude;
 
             Progress = a / b;
 
@@ -106,9 +110,9 @@ namespace Assets.Scripts.UI.Scroll
             RectTransform scrollRect = GetComponent<RectTransform>();
 
             scrollRect.sizeDelta = Vector2.Lerp(
-                new(_minSize, _minSize), 
-                new(_axisScroll.x > 0 ? _maxScrollDistance : _minSize, 
-                    _axisScroll.y > 0 ? _maxScrollDistance : _minSize), 
+                new(_minSize, _minSize),
+                new(_axisScroll.x > 0 ? _maxScrollDistance : _minSize,
+                    _axisScroll.y > 0 ? _maxScrollDistance : _minSize),
                 _scrollRatio);
             _currentScrollSize = _axisScroll.x > 0 ? scrollRect.sizeDelta.x : scrollRect.sizeDelta.y;
 
@@ -146,7 +150,7 @@ namespace Assets.Scripts.UI.Scroll
             public int left;
             public int right;
         }
-    }    
+    }
 
     [Serializable]
     public enum Direction

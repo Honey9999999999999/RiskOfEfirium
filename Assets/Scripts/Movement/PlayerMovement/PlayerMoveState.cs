@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Controllers.EntityControllers;
-using Assets.Scripts.Tools;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.Controllers.EntityControllers;
 using UnityEngine;
 
 namespace Assets.Scripts.Movement
@@ -9,7 +9,7 @@ namespace Assets.Scripts.Movement
         protected Player _entity;
         protected PlayerController _controller;
         protected Rigidbody _rigidbody;
-        public PlayerMoveState(FSMMove stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, speed)
+        public PlayerMoveState(FSMMove stateMachine, Player entity, ImprovedCharacteristic speed) : base(stateMachine, speed)
         {
             _entity = entity;
             _controller = (PlayerController)_entity.GetEntityController();
