@@ -3,6 +3,7 @@ using Assets.Scripts.Tools;
 using EntityControllers;
 using FSM;
 using UnityEngine;
+using WeaponSystem;
 
 namespace Assets.Scripts.Controllers.EntityControllers.EnemyController.States
 {

@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Movement;
-using Assets.Scripts.Tools;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.Movement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +7,7 @@ namespace EnemyMoveStates
 {
     internal class IdleState : EnemyMoveState
     {
-        public IdleState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, entity, agent, speed)
+        public IdleState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ImprovedCharacteristic speed) : base(stateMachine, entity, agent, speed)
         {
         }
 

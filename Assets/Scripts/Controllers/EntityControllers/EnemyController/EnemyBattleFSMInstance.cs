@@ -4,6 +4,7 @@ using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
 using UnityEngine.AI;
+using WeaponSystem;
 
 namespace EntityControllers
 {

@@ -1,4 +1,5 @@
 ﻿using Architecture;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Entities;
 using PlayerMoveStates;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Assets.Scripts.Movement
     {
         [SerializeField] private Transform _playerModel;
         [SerializeField, Min(0)] private float _baseSpeed;
+        private ImprovedCharacteristic _speed;
 
         private void Awake()
         {
@@ -22,6 +24,8 @@ namespace Assets.Scripts.Movement
         }
         private void Start()
         {
+            _speed = _entity.PersonalCCC.Get(Characteristics.Movespeed);
+
             _stateMachine.AddState(new IdleState(_stateMachine, _entity, _speed));
             _stateMachine.AddState(new WalkState(_stateMachine, _entity, _speed));
             _stateMachine.AddState(new FlyingState(_stateMachine, _entity, _playerModel, _speed));
@@ -29,18 +33,8 @@ namespace Assets.Scripts.Movement
             _stateMachine.EnterIn<IdleState>();
         }
 
-        private void Initialize()
-        {
-            _speed.value = _baseSpeed;
-        }
+        private void Initialize() { }
 
         public float GetBaseSpeed() => _baseSpeed;
-        public void SetSpeed(float value)
-        {
-            if (value >= 0)
-            {
-                _speed.value = value;
-            }
-        }
     }
 }

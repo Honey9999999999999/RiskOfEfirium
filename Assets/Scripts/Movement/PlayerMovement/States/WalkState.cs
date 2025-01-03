@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.InputManager;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.InputManager;
 using Assets.Scripts.Movement;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace PlayerMoveStates
@@ -9,7 +9,7 @@ namespace PlayerMoveStates
     {
         private Transform _movebleObject;
 
-        public WalkState(FSMMove stateMachine, Player entity, ShellValue<float> speed) : base(stateMachine, entity, speed)
+        public WalkState(FSMMove stateMachine, Player entity, ImprovedCharacteristic speed) : base(stateMachine, entity, speed)
         {
             _movebleObject = entity.transform;
         }
@@ -47,7 +47,7 @@ namespace PlayerMoveStates
             Vector3 right = _movebleObject.right * InputHandler.instance.moveVector.x;
             Vector3 direction = forward + right;
 
-            _rigidbody.velocity = direction * _speed.value;
+            _rigidbody.velocity = direction * _speed.CurrentValue;
         }
 
         private void ViewOnDirection()

@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.InventorySystem;
-using System;
 using System.Collections.Generic;
 
 namespace Assets.Scripts.CraftSystem.Blueprints

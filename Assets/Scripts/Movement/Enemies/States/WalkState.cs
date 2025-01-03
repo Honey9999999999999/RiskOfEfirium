@@ -1,6 +1,6 @@
 ﻿using Architecture;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Movement;
-using Assets.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +8,7 @@ namespace EnemyMoveStates
 {
     internal class WalkState : EnemyMoveState
     {
-        public WalkState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ShellValue<float> speed) : base(stateMachine, entity, agent, speed)
+        public WalkState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ImprovedCharacteristic speed) : base(stateMachine, entity, agent, speed)
         {
         }
 
@@ -17,7 +17,7 @@ namespace EnemyMoveStates
             base.Enter();
 
             _rigidbody.velocity = Vector3.zero;
-            _agent.speed = _speed.value;
+            _agent.speed = _speed.CurrentValue;
         }
 
         public override void Exit()

@@ -1,4 +1,6 @@
-﻿using CoroutineManager;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.InventorySystem;
+using CoroutineManager;
 using EntityControllers;
 using System;
 using System.Collections;
@@ -16,8 +18,13 @@ namespace Assets.Scripts.Entities
         [SerializeField] protected EntityHealth _health = new();
         [SerializeField] protected EntityController _entityController;
 
+        public abstract CharacterCharacteristicCard PersonalCCC { get; }
+            
+        public Inventory Inventory { get; }
+
         public LivingEntity()
         {
+            Inventory = new(PersonalCCC);
             _health.OnHealthDown += OnDeath;
         }
 

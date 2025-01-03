@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.InputManager;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.InputManager;
 using Assets.Scripts.Movement;
-using Assets.Scripts.Tools;
 using System;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ namespace PlayerMoveStates
 
         private Transform _playerModel;
 
-        public FlyingState(FSMMove stateMachine, Player entity, Transform playerModel, ShellValue<float> speed) : base(stateMachine, entity, speed)
+        public FlyingState(FSMMove stateMachine, Player entity, Transform playerModel, ImprovedCharacteristic speed) : base(stateMachine, entity, speed)
         {
             _playerModel = playerModel;
         }
@@ -48,7 +48,7 @@ namespace PlayerMoveStates
             Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * InputHandler.instance.moveVector.x;
             Vector3 direction = forward + right;
 
-            _rigidbody.velocity = direction * (_speed.value * 0.75f);
+            _rigidbody.velocity = direction * (_speed.CurrentValue * 0.75f);
         }
 
         private void ViewOnDirection()

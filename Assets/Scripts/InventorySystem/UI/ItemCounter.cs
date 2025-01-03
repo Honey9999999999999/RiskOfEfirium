@@ -13,7 +13,7 @@ namespace Assets.Scripts.InventorySystem
 
         public void SetInfo(ItemInfo info)
         {
-            _frame.sprite = Game.GetInteractor<InventorySystemInteractor>().GetSpriteFrame(info.Tier);
+            _frame.color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
             _icon.sprite = Resources.Load<Sprite>(info.IconPath);
         }
 

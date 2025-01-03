@@ -13,7 +13,7 @@ namespace Assets.Scripts.CraftSystem
 
         public void OnTriggerEnter(Collider other)
         {
-            if(!other.isTrigger && other.TryGetComponent(out Player _))
+            if (!other.isTrigger && other.TryGetComponent(out Player _))
             {
                 InputHandler.OnInteractionButtonInput += SetActiveCraftWindow;
             }
@@ -25,7 +25,8 @@ namespace Assets.Scripts.CraftSystem
                 InputHandler.OnInteractionButtonInput -= SetActiveCraftWindow;
 
                 Game.GetInteractor<CraftSystemInteractor>().CraftWindow.CloseWindow();
-            }            
+                _isOpened = false;
+            }
         }
 
         private void SetActiveCraftWindow()
@@ -41,7 +42,7 @@ namespace Assets.Scripts.CraftSystem
             {
                 window.OpenWindow(_type);
                 _isOpened = true;
-            }            
+            }
         }
     }
 }

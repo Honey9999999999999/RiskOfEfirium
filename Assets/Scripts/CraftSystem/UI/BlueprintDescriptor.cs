@@ -10,51 +10,73 @@ namespace Assets.Scripts.CraftSystem
     {
         [SerializeField] private TextMeshProUGUI _itemName;
         [SerializeField] private TextMeshProUGUI _description;
-        [SerializeField] private Image _image;
 
         [SerializeField] private Transform _componentsTable;
         [SerializeField] private BlueprintComponent _componentBase;
 
         [SerializeField] private Button _button;
 
-        public void SetBlueprint(Blueprint blueprint)
+        public void OnEnable()
+        {
+            ItemCreator.OnCrafted += SetRequredComponents;
+        }
+        public void OnDisable()
+        {
+            ItemCreator.OnCrafted -= SetRequredComponents;
+        }
+
+        public void SetBlueprint()
         {
             InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
+            Blueprint blueprint = WorkBenchWindow.currentBlueprint;
             ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(blueprint.ItemName);
 
-            _image.sprite = Resources.Load<Sprite>(info.IconPath);
             _itemName.text = info.Name;
             _description.text = info.Description;
 
-            SetRequredComponents(blueprint);
+            SetRequredComponents();
 
             if (CheckAndSetActive(blueprint))
             {
+                _button.onClick.RemoveAllListeners();
                 SetAction(blueprint);
             }
         }
 
-        private void SetRequredComponents(Blueprint blueprint)
+        public void Crear()
         {
-            InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
-
+            _itemName.text = "";
+            _description.text = "";
+            CrearTable();
+            _button.interactable = false;            
+        }
+        private void CrearTable()
+        {
             for (int i = 0; i < _componentsTable.transform.childCount; i++)
             {
                 Destroy(_componentsTable.transform.GetChild(i).gameObject);
             }
+        }
+
+        private void SetRequredComponents()
+        {
+            InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
+            Blueprint blueprint = WorkBenchWindow.currentBlueprint;
+
+            CrearTable();
 
             foreach (NamesOfDrop component in blueprint.Components.Keys)
-            {                
+            {
                 ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(component);
                 Instantiate(_componentBase, _componentsTable).
-                SetComponent(info, blueprint.Components[component]);
+                SetComponent(info, blueprint.Components[component], component);
             }
         }
 
         private void SetAction(Blueprint blueprint)
         {
             _button.onClick.AddListener
-                (() =>   
+                (() =>
                     {
                         Game.GetInteractor<CraftSystemInteractor>().Crafter.Craft(blueprint);
                         CheckAndSetActive(blueprint);
@@ -65,7 +87,7 @@ namespace Assets.Scripts.CraftSystem
         private bool CheckAndSetActive(Blueprint blueprint)
         {
             _button.interactable = Game.GetInteractor<InventorySystemInteractor>()
-                .Inventory.Contains(blueprint.Components);
+                .PlayerInventory.Contains(blueprint.Components);
 
             return _button.interactable;
         }

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.CraftSystem.Blueprints;
+﻿using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.CraftSystem.Blueprints;
 using Assets.Scripts.InventorySystem.Items;
 using System;
 using System.Collections.Generic;
@@ -10,22 +11,27 @@ namespace Assets.Scripts.InventorySystem
         public event Action<Blueprint> OnBlueprintAdded;
         public List<Blueprint> Blueprints { get; }
 
-        private readonly Dictionary<NamesOfDrop, Item> _itemsMap = new()
-        {
-            [NamesOfDrop.AlienResources] = new AlienResource(),
-            [NamesOfDrop.ElectricResources] = new ElectricResource(),
-            [NamesOfDrop.MechanicalResources] = new MechanicalResource(),
+        private readonly Dictionary<NamesOfDrop, Item> _itemsMap;
 
-            [NamesOfDrop.SyneticMuscles] = new SyneticMuscles(),
-            [NamesOfDrop.Thermostat] = new Thermostat(),
-            [NamesOfDrop.ImprovedLaserBattery] = new ImprovedLaserBattery()
-        };
-        
 
-        public Inventory()
+        public Inventory(CharacterCharacteristicCard personalCCC)
         {
-            Item.OnResourceAdded += ApplyEffect;
-            Item.OnResourceTaked += ReverseEffect;
+            _itemsMap = new()
+            {
+                [NamesOfDrop.AlienResources] = new AlienResource(),
+                [NamesOfDrop.ElectricResources] = new ElectricResource(),
+                [NamesOfDrop.MechanicalResources] = new MechanicalResource(),
+
+                [NamesOfDrop.SyneticMuscles] = new SyneticMuscles(personalCCC),
+                [NamesOfDrop.Thermostat] = new Thermostat(personalCCC),
+                [NamesOfDrop.ImprovedLaserBattery] = new ImprovedLaserBattery(personalCCC)
+            };
+
+            foreach (var key in _itemsMap.Keys)
+            {
+                _itemsMap[key].OnResourceAdded += ApplyEffect;
+                _itemsMap[key].OnResourceTaked += ReverseEffect;
+            }
 
             Blueprints = new()
             {
@@ -71,7 +77,7 @@ namespace Assets.Scripts.InventorySystem
         {
             foreach (var name in items.Keys)
             {
-                if(!Contains(name, items[name]))
+                if (!Contains(name, items[name]))
                 {
                     return false;
                 }

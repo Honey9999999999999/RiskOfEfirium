@@ -9,8 +9,8 @@ namespace Assets.Scripts.UI.Scroll
     [RequireComponent(typeof(RectTransform), typeof(Mask))]
     public class ScrollRect : MonoBehaviour
     {
-        private static ScrollRect ActiveScrollRect { get; set; }        
-        
+        private static ScrollRect ActiveScrollRect { get; set; }
+
         [SerializeField] private RectTransform _content;
         [SerializeField] private bool _isHorizontal;
         [SerializeField] private bool _isVertical;
@@ -51,13 +51,13 @@ namespace Assets.Scripts.UI.Scroll
 
             ResetPosition();
 
-            StartCoroutine(Calculate());            
+            StartCoroutine(Calculate());
             IEnumerator Calculate()
             {
                 yield return null;
                 CalculateScrollDistance();
             }
-        }        
+        }
 
         public void OnDisable()
         {
@@ -114,7 +114,7 @@ namespace Assets.Scripts.UI.Scroll
             }
             else
             {
-                _offsetY = Mathf.Clamp(_offsetY + -value * _scrollSensivity, 0, _verticalDistance);                
+                _offsetY = Mathf.Clamp(_offsetY + -value * _scrollSensivity, 0, _verticalDistance);
             }
 
             if (_horizontalScrollBar != null)
@@ -152,11 +152,11 @@ namespace Assets.Scripts.UI.Scroll
 
             if (_isHorizontal)
             {
-                float distance = rect.rect.width;                
+                float distance = rect.rect.width;
                 float finalDistance = bounds.min.x * -1 + bounds.max.x;
                 _horizontalDistance = Mathf.Max(0, finalDistance - distance);
 
-                if(_horizontalScrollBar != null)
+                if (_horizontalScrollBar != null)
                 {
                     _horizontalScrollBar.ScrollRatio = distance / finalDistance;
                 }

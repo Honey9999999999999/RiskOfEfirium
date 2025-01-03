@@ -13,11 +13,20 @@ namespace Assets.Scripts.CraftSystem
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _counter;
 
-        public void SetComponent(ItemInfo info, int count)
+        public void SetComponent(ItemInfo info, int count, NamesOfDrop name)
         {
-            _frame.sprite = Game.GetInteractor<InventorySystemInteractor>().GetSpriteFrame(info.Tier);
+            _frame.color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
             _icon.sprite = Resources.Load<Sprite>(info.IconPath);
             _counter.text = count.ToString();
+
+            if (Game.GetInteractor<InventorySystemInteractor>().PlayerInventory.Contains(name, count))
+            {
+                _counter.color = Color.white;
+            }
+            else
+            {
+                _counter.color = Color.red;
+            }
         }
     }
 }

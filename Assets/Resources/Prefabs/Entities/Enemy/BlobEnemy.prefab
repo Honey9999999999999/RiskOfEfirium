@@ -4935,8 +4935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entity: {fileID: 8047061338175391401}
-  _speed:
-    value: 4
   _agent: {fileID: 3839693919432570989}
 --- !u!195 &3839693919432570989
 NavMeshAgent:
@@ -5183,6 +5181,10 @@ PrefabInstance:
       propertyPath: _bullet
       value: 
       objectReference: {fileID: 8656334073073011824, guid: 308032c1c349505469b3605eeb6d5d82, type: 3}
+    - target: {fileID: 2270547359859598153, guid: d053187545e099d4e98573f73348d7c5, type: 3}
+      propertyPath: _entity
+      value: 
+      objectReference: {fileID: 8047061338175391401}
     - target: {fileID: 2270547359859598153, guid: d053187545e099d4e98573f73348d7c5, type: 3}
       propertyPath: _maxAmmo
       value: 99

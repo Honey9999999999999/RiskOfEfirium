@@ -1,5 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.CraftSystem
 {
@@ -14,8 +13,8 @@ namespace Assets.Scripts.CraftSystem
             WorkBenchWindow workBench = blueprint.WorkBenchType switch
             {
                 WorkBenchType.Armory => _workBenchArmory,
-                WorkBenchType.Medical => _workBenchMedical,
-                WorkBenchType.Engineer => _workBenchEngineer,
+                WorkBenchType.Medical => _workBenchArmory,
+                WorkBenchType.Engineer => _workBenchArmory,
                 _ => throw new System.Exception(),
             };
 
@@ -43,8 +42,8 @@ namespace Assets.Scripts.CraftSystem
         public void CloseWindow()
         {
             _workBenchArmory.Close();
-            _workBenchEngineer.Close();
-            _workBenchMedical.Close();
+            //_workBenchEngineer.Close();
+            //_workBenchMedical.Close();
         }
     }
 }

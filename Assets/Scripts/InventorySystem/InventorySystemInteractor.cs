@@ -8,23 +8,23 @@ namespace Assets.Scripts.InventorySystem
 {
     public class InventorySystemInteractor : Interactor
     {
-        public Inventory Inventory { get; private set; }
-        public ItemInformationCard ItemInformationCard { get; private set; }        
+        public Inventory PlayerInventory { get; private set; }
+        public ItemInformationMap ItemInformationCard { get; private set; }
 
         private const string PATH_TO_UIINTERACTOR = "Prefabs/InventorySystem/UIInventory";
-        private readonly Dictionary<Tier, string> _frameMap = new()
+        public readonly Dictionary<Tier, Color32> FrameColorMap = new()
         {
-            [Tier.Common] = "Sprites/InventorySystem/Frames/CommonFrame",
-            [Tier.Uncommon] = "Sprites/InventorySystem/Frames/UnCommonFrame",
-            [Tier.Rare] = "Sprites/InventorySystem/Frames/RareFrame",
-            [Tier.Legendary] = "Sprites/InventorySystem/Frames/LegendaryFrame"
+            [Tier.Common] = new Color32(255, 255, 255, 255),
+            [Tier.Uncommon] = new Color32(0, 255, 0, 255),
+            [Tier.Rare] = new Color32(255, 0, 0, 255),
+            [Tier.Legendary] = new Color32(255, 201, 14, 255)
         };
 
         public override void Initialize()
         {
             base.Initialize();
 
-            Inventory = new();
+            PlayerInventory = Game.GetInteractor<PlayerInteractor>().player.Inventory;
             ItemInformationCard = new();
 
             UIInventory uIInventory = ResourceLoader.Load<UIInventory>
@@ -43,8 +43,6 @@ namespace Assets.Scripts.InventorySystem
         {
             base.OnStart();
         }
-
-        public Sprite GetSpriteFrame(Tier tier) => Resources.Load<Sprite>(_frameMap[tier]);
 
         public override string ToString()
         {

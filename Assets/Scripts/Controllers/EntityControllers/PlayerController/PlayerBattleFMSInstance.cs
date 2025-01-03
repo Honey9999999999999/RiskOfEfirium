@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
+using WeaponSystem;
 
 namespace Assets.Scripts.Controllers.EntityControllers
 {
