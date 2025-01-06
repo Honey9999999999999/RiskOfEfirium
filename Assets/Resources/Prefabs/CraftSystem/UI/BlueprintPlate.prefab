@@ -288,3 +288,4 @@ MonoBehaviour:
   _button: {fileID: 7767005928213379007}
   _frame: {fileID: 3815893521462484331}
   _icon: {fileID: 1527099768781499368}
+  colorMap: {fileID: 11400000, guid: e334940d72486e54b90de5dd03957d51, type: 2}

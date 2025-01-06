@@ -13,7 +13,7 @@ namespace Assets.Scripts.CraftSystem.UI
 
         private Image image;
 
-        public void Awake()
+        public void Start()
         {
             image = GetComponent<Image>();
         }
@@ -39,6 +39,6 @@ namespace Assets.Scripts.CraftSystem.UI
             }
         }
 
-        public void SetNeutral() => image.sprite = neutralLights;
+        public void SetNeutral() => GetComponent<Image>().sprite = neutralLights;
     }
 }

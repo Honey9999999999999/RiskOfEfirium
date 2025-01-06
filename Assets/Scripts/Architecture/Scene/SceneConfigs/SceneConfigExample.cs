@@ -5,6 +5,7 @@ using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
+using Assets.Scripts.Spawn;
 using Assets.Scripts.UI;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,15 @@ namespace Architecture
             CreateInteractor<UICanvasIntaractor>();
             CreateInteractor<CursorInteractor>();
 
+            CreateInteractor<EntitySpawnInteractor>();
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
-            CreateInteractor<NavMeshInteractor>();
-
-            CreateInteractor<PlayerInteractor>();
+            CreateInteractor<NavMeshInteractor>();            
+            
             CreateInteractor<InventorySystemInteractor>();
             CreateInteractor<CraftSystemInteractor>();
+            CreateInteractor<PlayerInteractor>();
             CreateInteractor<CameraInteractor>();
 
             return _interactorsMap;

@@ -13,13 +13,15 @@ namespace Assets.Scripts.CraftSystem
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _counter;
 
-        public void SetComponent(ItemInfo info, int count, NamesOfDrop name)
+        [SerializeField] private InventoryColorMap _colorMap;
+
+        public void SetComponent(ItemInfo info, int count, ItemNames name)
         {
-            _frame.color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
+            _frame.color = _colorMap.GetColorFor(info.Tier);
             _icon.sprite = Resources.Load<Sprite>(info.IconPath);
             _counter.text = count.ToString();
 
-            if (Game.GetInteractor<InventorySystemInteractor>().PlayerInventory.Contains(name, count))
+            if (Game.GetInteractor<PlayerInteractor>().Player.Inventory.Contains(name, count))
             {
                 _counter.color = Color.white;
             }

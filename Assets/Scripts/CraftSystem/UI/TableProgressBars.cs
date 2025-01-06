@@ -1,4 +1,5 @@
 ﻿using Architecture;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InventorySystem;
 using UnityEngine;
 
@@ -6,7 +7,13 @@ namespace Assets.Scripts.CraftSystem.UI
 {
     public class TableProgressBars : MonoBehaviour
     {
-        [SerializeField] private CharacteristicProgressBar _progressBar;
+        public CharacteristicProgressBar progressBar;
+
+        public bool overrideBarColors;
+        public Color32 fillerColor = Color.white;
+        public Color backgroundColor = Color.white;
+        public Color improveColor = Color.white;
+        public Color downgraidColor = Color.white;
 
         public void OnEnable()
         {
@@ -21,15 +28,21 @@ namespace Assets.Scripts.CraftSystem.UI
         {
             Clear();
 
-            Item item = Game.GetInteractor<InventorySystemInteractor>().PlayerInventory.GetItem(WorkBenchWindow.currentBlueprint.ItemName);
+            Item item = Game.GetInteractor<PlayerInteractor>().Player.Inventory.GetItem(WorkBenchWindow.currentBlueprint.Info.ServiceName);
 
             foreach (var key in item.ImprovedCharacteristicsMap.Keys)
             {
-                CharacteristicProgressBar progressBar = Instantiate(_progressBar, transform);
-                progressBar.SetName(key.ToString());
+                CharacteristicProgressBar bar = Instantiate(progressBar, transform);
 
-                float currentIndex = Game.GetInteractor<PlayerInteractor>().player.PersonalCCC.GetIndexOf(key);
-                progressBar.SetState(currentIndex, currentIndex + item.ImprovedCharacteristicsMap[key]);
+                if (overrideBarColors)
+                {
+                    bar.ChangeColors(fillerColor, backgroundColor, improveColor, downgraidColor);
+                }
+
+                bar.SetName(CharacteristicLocalizator.GetLocalWord(key));
+
+                float currentIndex = Game.GetInteractor<PlayerInteractor>().Player.PersonalCCC.GetIndexOf(key);
+                bar.SetState(currentIndex, currentIndex + item.ImprovedCharacteristicsMap[key]);
             }
         }
 

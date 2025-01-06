@@ -17,7 +17,7 @@ namespace Assets.Scripts.Movement
         {
             if (_entity == null)
             {
-                Game.OnGameInitialized += () => _entity = Game.GetInteractor<PlayerInteractor>().player;
+                Game.OnGameInitialized += () => _entity = Game.GetInteractor<PlayerInteractor>().Player;
             }
 
             Initialize();

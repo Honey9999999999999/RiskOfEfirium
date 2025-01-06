@@ -9,7 +9,7 @@ public class DropItem : MonoBehaviour
     public static event Action OnSomeDropGrabbed;
     public event Action OnDropGrabbed;
 
-    public NamesOfDrop DropName { get; set; }
+    public ItemNames DropName { get; set; }
 
 
 
@@ -17,7 +17,7 @@ public class DropItem : MonoBehaviour
     {
         if (!other.isTrigger && other.TryGetComponent<Player>(out _))
         {
-            Game.GetInteractor<InventorySystemInteractor>().PlayerInventory.AddItem(DropName);
+            Game.GetInteractor<PlayerInteractor>().Player.Inventory.AddItem(DropName);
             Destroy(gameObject);
 
             OnDropGrabbed?.Invoke();

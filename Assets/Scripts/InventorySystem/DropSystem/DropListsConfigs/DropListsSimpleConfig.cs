@@ -6,13 +6,13 @@ namespace Assets.Scripts.InventorySystem
 {
     public class DropListsSimpleConfig : DropListsConfig
     {
-        protected override Dictionary<NamesOfEnemies, ControlRandomList<NamesOfDrop>> _dropListsMap
+        protected override Dictionary<NamesOfEnemies, ControlRandomList<ItemNames>> _dropListsMap
         {
             get => new()
             {
                 [NamesOfEnemies.Blob] = new()
                 {
-                    { 1, NamesOfDrop.AlienResources }
+                    { 1, ItemNames.AlienResources }
                 }
             };
         }

@@ -15,7 +15,8 @@ namespace Assets.Scripts.Entities
         public event Action OnTakenDamage;
         public event Action OnEntityDeath;
 
-        [SerializeField] protected EntityHealth _health = new();
+        public EntityHealth health = new();
+
         [SerializeField] protected EntityController _entityController;
 
         public abstract CharacterCharacteristicCard PersonalCCC { get; }
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Entities
         public LivingEntity()
         {
             Inventory = new(PersonalCCC);
-            _health.OnHealthDown += OnDeath;
+            health.OnHealthDown += OnDeath;
         }
 
         public EntityController GetEntityController() => _entityController;
@@ -37,7 +38,7 @@ namespace Assets.Scripts.Entities
 
         public void TakenDamage(float damage)
         {
-            _health.TakenDamage(damage);
+            health.TakenDamage(damage);
 
             OnTakenDamage?.Invoke();
         }

@@ -10,6 +10,8 @@ namespace Assets.Scripts.Entities
     public class EntityHealth
     {
         public event Action OnHealthDown;
+        public event Action OnHealthRestored;
+        public event Action OnHealthDamaged;
 
         [SerializeField, Min(0)] private float _health;
         [SerializeField, Min(0)] private float _maxHealth;
@@ -38,13 +40,14 @@ namespace Assets.Scripts.Entities
             _timer.OnStoped += StartRegeneration;
         }
 
-        public float health => _health;
-        public bool isMaxHealth => _health >= _maxHealth;
-        public bool isAlive => _health > 0;
+        public float Health => _health;
+        public float MaxHealth => _maxHealth;
+        public bool IsMaxHealth => _health >= _maxHealth;
+        public bool IsAlive => _health > 0;
 
         public void TakenDamage(float damage)
         {
-            bool beAlive = isAlive;
+            bool beAlive = IsAlive;
 
             if (damage > _health)
             {
@@ -52,6 +55,8 @@ namespace Assets.Scripts.Entities
             }
 
             _health -= damage;
+
+            OnHealthDamaged?.Invoke();
 
             if (beAlive && _health <= 0)
             {
@@ -90,7 +95,7 @@ namespace Assets.Scripts.Entities
 
         private IEnumerator RegenerationRoutine()
         {
-            while (!isMaxHealth)
+            while (!IsMaxHealth)
             {
                 _health += Time.deltaTime * _regenerationPerSec;
 
@@ -98,6 +103,8 @@ namespace Assets.Scripts.Entities
                 {
                     _health = _maxHealth;
                 }
+
+                OnHealthRestored?.Invoke();
 
                 yield return null;
             }

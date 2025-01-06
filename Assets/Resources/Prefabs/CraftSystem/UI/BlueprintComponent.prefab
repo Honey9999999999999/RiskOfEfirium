@@ -169,7 +169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 110, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5623808986197289446
 CanvasRenderer:
@@ -302,3 +302,4 @@ MonoBehaviour:
   _frame: {fileID: 3658634201543435799}
   _icon: {fileID: 1185496669653351701}
   _counter: {fileID: 3425088730940574322}
+  _colorMap: {fileID: 11400000, guid: e334940d72486e54b90de5dd03957d51, type: 2}

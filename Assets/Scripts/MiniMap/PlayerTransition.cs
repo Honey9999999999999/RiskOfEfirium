@@ -20,7 +20,7 @@ public class PlayerTransition : MonoBehaviour
 
     private void Start()
     {
-        _player = Game.GetInteractor<PlayerInteractor>().player;
+        _player = Game.GetInteractor<PlayerInteractor>().Player;
     }
 
     private void OnTriggerEnter(Collider other)

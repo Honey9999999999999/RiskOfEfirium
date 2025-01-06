@@ -5,6 +5,7 @@
         RateFirePerMin,
         MaxAmmo,
         ReloadTime,
+        Damage,
 
         Movespeed
     }

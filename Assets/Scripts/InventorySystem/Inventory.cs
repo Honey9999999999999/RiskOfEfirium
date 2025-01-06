@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.CharacterStatsSystem;
-using Assets.Scripts.CraftSystem.Blueprints;
+﻿using Architecture;
+using Assets.Scripts.CharacterStatsSystem;
+using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem.Items;
 using System;
 using System.Collections.Generic;
@@ -8,23 +9,23 @@ namespace Assets.Scripts.InventorySystem
 {
     public class Inventory
     {
-        public event Action<Blueprint> OnBlueprintAdded;
-        public List<Blueprint> Blueprints { get; }
-
-        private readonly Dictionary<NamesOfDrop, Item> _itemsMap;
-
+        private readonly Dictionary<ItemNames, Item> _itemsMap;
+        private readonly CharacterCharacteristicCard _personalCCC;
 
         public Inventory(CharacterCharacteristicCard personalCCC)
         {
+            _personalCCC = personalCCC;
+
             _itemsMap = new()
             {
-                [NamesOfDrop.AlienResources] = new AlienResource(),
-                [NamesOfDrop.ElectricResources] = new ElectricResource(),
-                [NamesOfDrop.MechanicalResources] = new MechanicalResource(),
+                [ItemNames.AlienResources] = new AlienResource(),
+                [ItemNames.ElectricResources] = new ElectricResource(),
+                [ItemNames.MechanicalResources] = new MechanicalResource(),
 
-                [NamesOfDrop.SyneticMuscles] = new SyneticMuscles(personalCCC),
-                [NamesOfDrop.Thermostat] = new Thermostat(personalCCC),
-                [NamesOfDrop.ImprovedLaserBattery] = new ImprovedLaserBattery(personalCCC)
+                [ItemNames.SyneticMuscles] = new SyneticMuscles(),
+                [ItemNames.Thermostat] = new Thermostat(),
+                [ItemNames.ImprovedLaserBattery] = new ImprovedLaserBattery(),
+                [ItemNames.ChargingChamberCapacitor] = new ChargingChamberCapacitor()
             };
 
             foreach (var key in _itemsMap.Keys)
@@ -32,48 +33,33 @@ namespace Assets.Scripts.InventorySystem
                 _itemsMap[key].OnResourceAdded += ApplyEffect;
                 _itemsMap[key].OnResourceTaked += ReverseEffect;
             }
-
-            Blueprints = new()
-            {
-                new ThermostatBlueprint(),
-                new ImprovedLaserBatteryBlueprint(),
-                new SyneticMusclesBlueprint()
-            };
         }
-        public void AddItem(NamesOfDrop dropName)
+        public void AddItem(ItemNames dropName)
         {
             _itemsMap[dropName].amount += 1;
         }
-        public void RemoveItem(NamesOfDrop dropName, int count)
+        public void RemoveItem(ItemNames dropName, int count)
         {
             for (int i = 0; i < count; i++)
             {
                 RemoveItem(dropName);
             }
         }
-        public void RemoveItem(NamesOfDrop dropName)
+        public void RemoveItem(ItemNames dropName)
         {
             _itemsMap[dropName].amount -= 1;
-        }
-
-        public void AddBlueprint(Blueprint blueprint)
-        {
-            if (Blueprints.Contains(blueprint)) return;
-
-            Blueprints.Add(blueprint);
-            OnBlueprintAdded?.Invoke(blueprint);
-        }
+        }        
 
         private void ApplyEffect(Item item)
         {
-            _itemsMap[item.Name].Effect();
+            _itemsMap[item.Name].Effect(_personalCCC);
         }
         private void ReverseEffect(Item item)
         {
-            _itemsMap[item.Name].ReverseEffect();
+            _itemsMap[item.Name].ReverseEffect(_personalCCC);
         }
 
-        public bool Contains(Dictionary<NamesOfDrop, int> items)
+        public bool Contains(Dictionary<ItemNames, int> items)
         {
             foreach (var name in items.Keys)
             {
@@ -85,11 +71,11 @@ namespace Assets.Scripts.InventorySystem
 
             return true;
         }
-        public bool Contains(NamesOfDrop dropName, int count)
+        public bool Contains(ItemNames dropName, int count)
         {
             return _itemsMap.ContainsKey(dropName) && _itemsMap[dropName].amount >= count;
         }
 
-        public Item GetItem(NamesOfDrop name) => _itemsMap[name];
+        public Item GetItem(ItemNames name) => _itemsMap[name];
     }
 }

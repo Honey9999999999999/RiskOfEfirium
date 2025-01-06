@@ -17,6 +17,9 @@ namespace MyTimer
 
         public void Start(float sec)
         {
+            if(isStarted)
+                Reset();
+
             routine = Coroutines.StartRoutine(StartTimerRoutine(sec));
 
             OnStarted?.Invoke();
@@ -47,5 +50,7 @@ namespace MyTimer
 
             Stop();
         }
+
+        public float GetValue() => counter;
     }
 }

@@ -2,9 +2,16 @@ using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem;
 using System.Collections.Generic;
 
-public abstract class Blueprint
+public class Blueprint
 {
-    public abstract WorkBenchType WorkBenchType { get; }
-    public abstract NamesOfDrop ItemName { get; }
-    public abstract Dictionary<NamesOfDrop, int> Components { get; }
+    public WorkBenchType WorkBenchType { get; }
+    public ItemInfo Info { get; }
+    public Dictionary<ItemNames, int> Components { get; }
+
+    public Blueprint(WorkBenchType type, ItemInfo info, Dictionary<ItemNames, int> componentsMap)
+    {
+        WorkBenchType = type;
+        Info = info;
+        Components = componentsMap;
+    }
 }

@@ -12,7 +12,7 @@ public class CameraInteractor : Interactor
     {
         base.Initialize();
 
-        Transform viewPort = Game.GetInteractor<PlayerInteractor>().player.GetViewPort();
+        Transform viewPort = Game.GetInteractor<PlayerInteractor>().Player.GetViewPort();
 
         _camera.Follow = viewPort;
         _camera.LookAt = viewPort;

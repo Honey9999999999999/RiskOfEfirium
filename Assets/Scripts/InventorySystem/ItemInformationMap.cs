@@ -4,54 +4,68 @@ namespace Assets.Scripts.InventorySystem
 {
     public class ItemInformationMap
     {
-        private readonly Dictionary<NamesOfDrop, ItemInfo> _itemInfoMap = new()
+        private readonly Dictionary<ItemNames, ItemInfo> _itemInfoMap = new()
         {
-            [NamesOfDrop.AlienResources] = new
+            [ItemNames.AlienResources] = new
             (
+                ItemNames.AlienResources,
                 Tier.Common,
-                "Часть чужого",
+                "Часть чужого",                
                 "Добытая прямиком из инопланетной формы жизни, " +
                 "эта субъстанция способна быть одновременно как и невероятно мягкой, " +
                 "так и нев ероятно твердой",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconDNA"
             ),
-            [NamesOfDrop.MechanicalResources] = new
+            [ItemNames.MechanicalResources] = new
             (
+                ItemNames.MechanicalResources,
                 Tier.Common,
                 "Механические части",
                 "Шестеренки, пружины, и прочие железки",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconGear"
             ),
-            [NamesOfDrop.ElectricResources] = new
+            [ItemNames.ElectricResources] = new
             (
+                ItemNames.ElectricResources,
                 Tier.Common,
                 "Электрические компоненты",
                 "Всякие микроконтроллеры, резисторы, транзисторы ипрочая электроника",
-                "Sprites/Circle"
+                "Sprites/UI/Icons/Lines/iconPlate"
             ),
-            [NamesOfDrop.ImprovedLaserBattery] = new
+            [ItemNames.ImprovedLaserBattery] = new
             (
+                ItemNames.ImprovedLaserBattery,
                 Tier.Uncommon,
                 "Улучшенная энергетическая батарея",
                 "Увеличивает количество выстрелов после перезарядки",
-                "Sprites/IsometricDiamond"
+                "Sprites/UI/Icons/Lines/iconCharge"
             ),
-            [NamesOfDrop.SyneticMuscles] = new
+            [ItemNames.SyneticMuscles] = new
             (
+                ItemNames.SyneticMuscles,
                 Tier.Uncommon,
                 "Синтетические мышцы",
                 "Увеличивает скорость передвижения",
                 "Sprites/IsometricDiamond"
             ),
-            [NamesOfDrop.Thermostat] = new
+            [ItemNames.Thermostat] = new
             (
+                ItemNames.Thermostat,
                 Tier.Uncommon,
                 "Терморегулятор",
                 "Увеличивает скорострельность",
-                "Sprites/IsometricDiamond"
+                "Sprites/UI/Icons/Lines/iconRateOfFire"
             ),
+            [ItemNames.ChargingChamberCapacitor] = new
+            (
+                ItemNames.ChargingChamberCapacitor,
+                Tier.Uncommon,
+                "Конденсатор зарядной камеры",
+                "Увеличивает урон",
+                "Sprites/UI/Icons/Lines/iconRateOfFire"
+            )
         };
 
-        public ItemInfo GetInfo(NamesOfDrop name) => _itemInfoMap[name];
+        public ItemInfo GetInfo(ItemNames name) => _itemInfoMap[name];
     }
 }
