@@ -2,6 +2,7 @@
 using Assets.Scripts.InventorySystem;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.CraftSystem
@@ -27,9 +28,8 @@ namespace Assets.Scripts.CraftSystem
 
         public void SetBlueprint()
         {
-            InventorySystemInteractor inventorySystem = Game.GetInteractor<InventorySystemInteractor>();
             Blueprint blueprint = WorkBenchWindow.currentBlueprint;
-            ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(blueprint.ItemName);
+            ItemInfo info = blueprint.Info;
 
             _itemName.text = info.Name;
             _description.text = info.Description;
@@ -65,7 +65,7 @@ namespace Assets.Scripts.CraftSystem
 
             CrearTable();
 
-            foreach (NamesOfDrop component in blueprint.Components.Keys)
+            foreach (ItemNames component in blueprint.Components.Keys)
             {
                 ItemInfo info = inventorySystem.ItemInformationCard.GetInfo(component);
                 Instantiate(_componentBase, _componentsTable).
@@ -80,14 +80,16 @@ namespace Assets.Scripts.CraftSystem
                     {
                         Game.GetInteractor<CraftSystemInteractor>().Crafter.Craft(blueprint);
                         CheckAndSetActive(blueprint);
+
+                        _button.OnDeselect(null);
                     }
                 );
         }
 
         private bool CheckAndSetActive(Blueprint blueprint)
         {
-            _button.interactable = Game.GetInteractor<InventorySystemInteractor>()
-                .PlayerInventory.Contains(blueprint.Components);
+            _button.interactable = Game.GetInteractor<PlayerInteractor>()
+                .Player.Inventory.Contains(blueprint.Components);
 
             return _button.interactable;
         }

@@ -6,9 +6,9 @@ namespace Assets.Scripts.InventorySystem
 {
     public abstract class RoomLootConfig
     {
-        protected abstract Dictionary<RoomType, ControlRandomList<NamesOfDrop>> LootMap { get; }
+        protected abstract Dictionary<RoomType, ControlRandomList<ItemNames>> LootMap { get; }
 
-        public NamesOfDrop GetSpawnItem(RoomType type)
+        public ItemNames GetSpawnItem(RoomType type)
         {
             return LootMap[type].GetValue();
         }

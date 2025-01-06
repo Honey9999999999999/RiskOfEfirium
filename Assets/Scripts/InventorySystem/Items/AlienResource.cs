@@ -5,15 +5,16 @@ namespace Assets.Scripts.InventorySystem
 {
     public sealed class AlienResource : Item
     {
-        public AlienResource() : base(null)
-        {
-        }
-
-        public override NamesOfDrop Name => NamesOfDrop.AlienResources;
+        public override ItemNames Name => ItemNames.AlienResources;
 
         public override Dictionary<Characteristics, float> ImprovedCharacteristicsMap => throw new System.NotImplementedException();
 
-        public override void Effect() { }
-        public override void ReverseEffect() { }
+        public override void Effect(CharacterCharacteristicCard personalCCC)
+        {
+        }
+
+        public override void ReverseEffect(CharacterCharacteristicCard personalCCC)
+        {
+        }
     }
 }

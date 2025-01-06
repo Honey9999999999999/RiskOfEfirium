@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI.CursorGame
         public CursorState(CursorFSM stateMachine, Texture2D cursorTexture)
         {
             _stateMachine = stateMachine;
-            _controller = Game.GetInteractor<PlayerInteractor>().player.GetPlayerController();
+            _controller = Game.GetInteractor<PlayerInteractor>().Player.GetPlayerController();
             _cursorTexture = cursorTexture;
         }
 

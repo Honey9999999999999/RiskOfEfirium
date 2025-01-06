@@ -302,3 +302,4 @@ MonoBehaviour:
   _frame: {fileID: 3658634201543435799}
   _icon: {fileID: 1185496669653351701}
   _counter: {fileID: 3425088730940574322}
+  _colorMap: {fileID: 11400000, guid: e334940d72486e54b90de5dd03957d51, type: 2}

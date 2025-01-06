@@ -50,6 +50,7 @@ namespace WeaponSystem
                 bulletClon.transform.position = transform.position;
                 Vector3 direction = (position - bulletClon.transform.position).normalized;
                 bulletClon.transform.position = transform.position + direction * _offsetSpawnBulletAtCentre;
+                bulletClon.SetDamage(personalCCC.Get(Characteristics.Damage).CurrentValue);
 
                 bulletClon.Fire(_sidesMap[_target], direction * _force);
 

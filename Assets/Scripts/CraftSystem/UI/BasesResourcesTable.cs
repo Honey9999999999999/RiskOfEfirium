@@ -29,10 +29,10 @@ namespace Assets.Scripts.CraftSystem.UI
 
         private void UpdateCounters()
         {
-            Inventory inventory = Game.GetInteractor<InventorySystemInteractor>().PlayerInventory;
-            mechanicalCounter.text = inventory.GetItem(NamesOfDrop.MechanicalResources).amount.ToString();
-            electricalCounter.text = inventory.GetItem(NamesOfDrop.ElectricResources).amount.ToString();
-            alienCounter.text = inventory.GetItem(NamesOfDrop.AlienResources).amount.ToString();
+            Inventory inventory = Game.GetInteractor<PlayerInteractor>().Player.Inventory;
+            mechanicalCounter.text = inventory.GetItem(ItemNames.MechanicalResources).amount.ToString();
+            electricalCounter.text = inventory.GetItem(ItemNames.ElectricResources).amount.ToString();
+            alienCounter.text = inventory.GetItem(ItemNames.AlienResources).amount.ToString();
         }
 
         public void CloseTable()

@@ -6,14 +6,14 @@ namespace Assets.Scripts.InventorySystem
 {
     public class RoomLootConfigExample : RoomLootConfig
     {
-        protected override Dictionary<RoomType, ControlRandomList<NamesOfDrop>> LootMap => _lootMap;
-        private readonly Dictionary<RoomType, ControlRandomList<NamesOfDrop>> _lootMap = new()
+        protected override Dictionary<RoomType, ControlRandomList<ItemNames>> LootMap => _lootMap;
+        private readonly Dictionary<RoomType, ControlRandomList<ItemNames>> _lootMap = new()
         {
             [RoomType.ResidentialRoom] = new()
             {
-                { 1, NamesOfDrop.AlienResources },
-                { 1, NamesOfDrop.ElectricResources },
-                { 1, NamesOfDrop.MechanicalResources }
+                { 1, ItemNames.AlienResources },
+                { 1, ItemNames.ElectricResources },
+                { 1, ItemNames.MechanicalResources }
             }
         };
     }

@@ -31,6 +31,8 @@ public class Bullet : MonoBehaviour
         StartDestroyTimer();
     }
 
+    public void SetDamage(float damage) => _damage = damage;
+
     public Rigidbody GetRigidBody() => GetComponent<Rigidbody>();
 
     private void StartDestroyTimer()

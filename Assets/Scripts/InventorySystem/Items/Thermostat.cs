@@ -5,11 +5,7 @@ namespace Assets.Scripts.InventorySystem.Items
 {
     public class Thermostat : Item
     {
-        public Thermostat(CharacterCharacteristicCard personalCCC) : base(personalCCC)
-        {
-        }
-
-        public override NamesOfDrop Name => NamesOfDrop.Thermostat;
+        public override ItemNames Name => ItemNames.Thermostat;
 
         public override Dictionary<Characteristics, float> ImprovedCharacteristicsMap => improvedCharacteristicsMap;
         private readonly Dictionary<Characteristics, float> improvedCharacteristicsMap = new()

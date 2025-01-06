@@ -11,9 +11,22 @@ namespace Assets.Scripts.InventorySystem
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _counter;
 
+        [SerializeField] private InventoryColorMap _colorMap;
+
+        [SerializeField] private bool AwakeOverride;
+        [SerializeField] private ItemNames item;
+
+        public void Awake()
+        {
+            if (AwakeOverride)
+            {
+                SetInfo(Game.GetInteractor<InventorySystemInteractor>().ItemInformationCard.GetInfo(item));
+            }
+        }
+
         public void SetInfo(ItemInfo info)
         {
-            _frame.color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
+            _frame.color = _colorMap.GetColorFor(info.Tier);
             _icon.sprite = Resources.Load<Sprite>(info.IconPath);
         }
 

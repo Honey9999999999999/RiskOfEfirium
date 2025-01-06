@@ -13,7 +13,7 @@ namespace Assets.Scripts.CraftSystem
 
         public ItemCreator()
         {
-            _inventory = Game.GetInteractor<InventorySystemInteractor>().PlayerInventory;
+            _inventory = Game.GetInteractor<PlayerInteractor>().Player.Inventory;
         }
 
         public void Craft(Blueprint blueprint)
@@ -24,12 +24,12 @@ namespace Assets.Scripts.CraftSystem
             }
             else
             {
-                foreach (NamesOfDrop componentName in blueprint.Components.Keys)
+                foreach (ItemNames componentName in blueprint.Components.Keys)
                 {
                     _inventory.RemoveItem(componentName, blueprint.Components[componentName]);
                 }
 
-                _inventory.AddItem(blueprint.ItemName);
+                _inventory.AddItem(blueprint.Info.ServiceName);
 
                 OnCrafted?.Invoke();
             }
@@ -37,7 +37,7 @@ namespace Assets.Scripts.CraftSystem
 
         public bool IsContaintsAllComponents(Blueprint blueprint)
         {
-            foreach (NamesOfDrop componentName in blueprint.Components.Keys)
+            foreach (ItemNames componentName in blueprint.Components.Keys)
             {
                 if (!_inventory.Contains(componentName, blueprint.Components[componentName]))
                 {

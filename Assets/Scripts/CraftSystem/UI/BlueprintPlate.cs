@@ -10,13 +10,15 @@ public class BlueprintPlate : MonoBehaviour
     [SerializeField] private Image _frame;
     [SerializeField] private Image _icon;
 
+    [SerializeField] private InventoryColorMap colorMap;
+    
     public void SetBlueprint(Blueprint blueprint, UnityAction action)
     {
-        ItemInfo info = Game.GetInteractor<InventorySystemInteractor>().ItemInformationCard.GetInfo(blueprint.ItemName);
+        ItemInfo info = blueprint.Info;
         _frame.sprite = Resources.Load<Sprite>("Sprites/CraftWindow/IconFrame");
         _icon.sprite = Resources.Load<Sprite>(info.IconPath);
-        _frame.GetComponent<Image>().color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
-        _button.GetComponent<Image>().color = Game.GetInteractor<InventorySystemInteractor>().FrameColorMap[info.Tier];
+        _frame.GetComponent<Image>().color = colorMap.GetColorFor(info.Tier);
+        _button.GetComponent<Image>().color = colorMap.GetColorFor(info.Tier);
 
         _button.onClick.AddListener(action);
     }

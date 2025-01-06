@@ -39,6 +39,6 @@ namespace Assets.Scripts.CraftSystem.UI
             }
         }
 
-        public void SetNeutral() => image.sprite = neutralLights;
+        public void SetNeutral() => GetComponent<Image>().sprite = neutralLights;
     }
 }

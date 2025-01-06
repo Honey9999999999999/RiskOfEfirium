@@ -11,11 +11,25 @@ namespace Assets.Scripts.CraftSystem.UI
         [SerializeField] private FillerOfProgressBar filler;
         [SerializeField] private FillerOfProgressBar fillerOfProgress;
 
+        [SerializeField] private Image background;
+
+        private Color32 _improveColor = Color.green;
+        private Color32 _downgraidColor = Color.red;
+
         private Image imageOfFillerProgress;
 
         public void Awake()
         {
             imageOfFillerProgress = fillerOfProgress.GetComponent<Image>();
+        }
+
+        public void ChangeColors(Color32 filler, Color32 background, Color32 improve, Color32 downgraid)
+        {
+            this.filler.GetComponent<Image>().color = filler;
+            this.background.color = background;
+
+            _improveColor = improve;
+            _downgraidColor = downgraid;
         }
 
         public void SetName(string text)
@@ -28,12 +42,12 @@ namespace Assets.Scripts.CraftSystem.UI
             if (IsPossitiveImprove(oldIndex, newIndex))
             {
                 DistributeIndexes(filler, fillerOfProgress);
-                imageOfFillerProgress.color = Color.green;
+                imageOfFillerProgress.color = _improveColor;
             }
             else
             {
                 DistributeIndexes(fillerOfProgress, filler);
-                imageOfFillerProgress.color = Color.red;
+                imageOfFillerProgress.color = _downgraidColor;
             }
 
             void DistributeIndexes(FillerOfProgressBar less, FillerOfProgressBar more)

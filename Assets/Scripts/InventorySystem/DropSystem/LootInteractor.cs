@@ -32,7 +32,7 @@ namespace Assets.Scripts.InventorySystem
         {
             return SpawnLoot(_configRoomLoot.GetSpawnItem(roomType), transform.position, transform);
         }
-        public GameObject SpawnLoot(NamesOfDrop dropName, Vector3 position, Transform parent = null)
+        public GameObject SpawnLoot(ItemNames dropName, Vector3 position, Transform parent = null)
         {
             DropItem drop = ResourceLoader.Load<DropItem>(PATH_TO_DROP, parent);
             ResourceLoader.Load<GameObject>(_linksToDrop.GetPathToDrop(dropName), drop.transform);

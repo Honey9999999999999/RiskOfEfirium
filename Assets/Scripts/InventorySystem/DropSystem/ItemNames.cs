@@ -1,12 +1,13 @@
 ﻿namespace Assets.Scripts.InventorySystem
 {
-    public enum NamesOfDrop
+    public enum ItemNames
     {
         MechanicalResources,
         ElectricResources,
         AlienResources,
         SyneticMuscles,
         Thermostat,
-        ImprovedLaserBattery
+        ImprovedLaserBattery,
+        ChargingChamberCapacitor
     }
 }

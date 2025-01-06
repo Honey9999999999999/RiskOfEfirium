@@ -302,3 +302,6 @@ MonoBehaviour:
   _frame: {fileID: 3062466217029405787}
   _icon: {fileID: 3930583477922343789}
   _counter: {fileID: 4588617439024712270}
+  _colorMap: {fileID: 11400000, guid: e334940d72486e54b90de5dd03957d51, type: 2}
+  AwakeOverride: 0
+  item: 0

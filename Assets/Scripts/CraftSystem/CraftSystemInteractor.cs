@@ -9,29 +9,27 @@ namespace Assets.Scripts.CraftSystem
     {
         public ItemCreator Crafter { get; private set; }
         public CraftWindow CraftWindow { get; private set; }
+        public BlueprintsMap BlueprintsMap { get; private set; }
 
         private const string PATH_TO_CRAFTWINDOW = "Prefabs/CraftSystem/UI/UICraft";
+
+        public override void OnCreate()
+        {
+            base.OnCreate();
+            BlueprintsMap = new();
+        }
 
         public override void Initialize()
         {
             base.Initialize();
-
+            
             Crafter = new();
-            CraftWindow = ResourceLoader.Load<CraftWindow>(PATH_TO_CRAFTWINDOW, Game.GetInteractor<UICanvasIntaractor>().uiCanvas.transform);
+            CraftWindow = ResourceLoader.Load<CraftWindow>(PATH_TO_CRAFTWINDOW, Game.GetInteractor<UICanvasIntaractor>().uiCanvas.transform);            
         }
 
         public override void OnStart()
         {
             base.OnStart();
-
-            Inventory inventory = Game.GetInteractor<InventorySystemInteractor>().PlayerInventory;
-
-            inventory.OnBlueprintAdded += CraftWindow.AddBlueprint;
-
-            foreach (Blueprint blueprint in inventory.Blueprints)
-            {
-                CraftWindow.AddBlueprint(blueprint);
-            }
         }
     }
 }

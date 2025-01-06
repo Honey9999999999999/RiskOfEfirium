@@ -13,7 +13,8 @@ namespace Assets.Scripts.CharacterStatsSystem
                 [Characteristics.MaxAmmo] = "Вместительность обоймы",
                 [Characteristics.ReloadTime] = "Скорость перезарядки",
 
-                [Characteristics.Movespeed] = "Скорость передвижения"
+                [Characteristics.Movespeed] = "Скорость передвижения",
+                [Characteristics.Damage] = "Урон"
             }
         };
 
