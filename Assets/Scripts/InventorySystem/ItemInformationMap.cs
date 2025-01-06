@@ -62,7 +62,7 @@ namespace Assets.Scripts.InventorySystem
                 Tier.Uncommon,
                 "Конденсатор зарядной камеры",
                 "Увеличивает урон",
-                "Sprites/UI/Icons/Lines/iconRateOfFire"
+                "Sprites/UI/Icons/Lines/iconDamage"
             )
         };
 
