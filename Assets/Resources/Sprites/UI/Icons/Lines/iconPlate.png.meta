@@ -1,12 +1,18 @@
 fileFormatVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 guid: b591c18bbe507244982beda80b778bea
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 guid: 8f34242b24c99574c80812ec46f0a064
 =======
 guid: b591c18bbe507244982beda80b778bea
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 TextureImporter:
   internalIDToNameTable: []
@@ -15,13 +21,19 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     enableMipMap: 0
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
     enableMipMap: 1
 =======
     enableMipMap: 0
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     sRGBTexture: 1
     linearTexture: 0
@@ -51,7 +63,10 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
     filterMode: 1
     aniso: 1
@@ -63,6 +78,9 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 0
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     filterMode: 0
@@ -76,6 +94,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+>>>>>>> Stashed changes
 =======
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
 >>>>>>> Stashed changes
@@ -88,10 +110,13 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
   textureType: 8
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
@@ -101,6 +126,9 @@ TextureImporter:
   spriteTessellationDetail: -1
   textureType: 8
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   textureShape: 1
   singleChannelComponent: 0
@@ -129,6 +157,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 =======
 <<<<<<< HEAD
 =======
@@ -147,6 +180,10 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+>>>>>>> Stashed changes
 =======
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
 >>>>>>> Stashed changes
@@ -182,13 +219,19 @@ TextureImporter:
     physicsShape: []
     bones: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     spriteID: 5e97eb03825dee720800000000000000
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
     spriteID: 
 =======
     spriteID: 5e97eb03825dee720800000000000000
 >>>>>>> d1637d840b0c6b7fa0a3b94e4bea012fb45a0857
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     internalID: 0
     vertices: []
