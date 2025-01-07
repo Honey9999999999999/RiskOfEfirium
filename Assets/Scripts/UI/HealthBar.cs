@@ -23,35 +23,45 @@ namespace Assets.Scripts.UI
         private Camera mainCamera;
         private EntityHealth health;
 
-        private Timer timerToHiding;
         private Timer timerToHide;
+        private Timer hidingTimer;
         private Timer timerBackFillerCooldown;
         private Timer timerBackFillerPush;
 
 
         public void Start()
         {
-            health = entity.health;
-            health.OnHealthRestored += UpdateBar;
-            health.OnHealthRestored += EqualizeToFiller;
-            health.OnHealthDamaged += UpdateBar;
-            health.OnHealthDown += ResetAll;
-
             mainCamera = Camera.main;
 
-            timerToHiding = new();
             timerToHide = new();
+            hidingTimer = new();
             timerBackFillerCooldown = new();
             timerBackFillerPush = new();
 
-            timerToHiding.OnStoped += () => Coroutines.StartRoutine(Hide());
-            timerToHide.OnStoped += ()=> SetStateBar(false);
+            timerToHide.OnStoped += () => Coroutines.StartRoutine(Hide());
+            hidingTimer.OnStoped += ()=> SetStateBar(false);
             timerBackFillerCooldown.OnStoped += ()=> Coroutines.StartRoutine(PushInBackFiller());
+
+            health = entity.health;
+            health.OnHealthRestore += UpdateBar;
+            health.OnHealthRestore += EqualizeToFiller;
+            health.OnHealthDamaged += UpdateBar;
+            health.OnHealthDown += ResetAll;
+            health.OnHealthRestored += () => timerToHide.Start(delayTimeToHiding);
 
             SetCurrentFillAmount();
             EqualizeToFiller();
             SetStateBar(false);
         }
+
+        private void LateUpdate()
+        {
+            if (mainCamera != null)
+            {
+                transform.LookAt(transform.position + mainCamera.transform.forward);
+            }
+        }
+
 
         private void EqualizeToFiller() => fillerBack.FillAmount = filler.FillAmount;
 
@@ -59,52 +69,34 @@ namespace Assets.Scripts.UI
         {
             SetStateBar(true);
 
-            if (timerToHiding.isStarted)
-            {
-                timerToHiding.Reset();
-            }
-
-            if (timerToHide.isStarted)
-            {
-                timerToHide.Reset();
-                RestoreTranparency();
-            }
-
-            if (timerBackFillerPush.isStarted)
-            {
-                timerBackFillerPush.Reset();
-            }
+            timerToHide.Reset();
+            timerBackFillerPush.Reset();
+            hidingTimer.Reset();
+            RestoreTranparency();
 
             SetCurrentFillAmount();
 
             timerBackFillerCooldown.Start(backFillerCooldownTime);
-            timerToHiding.Start(delayTimeToHiding);
         }
 
         private IEnumerator Hide()
         {
-            if (health.IsMaxHealth)
+            hidingTimer.Start(hideTime);
+
+            while (hidingTimer.IsStarted)
             {
-                timerToHide.Start(hideTime);
-
-                while (timerToHide.isStarted)
+                foreach (var element in hidingElements)
                 {
-                    foreach (var element in hidingElements)
-                    {
-                        element.color = new Color(element.color.r, element.color.g, element.color.b, timerToHide.GetValue() / hideTime);
-                    }
-
-                    yield return null;
+                    element.color = new Color(element.color.r, element.color.g, element.color.b, hidingTimer.GetValue() / hideTime);
                 }
 
-                RestoreTranparency();
+                yield return null;
             }
+
+            RestoreTranparency();
         }
 
-        private void SetStateBar(bool isOpen)
-        {
-            gameObject.SetActive(isOpen || !health.IsMaxHealth);
-        }        
+        private void SetStateBar(bool isOpen) => gameObject.SetActive(isOpen);
 
         private void RestoreTranparency()
         {
@@ -114,10 +106,7 @@ namespace Assets.Scripts.UI
             }
         }
 
-        private void SetCurrentFillAmount()
-        {
-            filler.FillAmount = health.Health / health.MaxHealth;
-        }
+        private void SetCurrentFillAmount() => filler.FillAmount = health.Health / health.MaxHealth;
 
         private IEnumerator PushInBackFiller()
         {
@@ -125,7 +114,7 @@ namespace Assets.Scripts.UI
             float amountBackFiller = fillerBack.FillAmount;
             timerBackFillerPush.Start(backFillerPushTime);
 
-            while (timerBackFillerPush.isStarted)
+            while (timerBackFillerPush.IsStarted)
             {
                 fillerBack.FillAmount = Mathf.Lerp(amountFiller, amountBackFiller, timerBackFillerPush.GetValue() / backFillerPushTime);
 
@@ -137,21 +126,18 @@ namespace Assets.Scripts.UI
         {
             timerBackFillerCooldown.Reset();
             timerBackFillerPush.Reset();
+            hidingTimer.Reset();
             timerToHide.Reset();
-            timerToHiding.Reset();
 
-            health.OnHealthRestored -= UpdateBar;
-            health.OnHealthRestored -= EqualizeToFiller;
+            timerToHide.OnStoped -= () => Coroutines.StartRoutine(Hide());
+            hidingTimer.OnStoped -= () => SetStateBar(false);
+            timerBackFillerCooldown.OnStoped -= () => Coroutines.StartRoutine(PushInBackFiller());
+
+            health.OnHealthRestore  -= UpdateBar;
+            health.OnHealthRestore  -= EqualizeToFiller;
             health.OnHealthDamaged  -= UpdateBar;
             health.OnHealthDown     -= ResetAll;
-        }
-
-        private void LateUpdate()
-        {
-            if (mainCamera != null)
-            {
-                transform.LookAt(transform.position + mainCamera.transform.forward);
-            }
-        }
+            health.OnHealthRestored -= () => timerToHide.Start(delayTimeToHiding);
+        }        
     }
 }

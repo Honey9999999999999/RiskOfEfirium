@@ -3,6 +3,7 @@
     public enum CursorMode
     {
         Standart,
-        Battle
+        Battle,
+        Vision
     }
 }

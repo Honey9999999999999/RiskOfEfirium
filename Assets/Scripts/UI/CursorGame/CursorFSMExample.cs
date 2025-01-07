@@ -1,4 +1,3 @@
-using Architecture;
 using Assets.Scripts.Tools;
 using Assets.Scripts.UI.CursorGame;
 using Assets.Scripts.UI.CursorGame.States;
@@ -23,6 +22,7 @@ namespace UICursor
 
             _stateMachine.AddState(new CursorSimpleState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
             _stateMachine.AddState(new CursorBattleState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Battle])));
+            _stateMachine.AddState(new CursorMenuState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
 
             _stateMachine.EnterIn<CursorSimpleState>();
         }

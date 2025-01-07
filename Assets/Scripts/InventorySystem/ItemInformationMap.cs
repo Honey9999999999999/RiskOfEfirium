@@ -29,7 +29,7 @@ namespace Assets.Scripts.InventorySystem
                 ItemNames.ElectricResources,
                 Tier.Common,
                 "Электрические компоненты",
-                "Всякие микроконтроллеры, резисторы, транзисторы ипрочая электроника",
+                "Всякие микроконтроллеры, резисторы, транзисторы и прочая электроника",
                 "Sprites/UI/Icons/Lines/iconPlate"
             ),
             [ItemNames.ImprovedLaserBattery] = new
@@ -46,7 +46,7 @@ namespace Assets.Scripts.InventorySystem
                 Tier.Uncommon,
                 "Синтетические мышцы",
                 "Увеличивает скорость передвижения",
-                "Sprites/IsometricDiamond"
+                "Sprites/UI/Icons/Lines/iconMovementSpeed"
             ),
             [ItemNames.Thermostat] = new
             (

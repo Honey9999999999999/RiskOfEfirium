@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.InputManager;
 using Assets.Scripts.Tools;
+using System;
 using UnityEngine;
 using WeaponSystem;
 
@@ -7,6 +8,9 @@ namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class BattleState : PlayerState
     {
+        public static event Action OnBattleModeEnter;
+        public static event Action OnBattleModeExit;
+
         private ShellValue<Vector3> _targetPosition;
         private Gun _gun;
 
@@ -21,6 +25,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
             base.Enter();
 
             InputHandler.OnAttackInput += Fire;
+            OnBattleModeEnter?.Invoke();
         }
 
         public override void Exit()
@@ -28,6 +33,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
             base.Exit();
 
             InputHandler.OnAttackInput -= Fire;
+            OnBattleModeExit?.Invoke();
         }
 
         public override void Update()

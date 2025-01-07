@@ -4,7 +4,7 @@ namespace UICursor
 {
     public class CursorInteractor : Interactor
     {
-        public CursorFSMExample cursor { get; private set; }
+        public CursorFSMExample Cursor { get; private set; }
 
         public override void Initialize()
         {
@@ -14,13 +14,13 @@ namespace UICursor
         public override void OnCreate()
         {
             base.OnCreate();
-
-            cursor = new GameObject("CursorFSM").AddComponent<CursorFSMExample>();
         }
 
         public override void OnStart()
         {
             base.OnStart();
+
+            Cursor = new GameObject("CursorFSM").AddComponent<CursorFSMExample>();
         }
     }
 }

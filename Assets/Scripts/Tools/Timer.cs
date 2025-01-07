@@ -13,11 +13,11 @@ namespace MyTimer
         private float counter;
         private Coroutine routine;
 
-        public bool isStarted => counter > 0;
+        public bool IsStarted => counter > 0;
 
         public void Start(float sec)
         {
-            if(isStarted)
+            if(IsStarted)
                 Reset();
 
             routine = Coroutines.StartRoutine(StartTimerRoutine(sec));
@@ -42,7 +42,7 @@ namespace MyTimer
         {
             counter = sec;
 
-            while (isStarted)
+            while (IsStarted)
             {
                 yield return null;
                 counter -= Time.deltaTime;

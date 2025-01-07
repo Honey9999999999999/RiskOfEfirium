@@ -5182,6 +5182,7 @@ MonoBehaviour:
   hidingElements:
   - {fileID: 1032962535543607479}
   - {fileID: 6639439842861766964}
+  - {fileID: 7560370496431220585}
 --- !u!1 &7480014849536141605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5661,6 +5662,10 @@ PrefabInstance:
     - target: {fileID: 2270547359859598153, guid: d053187545e099d4e98573f73348d7c5, type: 3}
       propertyPath: _reloadTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270547359859598153, guid: d053187545e099d4e98573f73348d7c5, type: 3}
+      propertyPath: _offsetSpawnBulletAtCentre
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2270547359859598153, guid: d053187545e099d4e98573f73348d7c5, type: 3}
       propertyPath: _distanceInstanceBulletAtCentre

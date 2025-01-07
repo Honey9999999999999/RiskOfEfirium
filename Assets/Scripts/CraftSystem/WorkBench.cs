@@ -10,6 +10,16 @@ namespace Assets.Scripts.CraftSystem
         [SerializeField] private WorkBenchType _type;
 
         private bool _isOpened;
+        private PlayerInteractor _playerInteractor;
+
+        private void Start()
+        {
+            Game.OnGameInitialized += Initialize;
+        }
+        private void Initialize()
+        {
+            _playerInteractor = Game.GetInteractor<PlayerInteractor>();
+        }
 
         public void OnTriggerEnter(Collider other)
         {
@@ -37,11 +47,13 @@ namespace Assets.Scripts.CraftSystem
             {
                 window.CloseWindow();
                 _isOpened = false;
+                _playerInteractor.MenuMode = _isOpened;
             }
             else
             {
                 window.OpenWindow(_type);
                 _isOpened = true;
+                _playerInteractor.MenuMode = _isOpened;
             }
         }
     }

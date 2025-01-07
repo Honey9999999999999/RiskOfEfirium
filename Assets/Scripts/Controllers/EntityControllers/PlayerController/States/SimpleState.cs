@@ -20,7 +20,7 @@
         {
             base.Update();
 
-            if (_controller.isBattle)
+            if (!_playerInteractor.MenuMode && _controller.isBattle)
             {
                 _stateMachine.EnterIn<BattleState>();
 

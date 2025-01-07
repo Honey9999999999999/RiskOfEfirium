@@ -46,7 +46,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
                 return;
             }
 
-            if (!_timer.isStarted)
+            if (!_timer.IsStarted)
             {
                 StartSearchTimer();
             }

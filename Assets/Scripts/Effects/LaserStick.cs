@@ -1,3 +1,4 @@
+using Assets.Scripts.Controllers.EntityControllers;
 using Assets.Scripts.InputManager;
 using PlayerMoveStates;
 using UnityEngine;
@@ -14,36 +15,38 @@ public class LaserStick : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
 
-        InputHandler.OnTabInput += TurnLaser;
+        BattleState.OnBattleModeEnter += TurnLaser;        
+        BattleState.OnBattleModeExit += TurnLaser;        
+
+        _lineRenderer.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
         InputHandler.OnMoveInput += ReplaceLaser;
         FlyingState.OnPlayerRotated += ReplaceLaser;
-
-        _lineRenderer.enabled = false;
-
-        if (_endPoint != null)
-        {
-            _endPoint.Stop();
-        }
+    }
+    private void OnDisable()
+    {
+        InputHandler.OnMoveInput -= ReplaceLaser;
+        FlyingState.OnPlayerRotated -= ReplaceLaser;
     }
 
     private void ReplaceLaser()
     {
-        if (_lineRenderer.enabled)
+        _lineRenderer.SetPosition(0, transform.parent.position);
+
+        Vector3 dir = transform.parent.forward;
+        if (Physics.Raycast(transform.parent.position, dir, out RaycastHit hit, 99, layers, QueryTriggerInteraction.Ignore))
         {
-            _lineRenderer.SetPosition(0, transform.parent.position);
-
-            Vector3 dir = transform.parent.forward;
-            if (Physics.Raycast(transform.parent.position, dir, out RaycastHit hit, 99, layers, QueryTriggerInteraction.Ignore))
-            {
-                _lineRenderer.SetPosition(1, hit.point);
-            }
-            else
-            {
-                _lineRenderer.SetPosition(1, transform.parent.position + transform.parent.forward * 99);
-            }
-
-            ReplaceEndPoint();
+            _lineRenderer.SetPosition(1, hit.point);
         }
+        else
+        {
+            _lineRenderer.SetPosition(1, transform.parent.position + transform.parent.forward * 99);
+        }
+
+        ReplaceEndPoint();
     }
     private void ReplaceEndPoint()
     {
@@ -55,18 +58,6 @@ public class LaserStick : MonoBehaviour
 
     private void TurnLaser()
     {
-        _lineRenderer.enabled = !_lineRenderer.enabled;
-
-        if (_endPoint != null)
-        {
-            if (_lineRenderer.enabled)
-            {
-                _endPoint.Play();
-            }
-            else
-            {
-                _endPoint.Stop();
-            }
-        }
+        _lineRenderer.gameObject.SetActive(!_lineRenderer.gameObject.activeSelf);
     }
 }

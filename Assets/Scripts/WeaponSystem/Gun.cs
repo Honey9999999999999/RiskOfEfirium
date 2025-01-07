@@ -44,7 +44,7 @@ namespace WeaponSystem
 
         public void Fire(Vector3 position)
         {
-            if (!_cooldownTimer.isStarted)
+            if (!_cooldownTimer.IsStarted)
             {
                 Bullet bulletClon = Instantiate(_bullet);
                 bulletClon.transform.position = transform.position;

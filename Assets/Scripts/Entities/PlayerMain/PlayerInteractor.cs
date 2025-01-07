@@ -9,13 +9,23 @@ using UnityEngine;
 public class PlayerInteractor : Interactor
 {
     public event Action<Blueprint> OnBlueprintAdded;
+    public event Action OnMenuOpened;
 
     private const string PLAYER_PATH = "Prefabs/Entities/Player/Player";
     private Player player;
     private List<Blueprint> blueprints;
+    private bool menuMode;
 
     public Player Player => player;
     public List<Blueprint> Blueprints => blueprints;
+    public bool MenuMode { get { return menuMode; } set 
+        {
+            menuMode = value;
+
+            if (value)
+                OnMenuOpened?.Invoke();
+        } 
+    }
 
     public override void Initialize()
     {
@@ -31,7 +41,7 @@ public class PlayerInteractor : Interactor
 
         if (!playerObj.TryGetComponent(out player))
         {
-            throw new System.Exception("playerObj has't script \"Player\"");
+            throw new Exception("playerObj has't script \"Player\"");
         }
     }
 

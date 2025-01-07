@@ -10,6 +10,7 @@ namespace Assets.Scripts.Entities
     public class EntityHealth
     {
         public event Action OnHealthDown;
+        public event Action OnHealthRestore;
         public event Action OnHealthRestored;
         public event Action OnHealthDamaged;
 
@@ -71,7 +72,7 @@ namespace Assets.Scripts.Entities
 
         private void StartCooldownRegeneration()
         {
-            if (_timer.isStarted)
+            if (_timer.IsStarted)
             {
                 _timer.Reset();
             }
@@ -97,14 +98,12 @@ namespace Assets.Scripts.Entities
         {
             while (!IsMaxHealth)
             {
-                _health += Time.deltaTime * _regenerationPerSec;
+                _health = Mathf.Clamp(_health + Time.deltaTime * _regenerationPerSec, 0, _maxHealth);
 
-                if (_health > _maxHealth)
-                {
-                    _health = _maxHealth;
-                }
+                OnHealthRestore?.Invoke();
 
-                OnHealthRestored?.Invoke();
+                if(IsMaxHealth)
+                    OnHealthRestored?.Invoke();
 
                 yield return null;
             }

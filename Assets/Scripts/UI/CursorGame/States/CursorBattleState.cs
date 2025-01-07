@@ -17,12 +17,17 @@ namespace Assets.Scripts.UI.CursorGame.States
         {
             base.Update();
 
+            if (_playerInteractor.MenuMode)
+            {
+                _stateMachine.EnterIn<CursorMenuState>();
+            }
+
             if (!_controller.isBattle)
             {
                 _stateMachine.EnterIn<CursorSimpleState>();
 
                 return;
-            }
+            }            
         }
     }
 }

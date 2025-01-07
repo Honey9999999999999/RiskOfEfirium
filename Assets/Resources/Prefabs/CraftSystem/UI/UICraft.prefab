@@ -991,7 +991,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6662671105006811656}
   - component: {fileID: 2927713770970916936}
-  - component: {fileID: 2056176800920924735}
   m_Layer: 0
   m_Name: Bookmarks
   m_TagString: Untagged
@@ -1030,19 +1029,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 890918498049941243}
   m_CullTransparentMesh: 1
---- !u!114 &2056176800920924735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 890918498049941243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 1
 --- !u!1 &1098684601469303115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1142,6 @@ GameObject:
   - component: {fileID: 8584941397140954911}
   - component: {fileID: 4856833003035939372}
   - component: {fileID: 6820187194843191794}
-  - component: {fileID: 2208508357555739628}
   m_Layer: 0
   m_Name: Legendary
   m_TagString: Untagged
@@ -1290,18 +1275,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.005
---- !u!114 &2208508357555739628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121114960994265338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd05d68f6ed7145499e4faaa9d0d14e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1448175121656579965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1522,6 @@ GameObject:
   - component: {fileID: 2929483772476115189}
   - component: {fileID: 7524874006130174777}
   - component: {fileID: 6244723305511923330}
-  - component: {fileID: 677747229666313642}
   m_Layer: 0
   m_Name: Legendary
   m_TagString: Untagged
@@ -1683,18 +1655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.005
---- !u!114 &677747229666313642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697651364159939786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd05d68f6ed7145499e4faaa9d0d14e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1800677909932544768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,7 +1940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 4536328051687716100, guid: 64acd147e54fe8542a95607add75eb3d, type: 3}
-  overrideBarColors: 1
+  overrideBarColors: 0
   fillerColor:
     serializedVersion: 2
     rgba: 4291310080
@@ -5491,7 +5451,6 @@ GameObject:
   - component: {fileID: 6586601487946220018}
   - component: {fileID: 8232322711147364954}
   - component: {fileID: 241425543455580488}
-  - component: {fileID: 2880800775086140605}
   m_Layer: 0
   m_Name: Legendary
   m_TagString: Untagged
@@ -5625,18 +5584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.005
---- !u!114 &2880800775086140605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554331158039172706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd05d68f6ed7145499e4faaa9d0d14e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5749802276294023088
 GameObject:
   m_ObjectHideFlags: 0

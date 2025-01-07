@@ -10,12 +10,14 @@ namespace Assets.Scripts.UI.CursorGame
         protected CursorFSM _stateMachine;
         protected PlayerController _controller;
         protected Texture2D _cursorTexture;
+        protected PlayerInteractor _playerInteractor;
 
         public CursorState(CursorFSM stateMachine, Texture2D cursorTexture)
         {
             _stateMachine = stateMachine;
             _controller = Game.GetInteractor<PlayerInteractor>().Player.GetPlayerController();
             _cursorTexture = cursorTexture;
+            _playerInteractor = Game.GetInteractor<PlayerInteractor>();
         }
 
         public virtual void Enter() { SetMode(); }

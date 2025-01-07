@@ -1,0 +1,36 @@
+﻿using UnityEngine;
+
+namespace Assets.Scripts.UI
+{
+    [RequireComponent(typeof(Collider))]
+    public class PopupMessage : MonoBehaviour
+    {
+        [SerializeField] private GameObject message;
+        private Camera mainCamera;
+
+        private void Start()
+        {
+            mainCamera = Camera.main;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(!other.isTrigger && other.TryGetComponent(out Player _))
+                message.SetActive(true);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.isTrigger && other.TryGetComponent(out Player _))
+                message.SetActive(false);
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (!other.isTrigger && other.TryGetComponent(out Player _) && mainCamera != null)
+            {
+                message.transform.LookAt(message.transform.position + mainCamera.transform.forward);
+            }
+        }
+    }
+}

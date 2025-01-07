@@ -1,5 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.InventorySystem;
 using Assets.Scripts.Tools;
 using Assets.Scripts.UI;
 

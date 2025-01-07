@@ -10,12 +10,17 @@ namespace Assets.Scripts.UI.CursorGame.States
 
         public override void SetMode()
         {
-            Cursor.SetCursor(_cursorTexture, new Vector2(0, 0), CursorMode.ForceSoftware);
+            Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
         }
 
         public override void Update()
         {
             base.Update();
+
+            if (_playerInteractor.MenuMode)
+            {
+                _stateMachine.EnterIn<CursorMenuState>();
+            }
 
             if (_controller.isBattle)
             {

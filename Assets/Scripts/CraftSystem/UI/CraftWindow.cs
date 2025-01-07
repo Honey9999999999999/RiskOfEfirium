@@ -17,12 +17,11 @@ namespace Assets.Scripts.CraftSystem
                 {
                     workBench.FillTable();
                     workBench.gameObject.SetActive(true);
+                    _resourcesTable.OpenTable();
 
                     return;
                 }
-            }
-
-            _resourcesTable.OpenTable();
+            }           
         }
 
         public void CloseWindow()
