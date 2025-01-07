@@ -9,6 +9,9 @@ namespace Assets.Scripts.InventorySystem
 {
     public class UIInventory : MonoBehaviour
     {
+        [SerializeField] private Transform itemsInv;
+        [SerializeField] private Transform resourcesInv;
+
         private readonly Dictionary<Type, TextMeshProUGUI> _countersMap = new();
         private const string PATH_TO_COUNTER_PREFAB = "Prefabs/InventorySystem/ItemCounter";
 
@@ -33,7 +36,7 @@ namespace Assets.Scripts.InventorySystem
         private void AddCounter(Item item)
         {
             ItemInfo info = Game.GetInteractor<InventorySystemInteractor>().ItemInformationCard.GetInfo(item.Name);
-            ItemCounter itemCounter = ResourceLoader.Load<ItemCounter>(PATH_TO_COUNTER_PREFAB, transform);
+            ItemCounter itemCounter = ResourceLoader.Load<ItemCounter>(PATH_TO_COUNTER_PREFAB, info.Tier == Tier.Common ? resourcesInv : itemsInv);
             itemCounter.SetInfo(info);
             _countersMap[item.GetType()] = itemCounter.GetCounter();
         }
