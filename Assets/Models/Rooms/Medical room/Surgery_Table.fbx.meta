@@ -3,7 +3,27 @@ guid: 164a7946215b605478ce160b0a0ea758
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_B
+    second: {fileID: 2100000, guid: ef6f5e0998d4e644c80fe93b4b169fbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: col. Bathroom
+    second: {fileID: 2100000, guid: c9280aecb3f810d419a870a000d8b32b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: col. Medical
+    second: {fileID: 2100000, guid: b717ba368bf459e4c94a2214b451c505, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: col. Plating
+    second: {fileID: 2100000, guid: 4811a93e657e2784bb20fec80430e860, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,17 @@ guid: d91b0f0496d43154ea79f200887d7400
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Copper
+    second: {fileID: 2100000, guid: 494bdbc11125a9041a58ead784b46955, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: col. Medical
+    second: {fileID: 2100000, guid: 04052baf5ecf80842a26e1b44b348faa, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

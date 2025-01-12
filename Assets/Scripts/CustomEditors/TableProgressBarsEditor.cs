@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.CustomEditors
 {
@@ -9,13 +10,13 @@ namespace Assets.Scripts.CustomEditors
     public class TableProgressBarsEditor : Editor
     {
         private TableProgressBars table;
-        //private SerializedProperty testScriptProperty;
+        private SerializedProperty testScriptProperty;
 
         public void OnEnable()
         {
             table = (TableProgressBars)target;
 
-            //testScriptProperty = serializedObject.FindProperty("progressBar");
+            testScriptProperty = serializedObject.FindProperty("progressBar");
         }
 
         
@@ -23,7 +24,8 @@ namespace Assets.Scripts.CustomEditors
         {
             //EditorGUILayout.PropertyField(testScriptProperty, new GUIContent("Test Script"));
 
-            table.progressBar = (CharacteristicProgressBar)EditorGUILayout.ObjectField("Префаб шкалы", table.progressBar, typeof(CharacteristicProgressBar));
+            EditorGUILayout.PropertyField(testScriptProperty, new GUIContent("Префаб шкалы"));
+            //table.progressBar = (CharacteristicProgressBar)EditorGUILayout.ObjectField("Префаб шкалы", table.progressBar, typeof(CharacteristicProgressBar));
             table.overrideBarColors = EditorGUILayout.Toggle("Заменить цвета шкалы", table.overrideBarColors);
 
             if (table.overrideBarColors)
