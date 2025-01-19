@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Resources.InventorySystem.Scripts.Items;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InventorySystem.Items;
 
@@ -20,9 +21,15 @@ namespace Assets.Scripts.InventorySystem
                 [ItemNames.MechanicalResources] = new MechanicalResource(),
 
                 [ItemNames.SyneticMuscles] = new SyneticMuscles(),
+                [ItemNames.Mutagens] = new Mutagens(),
+                [ItemNames.ModifiedStemCells] = new ModifiedStemCells(),
+
                 [ItemNames.Thermostat] = new Thermostat(),
                 [ItemNames.ImprovedLaserBattery] = new ImprovedLaserBattery(),
-                [ItemNames.ChargingChamberCapacitor] = new ChargingChamberCapacitor()
+                [ItemNames.ChargingChamberCapacitor] = new ChargingChamberCapacitor(),
+
+                [ItemNames.LightCapacitor] = new LightCapacitor(),
+                [ItemNames.ArmoredPads] = new ArmoredPads()
             };
 
             foreach (var key in _itemsMap.Keys)

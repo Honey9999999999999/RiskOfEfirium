@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Assets.Scripts.CharacterStatsSystem;
 using CoroutineManager;
 using MyTimer;
 using UnityEngine;
@@ -14,37 +15,49 @@ namespace Assets.Scripts.Entities
         public event Action OnHealthRestored;
         public event Action OnHealthDamaged;
 
-        [SerializeField, Min(0)] private float _health;
-        [SerializeField, Min(0)] private float _maxHealth;
+        private float _health;
+        private float _maxHealth;
 
-        [SerializeField, Min(0)] private float _regenerationPerSec;
-        [SerializeField, Min(0)] private float _regenerationCooldown;
+        private float _regenerationPerSec;
+        private float _regenerationCooldown;
 
         private Timer _timer;
         private Coroutine _regenerationAsync;
 
-        public EntityHealth() : this(100, 5, 5) { }
-        public EntityHealth(float maxHealth, float regenerationPerSec, float regenerationCooldown)
+        public EntityHealth(CharacterCharacteristicCard ccc)
         {
-            if (maxHealth <= 0)
-            {
-                maxHealth = 100;
-            }
+            ImprovedCharacteristic health = ccc.Get(Characteristics.Health);
+            ImprovedCharacteristic regeneration = ccc.Get(Characteristics.Regeneration);
 
-            _maxHealth = maxHealth;
+            if (health.StockValue <= 0) throw new Exception($"Heath can't be {health.StockValue}");
+            if (regeneration.StockValue <= 0) throw new Exception($"Regeneration can't be {regeneration.StockValue}");
+
+            _maxHealth = health.StockValue;
             _health = _maxHealth;
 
-            _regenerationPerSec = regenerationPerSec;
-            _regenerationCooldown = regenerationCooldown;
+            _regenerationPerSec = regeneration.StockValue;
+            _regenerationCooldown = 5;
 
             _timer = new();
             _timer.OnStoped += StartRegeneration;
+
+            health.OnCharacteristicChanged += (float value) => 
+            {
+                float index = _health / _maxHealth;
+                _maxHealth = value;
+                _health = Mathf.Lerp(0, _maxHealth, index);
+            };
+            regeneration.OnCharacteristicChanged += (float value) =>
+            {
+                _regenerationPerSec = value;
+            };
         }
 
         public float Health => _health;
         public float MaxHealth => _maxHealth;
         public bool IsMaxHealth => _health >= _maxHealth;
         public bool IsAlive => _health > 0;
+
 
         public void TakenDamage(float damage)
         {

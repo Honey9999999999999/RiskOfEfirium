@@ -5,6 +5,8 @@ namespace Assets.Scripts.CharacterStatsSystem
 {
     public class ImprovedCharacteristic
     {
+        public event Action<float> OnCharacteristicChanged;
+
         public float CurrentValue { get; private set; }
         public float StockValue { get; }
         public float MinValue { get; }
@@ -39,6 +41,8 @@ namespace Assets.Scripts.CharacterStatsSystem
             }
 
             Index = newIndex;
+
+            OnCharacteristicChanged?.Invoke(CurrentValue);
         }
 
         private bool IsOutOfBounds(float index)

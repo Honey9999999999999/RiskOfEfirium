@@ -12,9 +12,15 @@ namespace Assets.Scripts.CharacterStatsSystem
                 [Characteristics.RateFirePerMin] = "Скорострельность",
                 [Characteristics.MaxAmmo] = "Вместительность обоймы",
                 [Characteristics.ReloadTime] = "Скорость перезарядки",
+                [Characteristics.Damage] = "Урон",
 
                 [Characteristics.Movespeed] = "Скорость передвижения",
-                [Characteristics.Damage] = "Урон"
+                [Characteristics.Health] = "Количество здоровья",
+                [Characteristics.Regeneration] = "Скорость регенерации",
+
+                [Characteristics.AreaOfLight] = "Область освещения",
+                [Characteristics.ThermalResistance] = "Термическое сопротивление",
+                [Characteristics.MechanicalResistance] = "Механическое сопротивление"
             }
         };
 

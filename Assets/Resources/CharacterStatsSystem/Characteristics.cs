@@ -7,6 +7,12 @@
         ReloadTime,
         Damage,
 
-        Movespeed
+        Movespeed,
+        Health,
+        Regeneration,
+
+        AreaOfLight,
+        ThermalResistance,
+        MechanicalResistance
     }
 }

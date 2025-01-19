@@ -32,14 +32,9 @@ namespace Assets.Scripts.InventorySystem
                 "Всякие микроконтроллеры, резисторы, транзисторы и прочая электроника",
                 "InventorySystem/Sprites/Icons/Lines/iconPlate"
             ),
-            [ItemNames.ImprovedLaserBattery] = new
-            (
-                ItemNames.ImprovedLaserBattery,
-                Tier.Uncommon,
-                "Улучшенная энергетическая батарея",
-                "Увеличивает количество выстрелов после перезарядки",
-                "InventorySystem/Sprites/Icons/Lines/iconCharge"
-            ),
+
+
+
             [ItemNames.SyneticMuscles] = new
             (
                 ItemNames.SyneticMuscles,
@@ -48,6 +43,34 @@ namespace Assets.Scripts.InventorySystem
                 "Увеличивает скорость передвижения",
                 "InventorySystem/Sprites/Icons/Lines/iconMovementSpeed"
             ),
+            [ItemNames.Mutagens] = new
+            (
+                ItemNames.Mutagens,
+                Tier.Uncommon,
+                "Мутагены",
+                "Благодаря недавним исследованиям OctoCorp, теперь даже простые смертные получили доступ к продлению своей жизни!\n" +
+                "Или так могло бы быть если бы OctoCorp не монополизировала материалы для технологии еще до создания патента...",
+                "InventorySystem/Sprites/Icons/Lines/iconHealthIncreace"
+            ),
+            [ItemNames.ModifiedStemCells] = new
+            (
+                ItemNames.ModifiedStemCells,
+                Tier.Uncommon,
+                "Модифицированные стволовые клетки",
+                "Из-за этой разработки OctoCorp стала всемирно известной компанией и смогла заработать свои первые триллионы",
+                "InventorySystem/Sprites/Icons/Lines/iconRegeneration"
+            ),
+
+
+
+            [ItemNames.ImprovedLaserBattery] = new
+            (
+                ItemNames.ImprovedLaserBattery,
+                Tier.Uncommon,
+                "Улучшенная энергетическая батарея",
+                "Увеличивает количество выстрелов после перезарядки",
+                "InventorySystem/Sprites/Icons/Lines/iconCharge"
+            ),            
             [ItemNames.Thermostat] = new
             (
                 ItemNames.Thermostat,
@@ -63,6 +86,25 @@ namespace Assets.Scripts.InventorySystem
                 "Конденсатор зарядной камеры",
                 "Увеличивает урон",
                 "InventorySystem/Sprites/Icons/Lines/iconDamage"
+            ),
+
+
+
+            [ItemNames.LightCapacitor] = new
+            (
+                ItemNames.LightCapacitor,
+                Tier.Uncommon,
+                "Конденсатор света",
+                "Увеличивает радиус освещения фонарика",
+                "InventorySystem/Sprites/Icons/Lines/iconMovementSpeed"
+            ),
+            [ItemNames.ArmoredPads] = new
+            (
+                ItemNames.ArmoredPads,
+                Tier.Uncommon,
+                "Бронированные подкладки",
+                "Тяжелые стальные пластины в форме подкладок",
+                "InventorySystem/Sprites/Icons/Lines/iconDamageReduction"
             )
         };
 

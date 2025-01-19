@@ -17,13 +17,22 @@ public class CameraController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            InputHandler.OnCameraFirstInput += SaveCameraPosition;
-            InputHandler.OnCameraInput += Rotate;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        InputHandler.OnCameraFirstInput += SaveCameraPosition;
+        InputHandler.OnCameraInput += Rotate;
+    }
+    private void OnDisable()
+    {
+        InputHandler.OnCameraFirstInput -= SaveCameraPosition;
+        InputHandler.OnCameraInput -= Rotate;
     }
 
     private void SaveCameraPosition() => _cameraPositionOld = Input.mousePosition;

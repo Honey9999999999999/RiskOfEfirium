@@ -11,7 +11,7 @@ public class PlayerInteractor : Interactor
     public event Action<Blueprint> OnBlueprintAdded;
     public event Action OnMenuOpened;
 
-    private const string PLAYER_PATH = "Prefabs/Entities/Player/Player";
+    private const string PLAYER_PATH = "Entities/Prefabs/Player/Player";
     private Player player;
     private List<Blueprint> blueprints;
     private bool menuMode;

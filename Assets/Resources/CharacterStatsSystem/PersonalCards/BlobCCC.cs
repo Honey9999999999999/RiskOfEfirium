@@ -7,6 +7,7 @@ namespace Assets.Scripts.CraftSystem.PersonalCards
         public BlobCCC()
         {
             characteristicsMap[Characteristics.RateFirePerMin] = new(30, 15, 60);
+            characteristicsMap[Characteristics.Damage] = new(30, 15, 60);
         }
     }
 }

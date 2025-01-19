@@ -1,4 +1,5 @@
 using System;
+using Assets.Resources.ArmorSystem.Scripts;
 using Assets.Scripts.Entities;
 using MyTimer;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _damage;
+    [SerializeField] private TypeDamage _type;
     [SerializeField] private float _lifeTime = 2;
     private Timer _lifeTimer;
 
@@ -18,7 +20,7 @@ public class Bullet : MonoBehaviour
         {
             if (entity.GetType().Equals(target))
             {
-                entity.TakenDamage(_damage);
+                entity.TakenDamage(_type, _damage);
             }
             DestroyBullet();
         }

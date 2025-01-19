@@ -16,6 +16,11 @@ namespace Assets.Scripts.Controllers.EntityControllers.EnemyController
 
         protected bool IsReadyAttack()
         {
+            if(_target.value == null)
+            {
+                return false;
+            }
+
             Vector3 vector = _target.value.position - _entity.transform.position;
 
             float distance = Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);

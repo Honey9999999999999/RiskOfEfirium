@@ -5,9 +5,16 @@
         MechanicalResources,
         ElectricResources,
         AlienResources,
+
         SyneticMuscles,
+        Mutagens,
+        ModifiedStemCells,
+
         Thermostat,
         ImprovedLaserBattery,
-        ChargingChamberCapacitor
+        ChargingChamberCapacitor,
+
+        LightCapacitor,
+        ArmoredPads
     }
 }

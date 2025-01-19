@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Assets.Resources.ArmorSystem.Scripts;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InventorySystem;
 using CoroutineManager;
@@ -15,7 +16,8 @@ namespace Assets.Scripts.Entities
         public event Action OnTakenDamage;
         public event Action OnEntityDeath;
 
-        public EntityHealth health = new();
+        public EntityHealth health;
+        public Armor armor;
 
         [SerializeField] protected EntityController _entityController;
 
@@ -26,6 +28,8 @@ namespace Assets.Scripts.Entities
         public LivingEntity()
         {
             Inventory = new(PersonalCCC);
+            health = new(PersonalCCC);
+            armor = new(PersonalCCC);
             health.OnHealthDown += OnDeath;
         }
 
@@ -36,9 +40,9 @@ namespace Assets.Scripts.Entities
             return GetComponent<Rigidbody>();
         }
 
-        public void TakenDamage(float damage)
+        public void TakenDamage(TypeDamage type, float damage)
         {
-            health.TakenDamage(damage);
+            health.TakenDamage(armor.Reduce(type, damage));
 
             OnTakenDamage?.Invoke();
         }
