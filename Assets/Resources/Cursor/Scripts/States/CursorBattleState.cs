@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI.CursorGame.States
                 _stateMachine.EnterIn<CursorSimpleState>();
 
                 return;
-            }            
+            }
         }
     }
 }

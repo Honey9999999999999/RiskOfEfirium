@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace SplineSystem

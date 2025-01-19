@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem;
-using System.Collections.Generic;
 
 public class Blueprint
 {

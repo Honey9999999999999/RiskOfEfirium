@@ -14,7 +14,7 @@ public class PlayerUIInteractor : Interactor
     public GameObject HealthBar { get; private set; }
     public GameObject MiniMap { get; private set; }
     public UIInventory Inventory { get; private set; }
-    
+
     public override void OnCreate()
     {
         base.OnCreate();

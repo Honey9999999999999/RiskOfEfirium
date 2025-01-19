@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.LabyrinthGenerator;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.LabyrinthGenerator;
 using UnityEngine;
 
 namespace Assets.Scripts.MiniMap.Configs

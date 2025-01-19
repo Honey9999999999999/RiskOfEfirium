@@ -1,9 +1,6 @@
-﻿using Architecture;
+﻿using System.Collections.Generic;
 using Assets.Scripts.CharacterStatsSystem;
-using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem.Items;
-using System;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {
@@ -48,7 +45,7 @@ namespace Assets.Scripts.InventorySystem
         public void RemoveItem(ItemNames dropName)
         {
             _itemsMap[dropName].amount -= 1;
-        }        
+        }
 
         private void ApplyEffect(Item item)
         {

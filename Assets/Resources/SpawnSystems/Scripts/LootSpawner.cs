@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Architecture;
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Loot

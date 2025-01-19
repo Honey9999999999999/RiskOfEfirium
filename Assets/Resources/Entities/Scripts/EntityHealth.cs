@@ -1,7 +1,7 @@
-﻿using CoroutineManager;
-using MyTimer;
-using System;
+﻿using System;
 using System.Collections;
+using CoroutineManager;
+using MyTimer;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -102,7 +102,7 @@ namespace Assets.Scripts.Entities
 
                 OnHealthRestore?.Invoke();
 
-                if(IsMaxHealth)
+                if (IsMaxHealth)
                     OnHealthRestored?.Invoke();
 
                 yield return null;

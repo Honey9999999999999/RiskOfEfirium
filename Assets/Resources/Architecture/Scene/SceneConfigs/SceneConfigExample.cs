@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Bank;
+﻿using System;
+using System.Collections.Generic;
+using Assets.Scripts.Bank;
 using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InputManager;
 using Assets.Scripts.InventorySystem;
@@ -6,9 +8,6 @@ using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Map;
 using Assets.Scripts.MapDrawer;
 using Assets.Scripts.Spawn;
-using Assets.Scripts.UI;
-using System;
-using System.Collections.Generic;
 using UICursor;
 
 namespace Architecture
@@ -32,8 +31,8 @@ namespace Architecture
             CreateInteractor<LabyrinthInteractor>();
             CreateInteractor<MapInteractor>();
             CreateInteractor<MiniMapInteractor>();
-            CreateInteractor<NavMeshInteractor>();            
-            
+            CreateInteractor<NavMeshInteractor>();
+
             CreateInteractor<InventorySystemInteractor>();
             CreateInteractor<CraftSystemInteractor>();
             CreateInteractor<PlayerInteractor>();

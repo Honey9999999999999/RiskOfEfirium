@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.CharacterStatsSystem;
+﻿using System;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InputManager;
 using Assets.Scripts.Movement;
-using System;
 using UnityEngine;
 
 namespace PlayerMoveStates

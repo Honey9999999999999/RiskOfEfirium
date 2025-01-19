@@ -1,8 +1,8 @@
+using System.Collections.Generic;
 using Architecture;
 using Assets.Scripts.CraftSystem;
 using Assets.Scripts.CraftSystem.UI;
 using Assets.Scripts.InventorySystem;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WorkBenchWindow : MonoBehaviour
@@ -42,9 +42,9 @@ public class WorkBenchWindow : MonoBehaviour
 
         foreach (var blueprint in blueprints)
         {
-            if(blueprint.WorkBenchType == type)
+            if (blueprint.WorkBenchType == type)
             {
-                if(blueprint.Info.Tier == tier)
+                if (blueprint.Info.Tier == tier)
                 {
                     AddBlueprint(blueprint);
                 }
@@ -84,7 +84,7 @@ public class WorkBenchWindow : MonoBehaviour
     public void OpenTierUncommon() => FillTable(Tier.Uncommon);
     public void OpenTierRare() => FillTable(Tier.Rare);
     public void OpenTierLegendary() => FillTable(Tier.Legendary);
-    
+
 
     public void Close()
     {

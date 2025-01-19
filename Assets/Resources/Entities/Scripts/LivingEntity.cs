@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.CharacterStatsSystem;
+﻿using System;
+using System.Collections;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.InventorySystem;
 using CoroutineManager;
 using EntityControllers;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Entities
         [SerializeField] protected EntityController _entityController;
 
         public abstract CharacterCharacteristicCard PersonalCCC { get; }
-            
+
         public Inventory Inventory { get; }
 
         public LivingEntity()

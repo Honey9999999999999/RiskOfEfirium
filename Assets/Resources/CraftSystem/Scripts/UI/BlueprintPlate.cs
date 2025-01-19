@@ -10,7 +10,7 @@ public class BlueprintPlate : MonoBehaviour
     [SerializeField] private Image _icon;
 
     [SerializeField] private InventoryColorMap colorMap;
-    
+
     public void SetBlueprint(Blueprint blueprint, UnityAction action)
     {
         ItemInfo info = blueprint.Info;

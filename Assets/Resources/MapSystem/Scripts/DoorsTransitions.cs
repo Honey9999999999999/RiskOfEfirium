@@ -1,5 +1,5 @@
-using Assets.Scripts.LabyrinthGenerator;
 using System.Collections.Generic;
+using Assets.Scripts.LabyrinthGenerator;
 using UnityEngine;
 
 public class DoorsTransitions : MonoBehaviour

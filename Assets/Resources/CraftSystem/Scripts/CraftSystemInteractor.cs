@@ -20,7 +20,7 @@ namespace Assets.Scripts.CraftSystem
         public override void Initialize()
         {
             base.Initialize();
-            
+
             Crafter = new();
             CraftWindow = ResourceLoader.Load<CraftWindow>(PATH_TO_CRAFTWINDOW, Game.GetInteractor<PlayerUIInteractor>().UICanvas.transform);
         }

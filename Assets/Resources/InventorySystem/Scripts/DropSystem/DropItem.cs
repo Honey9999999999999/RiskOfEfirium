@@ -1,6 +1,6 @@
+using System;
 using Architecture;
 using Assets.Scripts.InventorySystem;
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]

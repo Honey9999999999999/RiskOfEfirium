@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.CraftSystem.UI;
+﻿#if UNITY_EDITOR
+
+using Assets.Scripts.CraftSystem.UI;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Assets.Scripts.CustomEditors
 {
@@ -19,7 +20,7 @@ namespace Assets.Scripts.CustomEditors
             testScriptProperty = serializedObject.FindProperty("progressBar");
         }
 
-        
+
         public override void OnInspectorGUI()
         {
             //EditorGUILayout.PropertyField(testScriptProperty, new GUIContent("Test Script"));
@@ -49,3 +50,4 @@ namespace Assets.Scripts.CustomEditors
         }
     }
 }
+#endif

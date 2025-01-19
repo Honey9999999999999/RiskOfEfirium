@@ -1,9 +1,9 @@
+using System;
+using System.Collections.Generic;
 using Architecture;
 using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.Tools;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteractor : Interactor
@@ -18,13 +18,16 @@ public class PlayerInteractor : Interactor
 
     public Player Player => player;
     public List<Blueprint> Blueprints => blueprints;
-    public bool MenuMode { get { return menuMode; } set 
+    public bool MenuMode
+    {
+        get { return menuMode; }
+        set
         {
             menuMode = value;
 
             if (value)
                 OnMenuOpened?.Invoke();
-        } 
+        }
     }
 
     public override void Initialize()

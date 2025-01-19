@@ -16,7 +16,7 @@ public class PlayerHealthBar : MonoBehaviour
 
     void Start()
     {
-        Game.OnGameInitialized += Initialize;        
+        Game.OnGameInitialized += Initialize;
     }
 
     private void Initialize()
@@ -37,7 +37,7 @@ public class PlayerHealthBar : MonoBehaviour
     private void UpdateBar()
     {
         Vector2 fillerRect = new(
-            Mathf.Lerp(_startRect, _endRect, _health.Health / _health.MaxHealth), 
+            Mathf.Lerp(_startRect, _endRect, _health.Health / _health.MaxHealth),
             filler.rect.height
             );
         filler.sizeDelta = fillerRect;

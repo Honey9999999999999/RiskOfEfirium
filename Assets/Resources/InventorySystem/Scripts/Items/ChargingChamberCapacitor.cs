@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.CharacterStatsSystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.CharacterStatsSystem;
 
 namespace Assets.Scripts.InventorySystem.Items
 {

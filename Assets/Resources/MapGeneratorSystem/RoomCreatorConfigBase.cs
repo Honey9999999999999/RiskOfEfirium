@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Tools;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Tools;
 
 namespace Assets.Scripts.LabyrinthGenerator
 {

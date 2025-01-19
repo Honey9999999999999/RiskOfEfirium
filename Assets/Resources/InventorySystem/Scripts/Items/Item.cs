@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.CharacterStatsSystem;
+﻿using System.Collections.Generic;
+using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Tools;
 using Interfaces;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {

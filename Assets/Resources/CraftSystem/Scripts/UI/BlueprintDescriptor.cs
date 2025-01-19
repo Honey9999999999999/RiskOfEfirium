@@ -2,7 +2,6 @@
 using Assets.Scripts.InventorySystem;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.CraftSystem
@@ -48,7 +47,7 @@ namespace Assets.Scripts.CraftSystem
             _itemName.text = "";
             _description.text = "";
             CrearTable();
-            _button.interactable = false;            
+            _button.interactable = false;
         }
         private void CrearTable()
         {

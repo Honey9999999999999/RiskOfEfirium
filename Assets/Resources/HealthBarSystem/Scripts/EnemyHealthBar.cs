@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Entities;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Assets.Scripts.Entities;
 using CoroutineManager;
 using MyTimer;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,8 +39,8 @@ namespace Assets.Scripts.UI
             timerBackFillerPush = new();
 
             timerToHide.OnStoped += () => Coroutines.StartRoutine(Hide());
-            hidingTimer.OnStoped += ()=> SetStateBar(false);
-            timerBackFillerCooldown.OnStoped += ()=> Coroutines.StartRoutine(PushInBackFiller());
+            hidingTimer.OnStoped += () => SetStateBar(false);
+            timerBackFillerCooldown.OnStoped += () => Coroutines.StartRoutine(PushInBackFiller());
 
             health = entity.health;
             health.OnHealthRestore += UpdateBar;
@@ -133,11 +133,11 @@ namespace Assets.Scripts.UI
             hidingTimer.OnStoped -= () => SetStateBar(false);
             timerBackFillerCooldown.OnStoped -= () => Coroutines.StartRoutine(PushInBackFiller());
 
-            health.OnHealthRestore  -= UpdateBar;
-            health.OnHealthRestore  -= EqualizeToFiller;
-            health.OnHealthDamaged  -= UpdateBar;
-            health.OnHealthDown     -= ResetAll;
+            health.OnHealthRestore -= UpdateBar;
+            health.OnHealthRestore -= EqualizeToFiller;
+            health.OnHealthDamaged -= UpdateBar;
+            health.OnHealthDown -= ResetAll;
             health.OnHealthRestored -= () => timerToHide.Start(delayTimeToHiding);
-        }        
+        }
     }
 }

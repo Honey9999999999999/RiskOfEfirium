@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Entities;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {

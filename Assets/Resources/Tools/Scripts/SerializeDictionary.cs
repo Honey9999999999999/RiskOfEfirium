@@ -10,7 +10,9 @@ namespace Assets.Scripts.Tools
 
         public bool isUniqueKeys = false;
 
-        public List<K> Keys { get 
+        public List<K> Keys
+        {
+            get
             {
                 List<K> keys = new();
 
@@ -58,7 +60,7 @@ namespace Assets.Scripts.Tools
         {
             foreach (var item in keyValues)
             {
-                if(KeysAreEqual(item.key, key))
+                if (KeysAreEqual(item.key, key))
                 {
                     return item.value;
                 }
@@ -75,7 +77,7 @@ namespace Assets.Scripts.Tools
         {
             foreach (var keyValue in keyValues)
             {
-                if(KeysAreEqual(keyValue.key, key))
+                if (KeysAreEqual(keyValue.key, key))
                 {
                     keyValues.Remove(keyValue);
 

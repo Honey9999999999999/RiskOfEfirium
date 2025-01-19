@@ -1,5 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace Assets.Scripts.Architecture

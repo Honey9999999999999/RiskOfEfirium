@@ -1,6 +1,6 @@
-﻿using Architecture;
+﻿using System.Collections.Generic;
+using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Maps
@@ -26,6 +26,11 @@ namespace Maps
             {
                 GameObject roomObj = _config.GetRoom(room.type, room.GetType());
                 roomObj.transform.parent = map.transform;
+                room.RoomPrefab = roomObj;
+                if(room.type != RoomType.Gateway)
+                {
+                    Game.OnGameInitialized += ()=> room.RoomPrefab.SetActive(false);
+                }
 
                 Rotate(roomObj, room.RotatedOn);
 

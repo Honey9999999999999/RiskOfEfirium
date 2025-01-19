@@ -42,8 +42,7 @@ namespace Assets.Scripts.MapDrawer
         }
         private void RotateMap(Vector3 rotation)
         {
-            miniMap.transform.Rotate(new(0, 0, rotation.y));
-            CentreMiniMap();
+            miniMap.transform.RotateAround(drawer.player.transform.position, Vector3.forward, rotation.y);
         }
 
         private void CentreMiniMap()

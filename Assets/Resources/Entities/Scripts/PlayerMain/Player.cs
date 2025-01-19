@@ -8,7 +8,7 @@ using UnityEngine;
 public class Player : LivingEntity
 {
     [SerializeField] private Transform _viewDirection;
-    [SerializeField] protected MovePlayerFSMInstance _moveInstance;    
+    [SerializeField] protected MovePlayerFSMInstance _moveInstance;
     [SerializeField] private PlayerBattleFMSInstance _battlerFSM;
 
     public override CharacterCharacteristicCard PersonalCCC => _personalCCC;

@@ -12,7 +12,10 @@ namespace Assets.Scripts.UI
         private float startWidth;
         private float distance;
 
-        public float FillAmount { get { return fillAmount; } set 
+        public float FillAmount
+        {
+            get { return fillAmount; }
+            set
             {
                 fillAmount = Mathf.Clamp(value, 0, 1);
                 ChangeFillLevel();

@@ -1,6 +1,6 @@
-﻿using Architecture;
+﻿using System;
+using Architecture;
 using Assets.Scripts.InventorySystem;
-using System;
 using UnityEngine;
 
 namespace Assets.Scripts.CraftSystem

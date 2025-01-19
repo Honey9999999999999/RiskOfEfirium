@@ -4,7 +4,7 @@
     {
         public ItemNames ServiceName { get; }
         public Tier Tier { get; }
-        public string Name { get; }        
+        public string Name { get; }
         public string Description { get; }
         public string IconPath { get; }
 
@@ -12,7 +12,7 @@
         {
             ServiceName = serviceName;
             Tier = tier;
-            Name = name;            
+            Name = name;
             Description = desctiption;
             IconPath = iconPath;
         }

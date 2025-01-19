@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MinimazeRooms
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 4bbd926f5eaa9c642ab3c32d850e13bc, type: 3}
+    - {fileID: 2800000, guid: 30137767a579e504fbf93a1eed015d24, type: 3}
+    - {fileID: 2800000, guid: 4a6c0fbf0849e8341aa83069d7673808, type: 3}
+    - {fileID: 2800000, guid: 231cfb22ecd96fb4e87ecbfd560cf539, type: 3}
+    - {fileID: 2800000, guid: 2cc098c6e69f88d4d8c54595d3b34be5, type: 3}
+    - {fileID: 2800000, guid: bcf46b5b157accd4da1bff8211b294a3, type: 3}
+    - {fileID: 2800000, guid: 0b79e397a9745c240b02612f10bba968, type: 3}
+    - {fileID: 2800000, guid: 68e1a85669def0b4e887a3b435d46a2e, type: 3}
+    - {fileID: 2800000, guid: 0b0baf11cca692c498a1814535b6220e, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys: []
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
+  m_RenderDataMap: {}
+  m_Tag: MinimazeRooms
+  m_IsVariant: 0

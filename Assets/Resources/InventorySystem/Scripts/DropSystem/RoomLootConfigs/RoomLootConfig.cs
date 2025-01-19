@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.LabyrinthGenerator;
+﻿using System.Collections.Generic;
+using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.Tools;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.InventorySystem
 {

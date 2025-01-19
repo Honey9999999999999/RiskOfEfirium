@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.InputManager;
+﻿using System;
+using Assets.Scripts.InputManager;
 using Assets.Scripts.Tools;
-using System;
 using UnityEngine;
 using WeaponSystem;
 

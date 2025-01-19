@@ -1,6 +1,6 @@
+using System;
 using Assets.Scripts.Entities;
 using MyTimer;
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]

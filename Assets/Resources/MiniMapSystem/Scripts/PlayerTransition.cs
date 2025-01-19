@@ -1,7 +1,7 @@
+using System;
 using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
 using Maps;
-using System;
 using UnityEngine;
 
 public class PlayerTransition : MonoBehaviour
@@ -33,15 +33,17 @@ public class PlayerTransition : MonoBehaviour
 
     public void GoOn()
     {
-        IntVector2 dir = DirectionHandler.GetDirection(direction);
         LevelMap map = Game.GetInteractor<LabyrinthInteractor>().levelMap;
 
         if (map.TryGetRoom(position, out Room playerRoom))
         {
             if (playerRoom.TryGetDoorLeadsTo(direction, out Door door))
             {
+                playerRoom.RoomPrefab.SetActive(false);
                 oldPosition = position;
                 position = door.targetRoom.position;
+                map.TryGetRoom(position, out playerRoom);
+                playerRoom.RoomPrefab.SetActive(true);
 
                 IntVector2 reverseDirection = (oldPosition - position).GetNormilize();
 

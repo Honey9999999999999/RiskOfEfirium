@@ -1,5 +1,5 @@
-﻿using Architecture;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Architecture;
 
 namespace Assets.Scripts.Spawn
 {

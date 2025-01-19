@@ -34,6 +34,9 @@ namespace Assets.Scripts.LabyrinthGenerator
         public int width { get; }
         public int height { get; }
 
+        public GameObject RoomPrefab { get { return room; } set { room = room != null ? room : value; } }
+        private GameObject room;
+
 
         public void RandomRotate()
         {

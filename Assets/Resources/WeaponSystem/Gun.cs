@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Entities;
 using MyTimer;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WeaponSystem

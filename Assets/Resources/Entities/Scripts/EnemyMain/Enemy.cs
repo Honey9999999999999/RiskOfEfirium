@@ -1,7 +1,7 @@
+using System;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.CraftSystem.PersonalCards;
 using Assets.Scripts.Entities;
-using System;
 using UnityEngine;
 
 [Serializable]

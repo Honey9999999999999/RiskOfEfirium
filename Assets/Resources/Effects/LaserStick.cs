@@ -15,8 +15,8 @@ public class LaserStick : MonoBehaviour
     {
         _lineRenderer = GetComponent<LineRenderer>();
 
-        BattleState.OnBattleModeEnter += TurnLaser;        
-        BattleState.OnBattleModeExit += TurnLaser;        
+        BattleState.OnBattleModeEnter += TurnLaser;
+        BattleState.OnBattleModeExit += TurnLaser;
 
         _lineRenderer.gameObject.SetActive(false);
     }

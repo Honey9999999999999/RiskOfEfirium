@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Localization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Localization;
 
 namespace Assets.Scripts.CharacterStatsSystem
 {

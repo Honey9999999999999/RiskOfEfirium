@@ -1,9 +1,8 @@
-﻿  using Architecture;
+﻿using System;
+using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.MiniMap.Configs;
 using Assets.Scripts.Tools;
-using Assets.Scripts.UI;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,6 +53,7 @@ namespace Assets.Scripts.MapDrawer
 
             drawingRoom.GetComponent<Image>().color = _config.roomColorMap[room.type];
             drawingRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(room.width, room.height) * _config.textureBlockSize;
+
             drawingRoom.transform.localPosition = roomPosition * _config.textureBlockSize;
 
             Rotate(drawingRoom, room.RotatedOn);

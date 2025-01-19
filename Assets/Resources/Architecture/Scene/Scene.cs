@@ -1,5 +1,5 @@
-using CoroutineManager;
 using System.Collections;
+using CoroutineManager;
 using UnityEngine;
 
 namespace Architecture

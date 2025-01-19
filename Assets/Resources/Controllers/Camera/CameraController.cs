@@ -1,5 +1,5 @@
-using Assets.Scripts.InputManager;
 using System;
+using Assets.Scripts.InputManager;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour

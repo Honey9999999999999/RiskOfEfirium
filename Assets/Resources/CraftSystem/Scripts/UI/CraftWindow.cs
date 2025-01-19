@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.CraftSystem.UI;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Scripts.CraftSystem.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.CraftSystem
@@ -13,7 +13,7 @@ namespace Assets.Scripts.CraftSystem
         {
             foreach (var workBench in workBenchesList)
             {
-                if(workBench.type == type)
+                if (workBench.type == type)
                 {
                     workBench.FillTable();
                     workBench.gameObject.SetActive(true);
@@ -21,7 +21,7 @@ namespace Assets.Scripts.CraftSystem
 
                     return;
                 }
-            }           
+            }
         }
 
         public void CloseWindow()

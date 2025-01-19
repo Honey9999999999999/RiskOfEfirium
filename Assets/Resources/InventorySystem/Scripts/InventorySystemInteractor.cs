@@ -8,7 +8,7 @@ namespace Assets.Scripts.InventorySystem
 
         public override void Initialize()
         {
-            base.Initialize();            
+            base.Initialize();
         }
         public override void OnCreate()
         {

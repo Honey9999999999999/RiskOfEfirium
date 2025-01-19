@@ -15,7 +15,7 @@ namespace Assets.Scripts.UI
 
         private void OnTriggerEnter(Collider other)
         {
-            if(!other.isTrigger && other.TryGetComponent(out Player _))
+            if (!other.isTrigger && other.TryGetComponent(out Player _))
                 message.SetActive(true);
         }
 

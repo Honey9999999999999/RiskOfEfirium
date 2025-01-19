@@ -1,6 +1,6 @@
-﻿using CoroutineManager;
-using System;
+﻿using System;
 using System.Collections;
+using CoroutineManager;
 using UnityEngine;
 
 namespace MyTimer
@@ -17,7 +17,7 @@ namespace MyTimer
 
         public void Start(float sec)
         {
-            if(IsStarted)
+            if (IsStarted)
                 Reset();
 
             routine = Coroutines.StartRoutine(StartTimerRoutine(sec));

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.LabyrinthGenerator;
-using Assets.Scripts.Tools;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Assets.Scripts.LabyrinthGenerator;
+using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace Maps

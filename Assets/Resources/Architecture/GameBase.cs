@@ -1,6 +1,6 @@
-﻿using CoroutineManager;
-using System;
+﻿using System;
 using System.Collections;
+using CoroutineManager;
 
 namespace Architecture
 {

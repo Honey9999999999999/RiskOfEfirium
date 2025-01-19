@@ -1,6 +1,6 @@
-using Assets.Scripts.InputManager;
 using System;
 using System.Collections;
+using Assets.Scripts.InputManager;
 using UnityEngine;
 using UnityEngine.UI;
 

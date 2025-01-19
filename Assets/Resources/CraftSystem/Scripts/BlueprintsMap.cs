@@ -1,7 +1,7 @@
-﻿using Architecture;
-using Assets.Scripts.InventorySystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Architecture;
+using Assets.Scripts.InventorySystem;
 
 namespace Assets.Scripts.CraftSystem
 {

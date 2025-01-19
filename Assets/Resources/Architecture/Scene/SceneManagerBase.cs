@@ -1,7 +1,7 @@
-using CoroutineManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CoroutineManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

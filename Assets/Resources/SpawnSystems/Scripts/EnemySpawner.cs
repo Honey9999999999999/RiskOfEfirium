@@ -1,5 +1,5 @@
-using Architecture;
 using System.Collections.Generic;
+using Architecture;
 using UnityEngine;
 
 namespace Assets.Scripts.Spawn
