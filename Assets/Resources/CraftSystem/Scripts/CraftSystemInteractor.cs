@@ -1,5 +1,4 @@
 ﻿using Architecture;
-using Assets.Scripts.Tools;
 
 namespace Assets.Scripts.CraftSystem
 {

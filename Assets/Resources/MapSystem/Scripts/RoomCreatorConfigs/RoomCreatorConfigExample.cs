@@ -37,6 +37,13 @@ namespace Maps
                 {
                     { 1, "MapSystem/Prefabs/Rooms/Room" }
                 }
+            },
+            [RoomType.Armory] = new()
+            {
+                [typeof(SimpleRoomC)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/Armory" }
+                }
             }
         };
     }

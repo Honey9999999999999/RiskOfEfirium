@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 namespace UICursor

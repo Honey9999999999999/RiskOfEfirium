@@ -33,7 +33,7 @@
 
             _roomEndMap.Add(RoomType.ResidentialRoom, new()
             {
-                { 1f, RoomType.ResidentialRoom }
+                { 1f, RoomType.Armory }
             });
             _roomEndMap.Add(RoomType.CommandRoom, new()
             {
@@ -43,6 +43,10 @@
             ///Конечный генератор - размеры
 
             _sizeEndMap.Add(RoomType.ResidentialRoom, new()
+            {
+                { 1f, CreateRoom<SimpleRoomC> }
+            });
+            _sizeEndMap.Add(RoomType.Armory, new()
             {
                 { 1f, CreateRoom<SimpleRoomC> }
             });

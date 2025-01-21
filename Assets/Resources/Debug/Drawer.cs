@@ -9,7 +9,7 @@ public class Drawer
     }
     public static void DrawPolyhedralFigure(List<Vector3> points)
     {
-        DrawPolyhedralFigure(points, Vector3.zero);
+        DrawPolyhedralFigure(points, Vector3.zero, Color.white);
     }
     public static void DrawPolyhedralFigure(List<Vector2> points, Vector2 offset)
     {
@@ -21,13 +21,13 @@ public class Drawer
             }
         }
     }
-    public static void DrawPolyhedralFigure(List<Vector3> points, Vector3 offset)
+    public static void DrawPolyhedralFigure(List<Vector3> points, Vector3 offset, Color32 color)
     {
         if (points.Count > 1)
         {
             for (int i = 0; i < points.Count; i++)
             {
-                Debug.DrawLine(offset + points[i], offset + points[(i < points.Count - 1) ? i + 1 : 0]);
+                Debug.DrawLine(offset + points[i], offset + points[(i < points.Count - 1) ? i + 1 : 0], color);
             }
         }
     }
@@ -53,11 +53,11 @@ public class Drawer
         }
     }
 
-    public static void DrawDiamondPoint(Vector3 position, float size, Color32 color)
+    public static void DrawDiamondPoint(Vector3 position, float size, Color32 color, bool isVertical = true)
     {
-        Debug.DrawLine(position + Vector3.up * size, position + Vector3.right * size, color);
-        Debug.DrawLine(position + Vector3.right * size, position + Vector3.down * size, color);
-        Debug.DrawLine(position + Vector3.down * size, position + Vector3.left * size, color);
-        Debug.DrawLine(position + Vector3.left * size, position + Vector3.up * size, color);
+        Debug.DrawLine(position + (isVertical ? Vector3.up : Vector3.forward) * size, position + Vector3.right * size, color);
+        Debug.DrawLine(position + Vector3.right * size, position + (isVertical ? Vector3.down : Vector3.back) * size, color);
+        Debug.DrawLine(position + (isVertical ? Vector3.down : Vector3.back) * size, position + Vector3.left * size, color);
+        Debug.DrawLine(position + Vector3.left * size, position + (isVertical ? Vector3.up : Vector3.forward) * size, color);
     }
 }

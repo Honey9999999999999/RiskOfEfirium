@@ -33,7 +33,7 @@ namespace Assets.Scripts.CraftSystem
                         [ItemNames.MechanicalResources] = 2,
                         [ItemNames.ElectricResources] = 1
                     }
-                ),                
+                ),
                 [ItemNames.Thermostat] = new Blueprint(
                     WorkBenchType.Armory,
                     infoMap.GetInfo(ItemNames.Thermostat),

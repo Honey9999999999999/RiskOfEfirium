@@ -33,6 +33,8 @@ namespace Architecture
             CreateInteractor<MiniMapInteractor>();
             CreateInteractor<NavMeshInteractor>();
 
+            CreateInteractor<LightInteractor>();
+
             CreateInteractor<InventorySystemInteractor>();
             CreateInteractor<CraftSystemInteractor>();
             CreateInteractor<PlayerInteractor>();

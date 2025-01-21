@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Architecture;
-using Assets.Scripts.Tools;
 using TMPro;
 using UnityEngine;
 

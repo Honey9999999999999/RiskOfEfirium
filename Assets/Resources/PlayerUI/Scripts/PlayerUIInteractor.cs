@@ -1,6 +1,5 @@
 ﻿using Architecture;
 using Assets.Scripts.InventorySystem;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 public class PlayerUIInteractor : Interactor

@@ -16,9 +16,9 @@ namespace Assets.Resources.ArmorSystem.Scripts
                 [TypeDamage.Mechanical] = ccc.GetValueOf(Characteristics.MechanicalResistance)
             };
 
-            ccc.Get(Characteristics.ThermalResistance).OnCharacteristicChanged += 
+            ccc.Get(Characteristics.ThermalResistance).OnCharacteristicChanged +=
                 (float value) => resistanceMap[TypeDamage.Thermal] = value;
-            ccc.Get(Characteristics.MechanicalResistance).OnCharacteristicChanged += 
+            ccc.Get(Characteristics.MechanicalResistance).OnCharacteristicChanged +=
                 (float value) => resistanceMap[TypeDamage.Mechanical] = value;
         }
 

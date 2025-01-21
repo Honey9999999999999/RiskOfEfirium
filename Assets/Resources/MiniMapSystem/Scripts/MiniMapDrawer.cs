@@ -2,7 +2,6 @@
 using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
 using Assets.Scripts.MiniMap.Configs;
-using Assets.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 

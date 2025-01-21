@@ -27,9 +27,9 @@ namespace Maps
                 GameObject roomObj = _config.GetRoom(room.type, room.GetType());
                 roomObj.transform.parent = map.transform;
                 room.RoomPrefab = roomObj;
-                if(room.type != RoomType.Gateway)
+                if (room.type != RoomType.Gateway)
                 {
-                    Game.OnGameInitialized += ()=> room.RoomPrefab.SetActive(false);
+                    Game.OnGameInitialized += () => room.RoomPrefab.SetActive(false);
                 }
 
                 Rotate(roomObj, room.RotatedOn);

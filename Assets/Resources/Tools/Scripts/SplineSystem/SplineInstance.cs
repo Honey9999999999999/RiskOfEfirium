@@ -94,7 +94,7 @@ namespace SplineSystem
 
             if (_splineConfig.cyclical)
             {
-                Drawer.DrawPolyhedralFigure(_points, transform.position);
+                Drawer.DrawPolyhedralFigure(_points, transform.position, Color.white);
             }
             else
             {

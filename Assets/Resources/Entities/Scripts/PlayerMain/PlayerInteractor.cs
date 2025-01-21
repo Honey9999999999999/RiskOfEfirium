@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Architecture;
 using Assets.Scripts.CraftSystem;
 using Assets.Scripts.InventorySystem;
-using Assets.Scripts.Tools;
 using UnityEngine;
 
 public class PlayerInteractor : Interactor

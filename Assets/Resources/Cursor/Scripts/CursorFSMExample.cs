@@ -1,4 +1,3 @@
-using Assets.Scripts.Tools;
 using Assets.Scripts.UI.CursorGame;
 using Assets.Scripts.UI.CursorGame.States;
 using FSM;

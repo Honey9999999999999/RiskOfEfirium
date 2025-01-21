@@ -16,7 +16,7 @@ namespace Assets.Scripts.Controllers.EntityControllers.EnemyController
 
         protected bool IsReadyAttack()
         {
-            if(_target.value == null)
+            if (_target.value == null)
             {
                 return false;
             }

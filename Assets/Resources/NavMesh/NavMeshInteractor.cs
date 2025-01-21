@@ -1,5 +1,4 @@
 using Architecture;
-using Assets.Scripts.Tools;
 using Unity.AI.Navigation;
 
 public class NavMeshInteractor : Interactor

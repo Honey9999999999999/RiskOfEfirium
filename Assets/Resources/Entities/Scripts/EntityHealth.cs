@@ -41,7 +41,7 @@ namespace Assets.Scripts.Entities
             _timer = new();
             _timer.OnStoped += StartRegeneration;
 
-            health.OnCharacteristicChanged += (float value) => 
+            health.OnCharacteristicChanged += (float value) =>
             {
                 float index = _health / _maxHealth;
                 _maxHealth = value;

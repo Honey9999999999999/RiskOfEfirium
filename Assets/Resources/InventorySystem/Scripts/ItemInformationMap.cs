@@ -70,7 +70,7 @@ namespace Assets.Scripts.InventorySystem
                 "Улучшенная энергетическая батарея",
                 "Увеличивает количество выстрелов после перезарядки",
                 "InventorySystem/Sprites/Icons/Lines/iconCharge"
-            ),            
+            ),
             [ItemNames.Thermostat] = new
             (
                 ItemNames.Thermostat,
