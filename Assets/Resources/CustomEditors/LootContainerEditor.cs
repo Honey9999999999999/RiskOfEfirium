@@ -53,11 +53,11 @@ namespace Assets.Resources.CustomEditors
                 container.openAmount = 1;
             }
 
-            container.lootAmount = EditorGUILayout.IntField("Количество дропа за раз", container.lootAmount);
+            container.maxLootAmount = EditorGUILayout.IntField("Количество дропа за раз", container.maxLootAmount);
 
-            if (container.lootAmount < 1)
+            if (container.maxLootAmount < 1)
             {
-                container.lootAmount = 1;
+                container.maxLootAmount = 1;
             }
 
             container.isRandomazeLootAmount = EditorGUILayout.Toggle("Рандомизировать количество", container.isRandomazeLootAmount);

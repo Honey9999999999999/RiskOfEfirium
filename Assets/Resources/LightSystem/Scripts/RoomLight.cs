@@ -1,4 +1,5 @@
-﻿using Architecture;
+﻿using System.Collections.Generic;
+using Architecture;
 using Assets.Scripts.LabyrinthGenerator;
 using UnityEngine;
 
@@ -8,38 +9,35 @@ namespace Assets.Resources.MapSystem.Scripts
     {
         [Header("Lightmap Settings")]
         public RoomType type;
-        public int lightmapIndex;      // Индекс Lightmap
-        public bool isGeneralLighting;
+        public int indexLigtMapOffset;
+
         public Color32 ambientColor;
 
-        public GameObject targetMesh;  // Целевой объект для применения Lightmap
+        public bool isGeneralLighting;
+        public bool isEmergencyLighting;
+        public bool isEmergencyBlinking;
+
+        public List<Light> emergencyLights;
+        public Light blinkingLight;
+
+        public MeshRenderer targetMesh;
 
 
         private void OnEnable()
         {
-            ApplyLightmap();
+            if (!Game.sceneManager.isLoading)
+            {
+                LoadSettings();
+            }            
         }
-        private void ApplyLightmap()
+        private void LoadSettings()
         {
-            if (targetMesh == null)
-            {
-                Debug.LogError("Целевой объект не указан!");
-                return;
-            }
+            Game.GetInteractor<LightInteractor>().LoadRoomLightSettings(this);
+        }
 
-            // Проверяем наличие MeshRenderer
-            if (!targetMesh.TryGetComponent<MeshRenderer>(out var renderer))
-            {
-                Debug.LogError("MeshRenderer не найден на целевом объекте!");
-                return;
-            }
-
-            Game.GetInteractor<LightInteractor>().LoadRoomLightSetings(this);
-
-            // Назначаем Lightmap Index
-            renderer.lightmapIndex = lightmapIndex;
-
-            Debug.Log("Lightmap успешно применён на объект.");
+        public void SetLightMap(int index)
+        {
+            targetMesh.lightmapIndex = index + indexLigtMapOffset;
         }
     }
 }

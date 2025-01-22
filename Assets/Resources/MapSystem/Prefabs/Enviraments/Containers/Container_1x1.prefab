@@ -67,9 +67,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7543492259663642776, guid: 3554d818180baf94c9a66fd106fefe33, type: 3}
-  - {fileID: 8134035881661637115, guid: 3554d818180baf94c9a66fd106fefe33, type: 3}
-  - {fileID: -2227658262599192235, guid: 3554d818180baf94c9a66fd106fefe33, type: 3}
+  - {fileID: 2100000, guid: 187adfa26c6c2a64785b210839a76944, type: 2}
+  - {fileID: 2100000, guid: 951b486797864d64f912154de4a6c20c, type: 2}
+  - {fileID: 2100000, guid: a666d3b7b12a34c4cb35c8a20a8f8e20, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6475230235084011799}
         m_TargetAssemblyTypeName: DropAnimator, Assembly-CSharp
-        m_MethodName: AnimateDrop
+        m_MethodName: AnimateObject
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   itemName: 0
   roomType: 14
   enemyName: 0
-  lootAmount: 3
+  maxLootAmount: 1
   openAmount: 1
   isRandomazeLootAmount: 0
 --- !u!114 &8608304405978960443

@@ -10,7 +10,9 @@ namespace Assets.Resources.LightSystem.Scripts
         {
             [RoomType.Armory] = new List<string>()
             {
-                "LightSystem/LightMaps/Lightmap-1_comp_light"
+                "LightSystem/LightMaps/ArmoryMain",
+                "LightSystem/LightMaps/ArmoryEmergency",
+                "LightSystem/LightMaps/ArmoryEmergency1"
             }
         };
 

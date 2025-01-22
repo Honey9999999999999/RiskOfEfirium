@@ -26,7 +26,7 @@ public class LootContainer : MonoBehaviour
     public RoomType roomType;
     public NamesOfEnemies enemyName;
 
-    [Min(1)] public int lootAmount = 1;
+    [Min(1)] public int maxLootAmount = 1;
     [Min(1)] public int openAmount = 1;
 
     public bool isRandomazeLootAmount;
@@ -75,7 +75,7 @@ public class LootContainer : MonoBehaviour
     {
         if (!isOpened)
         {
-            int lootCounter = isRandomazeLootAmount ? Random.Range(1, lootAmount) : lootAmount;
+            int lootCounter = isRandomazeLootAmount ? Random.Range(1, maxLootAmount) : maxLootAmount;
 
             for (int i = 0; i < lootCounter; i++)
             {

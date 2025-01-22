@@ -8,19 +8,14 @@ public class DropAnimator : MonoBehaviour
     public Vector2 boxSize;
     public Vector3 targetPosition;
     public AnimationCurve curve;
-    public float timeAnimation;
+    [Min(0)] public float timeAnimation;
 
     private Rect Box => new(targetPosition.x - boxSize.x / 2, targetPosition.z - boxSize.y / 2, boxSize.x, boxSize.y);
     private Matrix4x4 Rotation => transform.localToWorldMatrix;
-    private Vector3 TargetPosition { get
-        {
-            return Rotation.MultiplyPoint(targetPosition);
-        }
-    } 
 
-    public void AnimateDrop(MonoBehaviour dropItem)
+    public void AnimateObject(MonoBehaviour obj)
     {
-        AnimateObjectAsync(dropItem.transform);
+        AnimateObjectAsync(obj.transform);
     }
     private Coroutine AnimateObjectAsync(Transform transform)
     {
@@ -38,11 +33,7 @@ public class DropAnimator : MonoBehaviour
         animationTimer.Start(timeAnimation);
 
         Collider[] colliders = target.GetComponents<Collider>();
-
-        foreach (Collider collider in colliders)
-        {
-            collider.enabled = false;
-        }
+        TurnColliders(false);
 
         while (animationTimer.IsStarted)
         {
@@ -54,11 +45,18 @@ public class DropAnimator : MonoBehaviour
             yield return null;
         }
 
-        foreach (Collider collider in colliders)
+        TurnColliders(true);
+
+        void TurnColliders(bool enabled)
         {
-            collider.enabled = true;
+            foreach (Collider collider in colliders)
+            {
+                collider.enabled = enabled;
+            }
         }
     }
+
+    #if UNITY_EDITOR
 
     private void OnDrawGizmosSelected()
     {
@@ -89,12 +87,17 @@ public class DropAnimator : MonoBehaviour
 
     private void DrawPoint()
     {
-        Drawer.DrawDiamondPoint(TargetPosition, 0.4f, Color.yellow, false);
+        Vector3 targetPos = Rotation.MultiplyPoint(targetPosition);
+
+        Drawer.DrawDiamondPoint(targetPos, 0.4f, Color.yellow, false);
         List<Vector3> vectors = new()
         {
             transform.position,
-            TargetPosition
+            targetPos
         };
         Drawer.DrawCurve(vectors, Vector3.zero, Color.yellow);
     }
+
+    #endif
+
 }
