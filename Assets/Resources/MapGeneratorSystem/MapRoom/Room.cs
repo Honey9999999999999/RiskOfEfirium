@@ -24,6 +24,11 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             width = size.x;
             height = size.y;
+
+            foreach (var block in blocks)
+            {
+                block.ParentRoom = this;
+            }
         }
 
         public List<Block> blocks { get; }
@@ -36,6 +41,9 @@ namespace Assets.Scripts.LabyrinthGenerator
 
         public GameObject RoomPrefab { get { return room; } set { room = room != null ? room : value; } }
         private GameObject room;
+
+        public bool presenceOfOxygen = true;
+        public bool isEndNoOxygenZone;
 
 
         public void RandomRotate()
@@ -151,9 +159,9 @@ namespace Assets.Scripts.LabyrinthGenerator
             {
                 foreach (var door in block.doors)
                 {
-                    if (door.isLeadSomeWhere)
+                    if (door.IsLeadSomeWhere)
                     {
-                        roomTypes.Add(door.targetRoom.type);
+                        roomTypes.Add(door.TargetRoom.type);
                     }
                 }
             }
@@ -167,7 +175,7 @@ namespace Assets.Scripts.LabyrinthGenerator
             {
                 foreach (var door in block.doors)
                 {
-                    if (!door.isLeadSomeWhere)
+                    if (!door.IsLeadSomeWhere)
                     {
                         freeDoor = door;
                         return true;

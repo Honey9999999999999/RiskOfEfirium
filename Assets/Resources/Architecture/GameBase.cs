@@ -22,6 +22,21 @@ namespace Architecture
             OnGameInitialized?.Invoke();
         }
 
+        public static void AddTask(Action action)
+        {
+            if (sceneManager.isLoading)
+            {
+                sceneManager.OnSceneLoaded += (_) =>
+                {
+                    action?.Invoke();                    
+                };
+            }
+            else
+            {
+                action?.Invoke();
+            }
+        }
+
         public static TType GetRepository<TType>() where TType : Repositories
         {
             return sceneManager.GetRepository<TType>();

@@ -418,6 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4454809da3a7f34bac77ad0039c284b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health:
+    _health: 0
+    _maxHealth: 100
   _entityController: {fileID: 6673800383883333299}
   _viewDirection: {fileID: 9089228559610109873}
   _moveInstance: {fileID: 5096596363493482393}

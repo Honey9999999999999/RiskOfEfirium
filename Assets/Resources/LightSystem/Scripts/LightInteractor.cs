@@ -6,7 +6,6 @@ using Assets.Resources.MapSystem.Scripts;
 using Assets.Scripts.LabyrinthGenerator;
 using CoroutineManager;
 using MyTimer;
-using TMPro;
 using UnityEngine;
 
 public class LightInteractor : Interactor
@@ -14,7 +13,7 @@ public class LightInteractor : Interactor
     private Light light;
     private LightConfig lightConfig;
 
-    private RoomType currentRoom = RoomType.UnTyped;
+    private readonly RoomType currentRoom = RoomType.UnTyped;
 
     private const int LIGHT_MAIN_INDEX = 0;
     private const int LIGHT_EMERGENCY_INDEX = 1;
@@ -70,7 +69,11 @@ public class LightInteractor : Interactor
         light.color = roomLight.isGeneralLighting ? roomLight.ambientColor : Color.black;
         RenderSettings.ambientLight = roomLight.isGeneralLighting ? roomLight.ambientColor : Color.black;
 
-        if(!roomLight.isGeneralLighting && roomLight.isEmergencyLighting)
+        if (roomLight.isGeneralLighting)
+        {
+            roomLight.SetLightMap(LIGHT_MAIN_INDEX);
+        }
+        else if(roomLight.isEmergencyLighting)
         {
             if (roomLight.isEmergencyBlinking)
             {

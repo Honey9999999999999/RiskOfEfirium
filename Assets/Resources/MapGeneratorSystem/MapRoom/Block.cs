@@ -14,7 +14,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             for (int i = 0; i < doors.Count; i++)
             {
-                doors[i].selfPosition = position;
+                doors[i].SelfPosition = position;
             }
 
             this.doors = doors;
@@ -39,6 +39,24 @@ namespace Assets.Scripts.LabyrinthGenerator
         }
         public Direction RotatedOn { get; private set; }
 
+        public Room ParentRoom
+        {
+            get { return parentRoom; }
+            internal set
+            {
+                if(parentRoom == null)
+                {
+                    parentRoom = value;
+
+                    foreach(Door door in doors)
+                    {
+                        door.ParentRoom = parentRoom;
+                    }
+                }
+            }
+        }
+        private Room parentRoom;
+
         private void RotateToDirection(Direction direction)
         {
             int rotationCount = (int)direction;
@@ -62,7 +80,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var d in doors)
             {
-                if (d.isLeadSomeWhere && d.direction == dir)
+                if (d.IsLeadSomeWhere && d.Direction == dir)
                 {
                     door = d;
                     return true;
@@ -103,7 +121,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             foreach (var door in doors)
             {
-                door.selfPosition = position;
+                door.SelfPosition = position;
             }
         }
     }

@@ -14,6 +14,7 @@ namespace Assets.Scripts.CharacterStatsSystem
             [Characteristics.Movespeed] = new ImprovedCharacteristic(4, 0.5f, 10),
             [Characteristics.Health] = new ImprovedCharacteristic(100, 60, 300),
             [Characteristics.Regeneration] = new ImprovedCharacteristic(1, 0.2f, 20),
+            [Characteristics.Oxygen] = new ImprovedCharacteristic(20, 20, 120),
 
             [Characteristics.AreaOfLight] = new ImprovedCharacteristic(32, 18, 96),
             [Characteristics.ThermalResistance] = new ImprovedCharacteristic(0.15f, 0.01f, 0.8f),

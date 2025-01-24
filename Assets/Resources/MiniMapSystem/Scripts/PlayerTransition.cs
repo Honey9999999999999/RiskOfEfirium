@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerTransition : MonoBehaviour
 {
-    public static event Action OnPositionChanged;
+    public static event Action<Room> OnPositionChanged;
 
     private Player _player;
 
@@ -41,7 +41,7 @@ public class PlayerTransition : MonoBehaviour
             {
                 playerRoom.RoomPrefab.SetActive(false);
                 oldPosition = position;
-                position = door.targetRoom.position;
+                position = door.TargetRoom.position;
                 map.TryGetRoom(position, out playerRoom);
                 playerRoom.RoomPrefab.SetActive(true);
 
@@ -50,8 +50,8 @@ public class PlayerTransition : MonoBehaviour
                 Vector3 targetPosition = new Vector3(position.x, 0, position.y) * MapCreator.OFFSET;
                 targetPosition += new Vector3(reverseDirection.x, 0, reverseDirection.y) * MapCreator.OFFSET / 4;
                 _player.transform.position = targetPosition;
-
-                OnPositionChanged?.Invoke();
+                
+                OnPositionChanged?.Invoke(door.TargetRoom);
             }
         }
         else

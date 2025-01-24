@@ -53,6 +53,12 @@ namespace Assets.Scripts.MapDrawer
             drawingRoom.GetComponent<Image>().color = _config.roomColorMap[room.type];
             drawingRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(room.width, room.height) * _config.textureBlockSize;
 
+            if (!room.presenceOfOxygen)
+            {
+                Image image = ResourceLoader.Load<Image>("MiniMapSystem/Prefabs/Minimaze/Oxygen", drawingRoom.transform);
+                image.SetNativeSize();
+            }            
+
             drawingRoom.transform.localPosition = roomPosition * _config.textureBlockSize;
 
             Rotate(drawingRoom, room.RotatedOn);
@@ -70,22 +76,22 @@ namespace Assets.Scripts.MapDrawer
                 Vector2 blockPos = new Vector2(block.position.x, block.position.y) * _config.textureBlockSize;
                 GameObject drawingDoor = ResourceLoader.Load<GameObject>(_config.doorPath, miniMap.transform);
 
-                drawingDoor.GetComponent<Image>().color = door.isLeadSomeWhere ? Color.green : Color.red;
+                drawingDoor.GetComponent<Image>().color = door.IsLeadSomeWhere ? Color.green : Color.red;
                 drawingDoor.GetComponent<RectTransform>().sizeDelta = new Vector2(5, 5);
 
                 drawingDoor.transform.localPosition = new Vector2(
-                    blockPos.x + door.direction.x * _config.textureBlockSize / 4,
-                    blockPos.y + door.direction.y * _config.textureBlockSize / 4);
+                    blockPos.x + door.Direction.x * _config.textureBlockSize / 4,
+                    blockPos.y + door.Direction.y * _config.textureBlockSize / 4);
 
-                if (door.isLeadSomeWhere)
+                if (door.IsLeadSomeWhere)
                 {
                     GameObject drawingHall = ResourceLoader.Load<GameObject>(_config.hallPath, miniMap.transform);
                     drawingHall.GetComponent<RectTransform>().sizeDelta = new Vector2(_config.textureBlockSize, _config.textureBlockSize);
 
-                    Rotate(drawingHall, DirectionHandler.GetNameDirection(door.direction));
+                    Rotate(drawingHall, DirectionHandler.GetNameDirection(door.Direction));
 
-                    drawingHall.transform.localPosition = new Vector2(blockPos.x + door.direction.x * (_config.textureBlockSize + _config.hallOffset),
-                    blockPos.y + door.direction.y * (_config.textureBlockSize + _config.hallOffset));
+                    drawingHall.transform.localPosition = new Vector2(blockPos.x + door.Direction.x * (_config.textureBlockSize + _config.hallOffset),
+                    blockPos.y + door.Direction.y * (_config.textureBlockSize + _config.hallOffset));
                 }
             }
         }
@@ -96,11 +102,8 @@ namespace Assets.Scripts.MapDrawer
             IntVector2 playerPosition = PlayerTransition.position;
             player.transform.localPosition = new Vector2(playerPosition.x, playerPosition.y) * _config.textureBlockSize;
         }
-        private void MovePlayer()
+        private void MovePlayer(Room room)
         {
-            IntVector2 playerPosition = PlayerTransition.position;
-            Room room = _map.config.GetRoom(playerPosition);
-
             Vector2 pos = room.GetRoomPosition();
             player.transform.localPosition = new Vector2(pos.x, pos.y) * _config.textureBlockSize;
 

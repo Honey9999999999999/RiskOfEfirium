@@ -31,6 +31,35 @@ namespace Maps
                     { 1, "MapSystem/Prefabs/Rooms/RoomC" }
                 }
             },
+            [RoomType.RecreationRoom] = new()
+            {
+                [typeof(SimpleRoomA)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/Room" }
+                },
+                [typeof(SimpleRoomB)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                }
+            },
+            [RoomType.CargoRoom] = new()
+            {
+                [typeof(SimpleRoomA)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/Room" }
+                },
+                [typeof(SimpleRoomB)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                }
+            },
+            [RoomType.LifeSupportRoom] = new()
+            {
+                [typeof(SimpleRoomB)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                }
+            },
             [RoomType.CommandRoom] = new()
             {
                 [typeof(SimpleRoomA)] = new()
@@ -38,11 +67,32 @@ namespace Maps
                     { 1, "MapSystem/Prefabs/Rooms/Room" }
                 }
             },
+            [RoomType.SecurityRoom] = new()
+            {
+                [typeof(SimpleRoomB)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                }
+            },
             [RoomType.Armory] = new()
             {
                 [typeof(SimpleRoomC)] = new()
                 {
                     { 1, "MapSystem/Prefabs/Rooms/Armory" }
+                }
+            },
+            [RoomType.EngineeringRoom] = new()
+            {
+                [typeof(SimpleRoomC)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
+                }
+            },
+            [RoomType.Restroom] = new()
+            {
+                [typeof(SimpleRoomC)] = new()
+                {
+                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
                 }
             }
         };

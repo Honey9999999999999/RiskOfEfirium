@@ -4,24 +4,30 @@
     {
         public Door(Direction direction)
         {
-            this.direction = DirectionHandler.GetDirection(direction);
+            this.Direction = DirectionHandler.GetDirection(direction);
 
-            isLeadSomeWhere = false;
+            IsLeadSomeWhere = false;
         }
 
-        public IntVector2 selfPosition { get; internal set; }
-        public IntVector2 direction { get; private set; }
-        public IntVector2 targetPosition => selfPosition + direction;
-        public bool isLeadSomeWhere { get; set; }
+        public IntVector2 SelfPosition { get; internal set; }
+        public IntVector2 Direction { get; private set; }
+        public IntVector2 TargetPosition => SelfPosition + Direction;
+        public bool IsLeadSomeWhere { get; set; }
 
-        public Room targetRoom { get; internal set; }
+        public Room ParentRoom { get { return parentRoom; } internal set 
+            {
+                parentRoom = (parentRoom ??= value);
+            }
+        }
+        private Room parentRoom;
+        public Room TargetRoom { get; internal set; }
 
         internal void Rotate()
         {
-            int x = -direction.y;
-            int y = direction.x;
+            int x = -Direction.y;
+            int y = Direction.x;
 
-            direction = new(x, y);
+            Direction = new(x, y);
         }
     }
 }

@@ -44,6 +44,7 @@ namespace Architecture
 
             isLoading = false;
             OnSceneLoaded?.Invoke(currentScene);
+            OnSceneLoaded = null;
         }
 
         public Coroutine LoadNewSceneAsync(string sceneName)

@@ -37,7 +37,7 @@ namespace Assets.Scripts.LabyrinthGenerator
                 {
                     foreach (var door in block.doors)
                     {
-                        if (!door.isLeadSomeWhere)
+                        if (!door.IsLeadSomeWhere)
                         {
                             freeDoors.Add(door);
                         }
@@ -51,13 +51,13 @@ namespace Assets.Scripts.LabyrinthGenerator
         protected List<Door> GetAllMatchingDoorsFromRoom(Door targetDoor, Room room)
         {
             List<Door> matchingDoors = new();
-            IntVector2 direction = -targetDoor.direction;
+            IntVector2 direction = -targetDoor.Direction;
 
             foreach (var block in room.blocks)
             {
                 foreach (var door in block.doors)
                 {
-                    if (door.direction == direction)
+                    if (door.Direction == direction)
                     {
                         matchingDoors.Add(door);
                     }

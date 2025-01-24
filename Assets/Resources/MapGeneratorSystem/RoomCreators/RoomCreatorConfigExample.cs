@@ -9,8 +9,8 @@
 
             _roomMap.Add(RoomType.Gateway, new()
             {
-                { 1f, RoomType.EngineeringRoom },
-                { 1f, RoomType.ResidentialRoom }
+                { 1f, RoomType.CargoRoom },
+                { 1f, RoomType.SecurityRoom }
             });
             _roomMap.Add(RoomType.EngineeringRoom, new()
             {
@@ -42,12 +42,14 @@
             });
             _roomMap.Add(RoomType.RecreationRoom, new()
             {
-                { 1f, RoomType.SecurityRoom },
-                { 1f, RoomType.MedicalRoom }
+                { 1f, RoomType.ResidentialRoom },
+                { 1f, RoomType.Diner },
+                { .5f, RoomType.CargoRoom },
+                { .75f, RoomType.MedicalRoom }
             });
             _roomMap.Add(RoomType.SecurityRoom, new()
             {
-                { 1f, RoomType.EngineeringRoom }
+                { 1f, RoomType.RecreationRoom }
             });
             _roomMap.Add(RoomType.MedicalRoom, new()
             {
@@ -115,6 +117,32 @@
                 { 0.6f, CreateRoom<SimpleRoomB> }
             });
             _sizeMap.Add(RoomType.SecurityRoom, new()
+            {
+                { 1f, CreateRoom<SimpleRoomB> }
+            });
+
+
+            ///Генератор комнат без кислорода
+
+            _roomNoOxMap.Add(RoomType.LifeSupportRoom, new()
+            {
+                { 1f, RoomType.CargoRoom },
+                { 1f, RoomType.EngineeringRoom }
+            });
+            _roomNoOxMap.Add(RoomType.CargoRoom, new()
+            {
+                { 1f, RoomType.CargoRoom },
+                { .5f, RoomType.LifeSupportRoom }
+            });
+            _roomNoOxMap.Add(RoomType.EngineeringRoom, new()
+            {
+                { 1f, RoomType.CargoRoom },
+                { .5f, RoomType.LifeSupportRoom }
+            });
+
+            //Размеры комнат без кислорода
+
+            _sizeNoOxMap.Add(RoomType.LifeSupportRoom, new()
             {
                 { 1f, CreateRoom<SimpleRoomB> }
             });

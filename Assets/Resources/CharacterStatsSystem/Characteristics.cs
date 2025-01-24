@@ -10,6 +10,7 @@
         Movespeed,
         Health,
         Regeneration,
+        Oxygen,
 
         AreaOfLight,
         ThermalResistance,

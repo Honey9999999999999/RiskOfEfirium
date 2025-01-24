@@ -50,6 +50,7 @@ namespace Assets.Scripts.Entities
         protected virtual void OnDeath()
         {
             OnEntityDeath?.Invoke();
+            //OnEntityDeath = null;
 
             Coroutines.StartRoutine(DestroyEntityRoutine());
         }

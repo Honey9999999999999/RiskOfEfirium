@@ -26,7 +26,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         private bool TryPasteRoomInDoor(Door freeDoor, Room room)
         {
             room.RandomRotate();
-            room.SetInPosition(freeDoor.targetPosition);
+            room.SetInPosition(freeDoor.TargetPosition);
 
             for (int i = 0; i < 4; i++)
             {
@@ -35,16 +35,16 @@ namespace Assets.Scripts.LabyrinthGenerator
                 while (matchingDoors.Count > 0)
                 {
                     Door chekingDoor = matchingDoors[random.Next(matchingDoors.Count)];
-                    room.OverrideCenter(room.GetBlock(chekingDoor.selfPosition));
+                    room.OverrideCenter(room.GetBlock(chekingDoor.SelfPosition));
 
                     if (IsFitRoom(room.GetOccupiedPosition()))
                     {
                         rooms.Add(room);
-                        freeDoor.isLeadSomeWhere = true;
-                        freeDoor.targetRoom = room;
+                        freeDoor.IsLeadSomeWhere = true;
+                        freeDoor.TargetRoom = room;
 
-                        chekingDoor.isLeadSomeWhere = true;
-                        chekingDoor.targetRoom = GetRoom(freeDoor.selfPosition);
+                        chekingDoor.IsLeadSomeWhere = true;
+                        chekingDoor.TargetRoom = GetRoom(freeDoor.SelfPosition);
 
                         return true;
                     }
@@ -85,8 +85,7 @@ namespace Assets.Scripts.LabyrinthGenerator
             while (rooms.Count < MAX_ROOMS)
             {
                 Door freeDoor = GetRandomFreeDoor();
-                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
-                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomRoomAt(roomType));
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomRoomAt(freeDoor.ParentRoom));
             }
         }
 
@@ -119,8 +118,7 @@ namespace Assets.Scripts.LabyrinthGenerator
 
             foreach (var freeDoor in freeDoors)
             {
-                RoomType roomType = GetRoom(freeDoor.selfPosition).type;
-                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomEndRoomAt(roomType));
+                TryPasteRoomInDoor(freeDoor, roomCreatorConfig.CreateRandomEndRoomAt(freeDoor.ParentRoom));
             }
         }
     }

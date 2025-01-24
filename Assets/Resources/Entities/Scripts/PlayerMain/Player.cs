@@ -1,3 +1,4 @@
+using Assets.Resources.Entities.Scripts;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Controllers.EntityControllers;
 using Assets.Scripts.CraftSystem.PersonalCards;
@@ -13,6 +14,13 @@ public class Player : LivingEntity
 
     public override CharacterCharacteristicCard PersonalCCC => _personalCCC;
     private readonly PlayerCCC _personalCCC = new();
+    public readonly EntityOxygen entityOxygen;
+
+    public Player() : base()
+    {
+        entityOxygen = new(this);
+        entityOxygen.OnOxygenDown += (float damage) => health.TakenDamage(damage);
+    }
 
     public PlayerController GetPlayerController()
     {
@@ -28,9 +36,9 @@ public class Player : LivingEntity
 
     protected override void OnDeath()
     {
-        base.OnDeath();
-
         _moveInstance.EntityDead();
         _battlerFSM.enabled = false;
+
+        base.OnDeath();
     }
 }

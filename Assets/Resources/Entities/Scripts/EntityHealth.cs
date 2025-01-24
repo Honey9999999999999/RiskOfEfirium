@@ -15,8 +15,8 @@ namespace Assets.Scripts.Entities
         public event Action OnHealthRestored;
         public event Action OnHealthDamaged;
 
-        private float _health;
-        private float _maxHealth;
+        [SerializeField] private float _health;
+        [SerializeField] private float _maxHealth;
 
         private float _regenerationPerSec;
         private float _regenerationCooldown;
