@@ -24,7 +24,7 @@ namespace Assets.Resources.PlayerUI.Scripts
         private void Initialize()
         {
             Player player = Game.GetInteractor<PlayerInteractor>().Player;
-            entityOxygen = player.entityOxygen;
+            entityOxygen = player.EntityOxygen;
 
             _startRect = filler.rect.width;
             _endRect = filler.rect.width + mask.rect.width - offset;

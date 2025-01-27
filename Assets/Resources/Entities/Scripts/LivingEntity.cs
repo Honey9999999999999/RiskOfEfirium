@@ -23,14 +23,24 @@ namespace Assets.Scripts.Entities
 
         public abstract CharacterCharacteristicCard PersonalCCC { get; }
 
-        public Inventory Inventory { get; }
+        public Inventory Inventory { get; private set; }
 
-        public LivingEntity()
+
+        protected virtual void Awake()
         {
             Inventory = new(PersonalCCC);
             health = new(PersonalCCC);
             armor = new(PersonalCCC);
+        }
+
+        private void OnEnable()
+        {
             health.OnHealthDown += OnDeath;
+        }
+
+        private void OnDisable()
+        {
+            health.OnHealthDown -= OnDeath;
         }
 
         public EntityController GetEntityController() => _entityController;

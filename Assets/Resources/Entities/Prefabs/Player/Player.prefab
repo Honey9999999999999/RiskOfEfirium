@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health:
-    _health: 0
+    _health: 100
     _maxHealth: 100
   _entityController: {fileID: 6673800383883333299}
   _viewDirection: {fileID: 9089228559610109873}

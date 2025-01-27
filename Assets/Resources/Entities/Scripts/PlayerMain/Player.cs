@@ -9,24 +9,26 @@ using UnityEngine;
 public class Player : LivingEntity
 {
     [SerializeField] private Transform _viewDirection;
-    [SerializeField] protected MovePlayerFSMInstance _moveInstance;
+    [SerializeField] protected PlayerMoveFSMInstance _moveInstance;
     [SerializeField] private PlayerBattleFMSInstance _battlerFSM;
 
     public override CharacterCharacteristicCard PersonalCCC => _personalCCC;
     private readonly PlayerCCC _personalCCC = new();
-    public readonly EntityOxygen entityOxygen;
+    public EntityOxygen EntityOxygen { get; private set; }
 
-    public Player() : base()
+    protected override void Awake()
     {
-        entityOxygen = new(this);
-        entityOxygen.OnOxygenDown += (float damage) => health.TakenDamage(damage);
+        base.Awake();
+
+        EntityOxygen = new(this);
+        EntityOxygen.OnOxygenDown += (float damage) => health.TakenDamage(damage);
     }
 
     public PlayerController GetPlayerController()
     {
         return (PlayerController)GetEntityController();
     }
-    public MovePlayerFSMInstance GetMoveInstance()
+    public PlayerMoveFSMInstance GetMoveInstance()
     {
         return _moveInstance;
     }

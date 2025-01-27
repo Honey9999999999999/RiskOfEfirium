@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Movement
 {
     [RequireComponent(typeof(Rigidbody), typeof(LivingEntity))]
-    public class MovePlayerFSMInstance : MoveFSMInstance<Player>
+    public class PlayerMoveFSMInstance : MoveFSMInstance<Player>
     {
         [SerializeField] private Transform _playerModel;
         [SerializeField, Min(0)] private float _baseSpeed;

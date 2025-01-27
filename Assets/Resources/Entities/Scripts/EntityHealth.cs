@@ -75,6 +75,7 @@ namespace Assets.Scripts.Entities
             if (beAlive && _health <= 0)
             {
                 OnHealthDown?.Invoke();
+                Debug.Log("Death1!");
                 _timer.Reset();
 
                 return;
