@@ -8,12 +8,12 @@ namespace Assets.Scripts.Controllers.EntityControllers
     {
         public Vector3 viewDirection => GetViewDirection();
 
-        public override bool isWalk { get => !InputHandler.instance.isMoveDeadZone; }
-        public bool isBattle { get; private set; }
+        public override bool isWalk { get => !InputHandler.IsMoveDeadZone; }
+        public bool IsBattle { get; private set; }
 
         public void Start()
         {
-            InputHandler.OnTabInput += () => isBattle = !isBattle;
+            InputHandler.OnTabInput += () => IsBattle = !IsBattle;
         }
 
         private Vector3 GetViewDirection()

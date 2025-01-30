@@ -15,22 +15,22 @@ namespace Assets.Scripts.Movement
 
         private void Awake()
         {
-            if (_entity == null)
+            if (entity == null)
             {
-                Game.OnGameInitialized += () => _entity = Game.GetInteractor<PlayerInteractor>().Player;
+                Game.OnGameInitialized += () => entity = Game.GetInteractor<PlayerInteractor>().Player;
             }
 
             Initialize();
         }
         private void Start()
         {
-            _speed = _entity.PersonalCCC.Get(Characteristics.Movespeed);
+            _speed = entity.PersonalCCC.Get(Characteristics.Movespeed);
 
-            _stateMachine.AddState(new IdleState(_stateMachine, _entity, _speed));
-            _stateMachine.AddState(new WalkState(_stateMachine, _entity, _speed));
-            _stateMachine.AddState(new FlyingState(_stateMachine, _entity, _playerModel, _speed));
+            stateMachine.AddState(new IdleState(stateMachine, entity, _speed));
+            stateMachine.AddState(new WalkState(stateMachine, entity, _speed));
+            stateMachine.AddState(new FlyingState(stateMachine, entity, _playerModel, _speed));
 
-            _stateMachine.EnterIn<IdleState>();
+            stateMachine.EnterIn<IdleState>();
         }
 
         private void Initialize() { }

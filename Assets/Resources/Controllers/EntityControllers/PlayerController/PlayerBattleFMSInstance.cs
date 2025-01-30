@@ -19,10 +19,10 @@ namespace Assets.Scripts.Controllers.EntityControllers
                 value = new()
             };
 
-            _stateMachine.AddState(new SimpleState(_stateMachine, _player));
-            _stateMachine.AddState(new BattleState(_stateMachine, _player, targetPosition, _gun));
+            stateMachine.AddState(new SimpleState(stateMachine, _player));
+            stateMachine.AddState(new BattleState(stateMachine, _player, targetPosition, _gun));
 
-            _stateMachine.EnterIn<SimpleState>();
+            stateMachine.EnterIn<SimpleState>();
         }
 
         public Gun GetGun() => _gun;

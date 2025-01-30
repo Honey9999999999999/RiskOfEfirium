@@ -8,24 +8,23 @@ namespace Assets.Scripts.Controllers.EntityControllers.EnemyController
 {
     public class EnemyBattleState : EnemyState
     {
-        private float _attackDistance;
+        private float attackDistance;
         public EnemyBattleState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance) : base(stateMachine, entity, target)
         {
-            _attackDistance = attackDistance;
+            this.attackDistance = attackDistance;
         }
 
-        protected bool IsReadyAttack()
+        protected bool IsOnAttackLine()
         {
-            if (_target.value == null)
+            if (target.value == null)
             {
                 return false;
             }
 
-            Vector3 vector = _target.value.position - _entity.transform.position;
-
+            Vector3 vector = target.value.position - entity.transform.position;
             float distance = Mathf.Sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 
-            return distance < _attackDistance;
-        }
+            return distance < attackDistance;
+        }        
     }
 }

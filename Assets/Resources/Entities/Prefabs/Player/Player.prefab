@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 5096596363493482393}
   - component: {fileID: 3026261379260145341}
   - component: {fileID: 2761584940448225470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ Transform:
   m_GameObject: {fileID: 8247204522052732962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.0020121043, z: 0, w: -0.999998}
-  m_LocalPosition: {x: -4.579402, y: 0, z: 1.5617316}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09eac7b60435c944dad913bd2592f395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 5634911306522840006}
+  entity: {fileID: 5634911306522840006}
   _playerModel: {fileID: 6266843565466388108}
   _baseSpeed: 6
 --- !u!54 &3026261379260145341

@@ -28,23 +28,23 @@ namespace PlayerMoveStates
         {
             base.Update();
 
-            if (_controller.isBattle)
+            if (_controller.IsBattle)
             {
-                _stateMachine.EnterIn<FlyingState>();
+                stateMachine.EnterIn<FlyingState>();
 
                 return;
             }
             if (!_controller.isWalk)
             {
-                _stateMachine.EnterIn<IdleState>();
+                stateMachine.EnterIn<IdleState>();
 
                 return;
             }
 
             ViewOnDirection();
 
-            Vector3 forward = _movebleObject.forward * InputHandler.instance.moveVector.y;
-            Vector3 right = _movebleObject.right * InputHandler.instance.moveVector.x;
+            Vector3 forward = _movebleObject.forward * InputHandler.MoveDirection.y;
+            Vector3 right = _movebleObject.right * InputHandler.MoveDirection.x;
             Vector3 direction = forward + right;
 
             _rigidbody.velocity = direction * _speed.CurrentValue;

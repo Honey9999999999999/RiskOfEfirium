@@ -20,6 +20,7 @@ namespace Assets.Scripts.Spawn
             {
                 GameObject newEnemy = GameObject.Instantiate(enemy.gameObject, transform);
                 newEnemy.transform.position = spawnPoint.position;
+                newEnemy.name = newEnemy.name + Random.value;
             }
         }
     }
