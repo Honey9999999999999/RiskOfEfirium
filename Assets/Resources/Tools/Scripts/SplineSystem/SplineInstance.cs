@@ -30,12 +30,12 @@ namespace SplineSystem
 
             _methodsMap = new()
             {
-                [SplineTypes.Simple] = () => _stateMachine.EnterIn<SplineSimpleState>(),
-                [SplineTypes.SmoothByVirtualPoints] = () => _stateMachine.EnterIn<SplineVSmoothState>()
+                [SplineTypes.Simple] = () => stateMachine.EnterIn<SplineSimpleState>(),
+                [SplineTypes.SmoothByVirtualPoints] = () => stateMachine.EnterIn<SplineVSmoothState>()
             };
 
-            _stateMachine.AddState(new SplineSimpleState(_points, _virtualPoints, _splineConfig, _lenghtPath, _currentPosition, _methodsMap));
-            _stateMachine.AddState(new SplineVSmoothState(_points, _virtualPoints, _pathLine, _splineConfig, _lenghtPath, _currentPosition, _methodsMap));
+            stateMachine.AddState(new SplineSimpleState(_points, _virtualPoints, _splineConfig, _lenghtPath, _currentPosition, _methodsMap));
+            stateMachine.AddState(new SplineVSmoothState(_points, _virtualPoints, _pathLine, _splineConfig, _lenghtPath, _currentPosition, _methodsMap));
 
             _methodsMap[_splineConfig.splineType]?.Invoke();
         }
@@ -51,7 +51,7 @@ namespace SplineSystem
 
         public void Run()
         {
-            _stateMachine.currentState.Run();
+            stateMachine.currentState.Run();
         }
 
         public void TurnAround()

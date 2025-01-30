@@ -1,6 +1,7 @@
 ﻿using Architecture;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Tools;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,16 +9,13 @@ namespace EnemyMoveStates
 {
     internal class WalkState : EnemyMoveState
     {
-        public WalkState(FSMMove stateMachine, Enemy entity, NavMeshAgent agent, ImprovedCharacteristic speed) : base(stateMachine, entity, agent, speed)
+        public WalkState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> targetPos, ImprovedCharacteristic speed) : base(stateMachine, agent, targetPos, speed)
         {
         }
 
         public override void Enter()
         {
             base.Enter();
-
-            _rigidbody.velocity = Vector3.zero;
-            _agent.speed = _speed.CurrentValue;
         }
 
         public override void Exit()
@@ -29,16 +27,16 @@ namespace EnemyMoveStates
         {
             base.Update();
 
-            if (!_controller.isWalk)
+            if (IsCurrentPosition())
             {
-                _stateMachine.EnterIn<IdleState>();
+                stateMachine.EnterIn<IdleState>();
 
                 return;
             }
 
             if (Game.GetInteractor<NavMeshInteractor>().IsInitialized)
             {
-                _agent.SetDestination(_controller.targetPosition);
+                agent.SetDestination(targetPosition.value);
             }
         }
     }

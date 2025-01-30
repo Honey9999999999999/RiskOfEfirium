@@ -20,7 +20,7 @@ namespace Assets.Scripts.Movement
             _rigidbody = _entity.GetRigidbody();
 
             _playerInteractor = Game.GetInteractor<PlayerInteractor>();
-            _playerInteractor.OnMenuOpened += () => _stateMachine.EnterIn<IdleState>();
+            _playerInteractor.OnMenuOpened += () => base.stateMachine.EnterIn<IdleState>();
         }
     }
 }

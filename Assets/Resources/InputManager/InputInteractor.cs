@@ -10,7 +10,7 @@ namespace Assets.Scripts.InputManager
         {
             base.Initialize();
 
-            input = InputHandler.instance;
+            input = InputHandler.Instance;
         }
 
         public override void OnCreate()

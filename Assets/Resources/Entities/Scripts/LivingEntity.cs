@@ -10,7 +10,6 @@ using UnityEngine;
 namespace Assets.Scripts.Entities
 {
     [Serializable]
-    [RequireComponent(typeof(Rigidbody))]
     public abstract class LivingEntity : MonoBehaviour
     {
         public event Action OnTakenDamage;

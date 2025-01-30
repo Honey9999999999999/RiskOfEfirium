@@ -40,7 +40,7 @@ namespace Assets.Scripts.Controllers.EntityControllers
         {
             base.Update();
 
-            if (!_controller.isBattle)
+            if (!_controller.IsBattle)
             {
                 _stateMachine.EnterIn<SimpleState>();
 

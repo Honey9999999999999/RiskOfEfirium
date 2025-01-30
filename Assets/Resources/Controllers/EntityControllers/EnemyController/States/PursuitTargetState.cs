@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Controllers.EntityControllers.EnemyController;
+﻿using System;
+using Assets.Scripts.Controllers.EntityControllers.EnemyController;
 using Assets.Scripts.Controllers.EntityControllers.EnemyController.States;
 using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
@@ -10,41 +11,60 @@ namespace Assets.Scripts.Controllers.EntityControllers
 {
     public class PursuitTargetState : EnemyBattleState
     {
+        public event Action<Vector3> OnPursuit;
+
         public PursuitTargetState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance) : base(stateMachine, entity, target, attackDistance)
         {
         }
 
+        Vector3 lastTargetPosition;
+
         public override void Enter()
         {
             base.Enter();
+
+            if (!IsSeeTarget())
+            {
+                CheckLastPosition();
+            }
         }
 
         public override void Exit()
         {
-            base.Exit();
+            base.Exit();            
         }
 
         public override void Update()
         {
             base.Update();
 
-            if (_target.value == null)
+            if (!IsSeeTarget())
             {
-                _stateMachine.EnterIn<SearchingTargetState>();
+                if(Vector3.Distance(lastTargetPosition, entity.transform.position) < 0.5f)
+                {
+                    stateMachine.EnterIn<SearchingTargetState>();
+                }
 
                 return;
             }
             else
             {
-                _targetPosition = _target.value.position;
+                CheckLastPosition();
             }
 
-            if (IsReadyAttack())
+            if (IsOnAttackLine())
             {
-                _stateMachine.EnterIn<AttackState>();
+                stateMachine.EnterIn<AttackState>();
+                OnPursuit.Invoke(entity.transform.position);
 
                 return;
             }
+        }
+
+        private void CheckLastPosition()
+        {
+            lastTargetPosition = target.value.position;
+            OnPursuit.Invoke(lastTargetPosition);
         }
     }
 }

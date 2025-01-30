@@ -6,7 +6,7 @@ namespace Assets.Scripts.Movement
 {
     public abstract class MoveFSMInstance<TEntity> : FSMExample<FSMMove, MoveState> where TEntity : LivingEntity
     {
-        [SerializeField] protected TEntity _entity;
+        [SerializeField] protected TEntity entity;
 
         public virtual void EntityDead()
         {

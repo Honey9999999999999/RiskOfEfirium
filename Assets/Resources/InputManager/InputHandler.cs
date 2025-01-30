@@ -15,23 +15,23 @@ namespace Assets.Scripts.InputManager
         public static event Action OnEscInput;
         public static event Action OnInteractionButtonInput;
 
-        public static event Action OnMoveInput;
+        public static event Action OnMoveInput;        
 
-        public static InputHandler instance { get; private set; }
+        private float xMove;
+        private float yMove;
 
-        private float _xMove;
-        private float _yMove;
+        public static InputHandler Instance { get; private set; }
 
-        public Vector2 moveVector => new Vector2(_xMove, _yMove).normalized;
+        public static Vector2 MoveDirection => new Vector2(Instance.xMove, Instance.yMove).normalized;
 
-        public bool isCameraRotate { get; private set; }
-        public bool isMoveDeadZone { get => (moveVector.x * moveVector.x) + (moveVector.y * moveVector.y) < 0.01f; }
+        public static bool IsMoveDeadZone { get => (MoveDirection.x * MoveDirection.x)
+                                                 + (MoveDirection.y * MoveDirection.y) < 0.01f; }
 
         private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
             }
             else
             {
@@ -59,11 +59,6 @@ namespace Assets.Scripts.InputManager
             if (Input.GetMouseButton(1))
             {
                 OnCameraInput?.Invoke();
-                isCameraRotate = true;
-            }
-            else
-            {
-                isCameraRotate = false;
             }
 
             if (Input.mouseScrollDelta.y != 0)
@@ -90,34 +85,34 @@ namespace Assets.Scripts.InputManager
             {
                 if (Input.GetKey(KeyCode.W))
                 {
-                    _yMove = 1;
+                    yMove = 1;
                 }
                 else
                 {
-                    _yMove = -1;
+                    yMove = -1;
                 }
                 OnMoveInput?.Invoke();
             }
             else
             {
-                _yMove = 0;
+                yMove = 0;
             }
 
             if (Input.GetKey(KeyCode.A) ^ Input.GetKey(KeyCode.D))
             {
                 if (Input.GetKey(KeyCode.A))
                 {
-                    _xMove = -1;
+                    xMove = -1;
                 }
                 else
                 {
-                    _xMove = 1;
+                    xMove = 1;
                 }
                 OnMoveInput?.Invoke();
             }
             else
             {
-                _xMove = 0;
+                xMove = 0;
             }
         }
     }

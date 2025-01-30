@@ -33,9 +33,9 @@ namespace PlayerMoveStates
         {
             base.Update();
 
-            if (!_controller.isBattle)
+            if (!_controller.IsBattle)
             {
-                _stateMachine.EnterIn<IdleState>();
+                stateMachine.EnterIn<IdleState>();
 
                 return;
             }
@@ -44,8 +44,8 @@ namespace PlayerMoveStates
 
             Transform camera = Camera.current.transform;
 
-            Vector3 forward = new Vector3(camera.forward.x, 0, camera.forward.z) * InputHandler.instance.moveVector.y;
-            Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * InputHandler.instance.moveVector.x;
+            Vector3 forward = new Vector3(camera.forward.x, 0, camera.forward.z) * InputHandler.MoveDirection.y;
+            Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * InputHandler.MoveDirection.x;
             Vector3 direction = forward + right;
 
             _rigidbody.velocity = direction * (_speed.CurrentValue * 0.75f);

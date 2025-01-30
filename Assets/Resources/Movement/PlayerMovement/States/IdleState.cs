@@ -26,15 +26,15 @@ namespace PlayerMoveStates
         {
             base.Update();
 
-            if (!_playerInteractor.MenuMode && _controller.isBattle)
+            if (!_playerInteractor.MenuMode && _controller.IsBattle)
             {
-                _stateMachine.EnterIn<FlyingState>();
+                stateMachine.EnterIn<FlyingState>();
 
                 return;
             }
             if (!_playerInteractor.MenuMode && _controller.isWalk)
             {
-                _stateMachine.EnterIn<WalkState>();
+                stateMachine.EnterIn<WalkState>();
 
                 return;
             }

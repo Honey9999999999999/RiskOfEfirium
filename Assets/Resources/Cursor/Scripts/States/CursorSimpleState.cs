@@ -22,7 +22,7 @@ namespace Assets.Scripts.UI.CursorGame.States
                 _stateMachine.EnterIn<CursorMenuState>();
             }
 
-            if (_controller.isBattle)
+            if (_controller.IsBattle)
             {
                 _stateMachine.EnterIn<CursorBattleState>();
 

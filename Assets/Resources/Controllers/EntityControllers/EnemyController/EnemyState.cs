@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Entities;
+﻿using System;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
@@ -7,18 +8,16 @@ namespace EntityControllers
 {
     public class EnemyState : IState
     {
-        protected FinalStateMachine<EnemyState> _stateMachine;
-
-        protected LivingEntity _entity;
-
-        protected ShellValue<Transform> _target;
-        protected Vector3 _targetPosition;
+        protected FinalStateMachine<EnemyState> stateMachine;
+        protected LivingEntity entity;
+        protected ShellValue<Transform> target;
+        public Vector3 TargetPosition { get; protected set; }
 
         public EnemyState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target) : base()
         {
-            _stateMachine = stateMachine;
-            _entity = entity;
-            _target = target;
+            this.stateMachine = stateMachine;
+            this.entity = entity;
+            this.target = target;
         }
 
         public virtual void Enter() { }
@@ -27,9 +26,17 @@ namespace EntityControllers
 
         public virtual void Update() { }
 
-        public Vector3 GetTargetPosition()
+        protected bool IsSeeTarget()
         {
-            return _targetPosition;
+            if (target.value == null)
+            {
+                return false;
+            }
+
+            Vector3 direction = target.value.position - entity.transform.position;
+
+            return Physics.Raycast(entity.transform.position, direction, out RaycastHit hitInfo, 99, (1 << 8) | (1 << 9) | (1 << 10), QueryTriggerInteraction.Ignore)
+                && hitInfo.transform.TryGetComponent(out Player _);
         }
     }
 }

@@ -5,12 +5,12 @@ namespace Assets.Scripts.Movement
 {
     public abstract class MoveState : IState
     {
-        protected FSMMove _stateMachine;
+        protected FSMMove stateMachine;
         protected ImprovedCharacteristic _speed;
 
         public MoveState(FSMMove stateMachine, ImprovedCharacteristic speed) : base()
         {
-            _stateMachine = stateMachine;
+            this.stateMachine = stateMachine;
             _speed = speed;
         }
 

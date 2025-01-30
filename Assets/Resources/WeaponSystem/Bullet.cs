@@ -14,17 +14,17 @@ public class Bullet : MonoBehaviour
 
     private Type target;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.isTrigger && other.TryGetComponent(out LivingEntity entity))
-        {
-            if (entity.GetType().Equals(target))
-            {
-                entity.TakenDamage(_type, _damage);
-            }
-            DestroyBullet();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!other.isTrigger && other.TryGetComponent(out LivingEntity entity))
+    //    {
+    //        if (entity.GetType().Equals(target))
+    //        {
+    //            entity.TakenDamage(_type, _damage);
+    //        }
+    //        DestroyBullet();
+    //    }
+    //}
 
     public void Fire(Type type, Vector3 vectorForce)
     {

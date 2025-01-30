@@ -15,15 +15,15 @@ namespace UICursor
 
         public void ChangeSkinPreset<TSkinConfig>() where TSkinConfig : SkinPresetConfig, new()
         {
-            _stateMachine.ClearStates();
+            stateMachine.ClearStates();
 
             TSkinConfig config = new();
 
-            _stateMachine.AddState(new CursorSimpleState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
-            _stateMachine.AddState(new CursorBattleState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Battle])));
-            _stateMachine.AddState(new CursorMenuState(_stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
+            stateMachine.AddState(new CursorSimpleState(stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
+            stateMachine.AddState(new CursorBattleState(stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Battle])));
+            stateMachine.AddState(new CursorMenuState(stateMachine, ResourceLoader.Load<Texture2D>(config.cursorsMap[CursorMode.Standart])));
 
-            _stateMachine.EnterIn<CursorSimpleState>();
+            stateMachine.EnterIn<CursorSimpleState>();
         }
     }
 }

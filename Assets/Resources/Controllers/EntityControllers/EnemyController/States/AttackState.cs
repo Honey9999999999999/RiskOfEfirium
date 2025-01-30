@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Entities;
+﻿using System;
+using Assets.Resources.BattleSystem;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using EntityControllers;
 using FSM;
@@ -9,17 +11,15 @@ namespace Assets.Scripts.Controllers.EntityControllers.EnemyController.States
 {
     public class AttackState : EnemyBattleState
     {
-        private Gun _gun;
-
-        public AttackState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance, Gun gun) : base(stateMachine, entity, target, attackDistance)
+        public AttackState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance) : base(stateMachine, entity, target, attackDistance)
         {
-            _gun = gun;
         }
+
+        public event Action<Transform> OnAttack;
 
         public override void Enter()
         {
             base.Enter();
-            _targetPosition = _entity.transform.position + (_target.value.position - _entity.transform.position).normalized * 0.5f;
         }
 
         public override void Exit()
@@ -31,14 +31,14 @@ namespace Assets.Scripts.Controllers.EntityControllers.EnemyController.States
         {
             base.Update();
 
-            if (!IsReadyAttack())
+            if (!IsOnAttackLine() || !IsSeeTarget())
             {
-                _stateMachine.EnterIn<PursuitTargetState>();
+                stateMachine.EnterIn<PursuitTargetState>();
 
                 return;
             }
 
-            _gun.Fire(_target.value.GetComponent<Collider>().bounds.center);
+            OnAttack?.Invoke(target.value);
         }
     }
 }
