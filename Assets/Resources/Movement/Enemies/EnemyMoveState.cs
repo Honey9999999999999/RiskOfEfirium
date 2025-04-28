@@ -9,13 +9,15 @@ namespace Assets.Scripts.Movement
     public abstract class EnemyMoveState : MoveState
     {
         protected NavMeshAgent agent;
-        protected ShellValue<Vector3> targetPosition;
-        
+        protected ShellValue<Vector3> followPosition;
+        protected ShellValue<Vector3> trackingPosition;
 
-        protected EnemyMoveState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> targetPos, ImprovedCharacteristic speed) : base(stateMachine, speed)
+
+        protected EnemyMoveState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> followPos, ShellValue<Vector3> trackingPos, ImprovedCharacteristic speed) : base(stateMachine, speed)
         {
             this.agent = agent;
-            targetPosition = targetPos;
+            followPosition = followPos;
+            trackingPosition = trackingPos;
         }
 
         public override void Enter()
@@ -27,39 +29,39 @@ namespace Assets.Scripts.Movement
         {
             base.Update();
 
-            DrawTargetPosition();
-            DrawViewDirection();
+            IsLookingAtTarget();
         }
 
         protected bool IsCurrentPosition()
         {
-            Vector3 vector = targetPosition.value - agent.transform.position;
+            Vector3 vector = followPosition.value - agent.transform.position;
             return (vector.x * vector.x + vector.y * vector.y) < 0.1f;
         }
 
         protected bool IsLookingAtTarget()
         {
-            // Вычисляем направление от агента к объекту
-            Vector3 directionToTarget = (targetPosition.value - agent.transform.position).normalized;
+            if(trackingPosition.value == Vector3.zero)
+            {
+                return true;
+            }
 
-            // Игнорируем компонент по оси Y
-            directionToTarget.x = 0;
-            directionToTarget.z = 0;
+            Vector3 directionToTarget = (trackingPosition.value - agent.transform.position).normalized;
+            directionToTarget.y = 0;
 
-            // Вектор взгляда агента
-            Vector3 forward = agent.transform.localToWorldMatrix.MultiplyPoint(agent.transform.forward);
+            Vector3 forward = agent.transform.forward;
+            forward.y = 0;
 
-            // Считаем угол между forward и directionToTarget
             float angle = Vector3.Angle(forward, directionToTarget);
 
-            // Проверяем, попадает ли угол в допустимый диапазон
+            trackingPosition.value = angle <= 5f ? Vector3.zero : trackingPosition.value;
+
             return angle <= 5f;
         }
 
 
         private void DrawTargetPosition()
         {
-            Drawer.DrawDiamondPoint(targetPosition.value, 2, Color.red, false);
+            Drawer.DrawDiamondPoint(followPosition.value, 2, Color.red, false);
         }
         private void DrawViewDirection()
         {

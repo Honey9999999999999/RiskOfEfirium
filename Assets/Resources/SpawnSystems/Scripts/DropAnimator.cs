@@ -56,7 +56,7 @@ public class DropAnimator : MonoBehaviour
         }
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
 
     private void OnDrawGizmosSelected()
     {
@@ -80,7 +80,7 @@ public class DropAnimator : MonoBehaviour
             Rotation.MultiplyPoint(new Vector3(rect.x + rect.width, targetPosition.y, rect.y)),
             Rotation.MultiplyPoint(new Vector3(rect.x + rect.width, targetPosition.y, rect.y + rect.height)),
             Rotation.MultiplyPoint(new Vector3(rect.x, targetPosition.y, rect.y + rect.height))
-        };     
+        };
 
         Drawer.DrawPolyhedralFigure(boxPoints, Vector3.zero, Color.yellow);
     }
@@ -98,6 +98,6 @@ public class DropAnimator : MonoBehaviour
         Drawer.DrawCurve(vectors, Vector3.zero, Color.yellow);
     }
 
-    #endif
+#endif
 
 }

@@ -21,7 +21,6 @@ namespace Assets.Scripts.Controllers.EntityControllers
         {
             timer = new();
             timer.OnStoped += ChoiseTargetPosition;
-            TargetPosition = entity.transform.position;
         }
 
         public override void Enter()

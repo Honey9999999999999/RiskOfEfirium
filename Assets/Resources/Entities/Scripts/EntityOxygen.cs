@@ -15,7 +15,7 @@ namespace Assets.Resources.Entities.Scripts
         public event Action OnOxygenRestore;
         public event Action OnOxygenRestored;
 
-        private float _passiveRegenerationPerSec = 4;        
+        private float _passiveRegenerationPerSec = 4;
         private bool isOxygen = true;
 
         private readonly ImprovedCharacteristic oxygenChar;
@@ -48,7 +48,7 @@ namespace Assets.Resources.Entities.Scripts
                         Coroutines.StopRoutine(oxygenCoroutine);
                     }
 
-                    oxygenCoroutine = isOxygen 
+                    oxygenCoroutine = isOxygen
                         ? StartRestoreOxygenAsynk(_passiveRegenerationPerSec, oxygenChar.StockValue)
                         : StartDamageOxygenAsynk();
                 }
@@ -57,11 +57,11 @@ namespace Assets.Resources.Entities.Scripts
 
         private void OnDisable()
         {
-            if(oxygenCoroutine != null)
+            if (oxygenCoroutine != null)
             {
                 Coroutines.StopRoutine(oxygenCoroutine);
             }
-            
+
             PlayerTransition.OnPositionChanged -= (Room room) => IsOxygen = room.presenceOfOxygen;
         }
 
@@ -79,14 +79,14 @@ namespace Assets.Resources.Entities.Scripts
 
                 if (damage > CurrentOxygen)
                 {
-                    damage -= damage - CurrentOxygen;                    
+                    damage -= damage - CurrentOxygen;
                 }
 
                 CurrentOxygen -= damage;
 
                 OnOxygenDamaged?.Invoke();
 
-                if(CurrentOxygen <= 0)
+                if (CurrentOxygen <= 0)
                 {
                     OnOxygenDown?.Invoke(stockDamage * 4);
                 }

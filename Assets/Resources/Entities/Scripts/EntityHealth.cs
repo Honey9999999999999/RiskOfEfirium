@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Xml.Serialization;
 using Assets.Scripts.CharacterStatsSystem;
 using CoroutineManager;
 using MyTimer;
@@ -58,6 +59,18 @@ namespace Assets.Scripts.Entities
         public bool IsMaxHealth => _health >= _maxHealth;
         public bool IsAlive => _health > 0;
 
+
+        public void Restore(float value)
+        {
+            bool isBeNotMax = _health < _maxHealth;
+            _health = Mathf.Clamp(_health + value, 0, _maxHealth);
+
+            OnHealthRestore?.Invoke();
+            if(isBeNotMax && IsMaxHealth)
+            {
+                OnHealthRestored?.Invoke();
+            }
+        }
 
         public void TakenDamage(float damage)
         {

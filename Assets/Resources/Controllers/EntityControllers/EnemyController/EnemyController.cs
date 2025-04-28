@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace EntityControllers
+﻿namespace EntityControllers
 {
     //[RequireComponent(typeof(SphereCollider))]
     //public class EnemyController : EntityController

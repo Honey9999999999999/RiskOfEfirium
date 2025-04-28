@@ -28,7 +28,7 @@ namespace Assets.Resources.MapSystem.Scripts
             if (!Game.sceneManager.isLoading)
             {
                 LoadSettings();
-            }            
+            }
         }
         private void LoadSettings()
         {

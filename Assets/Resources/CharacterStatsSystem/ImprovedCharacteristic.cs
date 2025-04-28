@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Assets.Resources.CharacterStatsSystem;
 using UnityEngine;
 
 namespace Assets.Scripts.CharacterStatsSystem
@@ -7,7 +9,21 @@ namespace Assets.Scripts.CharacterStatsSystem
     {
         public event Action<float> OnCharacteristicChanged;
 
-        public float CurrentValue { get; private set; }
+        private Dictionary<BuffType, Buff> buffMap = new()
+        {
+            [BuffType.Buff] = new(),
+            [BuffType.DeBuff] = new()
+        };
+
+        public float CurrentValue
+        {
+            get =>
+                currentValue
+                - (currentValue * buffMap[MinValue < MaxValue ? BuffType.DeBuff : BuffType.Buff].Value)
+                + (currentValue * buffMap[MinValue < MaxValue ? BuffType.Buff : BuffType.DeBuff].Value);
+            private set => currentValue = value;
+        }
+        private float currentValue;
         public float StockValue { get; }
         public float MinValue { get; }
         public float MaxValue { get; }
@@ -29,6 +45,14 @@ namespace Assets.Scripts.CharacterStatsSystem
             MaxValue = maxValue;
 
             Index = (StockValue - minValue) / (maxValue - minValue);
+
+            buffMap[BuffType.Buff].OnChanged += () => OnCharacteristicChanged?.Invoke(CurrentValue);
+            buffMap[BuffType.DeBuff].OnChanged += () => OnCharacteristicChanged?.Invoke(CurrentValue);
+        }
+
+        public void SetBuff(BuffType type, float procent, float time)
+        {
+            buffMap[type].SetBuff(procent, time);
         }
 
         public void Change(float percent)

@@ -17,12 +17,13 @@ namespace Assets.Scripts.Entities
 
         public EntityHealth health;
         public Armor armor;
-
+        [SerializeField] private Side side;
         [SerializeField] protected EntityController _entityController;
 
         public abstract CharacterCharacteristicCard PersonalCCC { get; }
 
         public Inventory Inventory { get; private set; }
+        public Side Side { get { return side; } }
 
 
         protected virtual void Awake()

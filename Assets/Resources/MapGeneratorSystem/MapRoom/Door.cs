@@ -14,7 +14,10 @@
         public IntVector2 TargetPosition => SelfPosition + Direction;
         public bool IsLeadSomeWhere { get; set; }
 
-        public Room ParentRoom { get { return parentRoom; } internal set 
+        public Room ParentRoom
+        {
+            get { return parentRoom; }
+            internal set
             {
                 parentRoom = (parentRoom ??= value);
             }

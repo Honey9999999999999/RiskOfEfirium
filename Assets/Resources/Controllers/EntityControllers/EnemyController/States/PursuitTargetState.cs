@@ -13,25 +13,20 @@ namespace Assets.Scripts.Controllers.EntityControllers
     {
         public event Action<Vector3> OnPursuit;
 
-        public PursuitTargetState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, float attackDistance) : base(stateMachine, entity, target, attackDistance)
+        public PursuitTargetState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target, ShellValue<Vector3> lastTargetPos, ShellValue<float> attackDistance) : base(stateMachine, entity, target, lastTargetPos, attackDistance)
         {
         }
-
-        Vector3 lastTargetPosition;
 
         public override void Enter()
         {
             base.Enter();
 
-            if (!IsSeeTarget())
-            {
-                CheckLastPosition();
-            }
+            OnPursuit.Invoke(lastTargetPos.value + new Vector3(0, 2, 0));
         }
 
         public override void Exit()
         {
-            base.Exit();            
+            base.Exit();
         }
 
         public override void Update()
@@ -40,31 +35,31 @@ namespace Assets.Scripts.Controllers.EntityControllers
 
             if (!IsSeeTarget())
             {
-                if(Vector3.Distance(lastTargetPosition, entity.transform.position) < 0.5f)
+                if (Vector3.Distance(lastTargetPos.value, entity.transform.position) < 0.1f)
                 {
                     stateMachine.EnterIn<SearchingTargetState>();
                 }
 
                 return;
             }
-            else
-            {
-                CheckLastPosition();
-            }
 
             if (IsOnAttackLine())
             {
                 stateMachine.EnterIn<AttackState>();
-                OnPursuit.Invoke(entity.transform.position);
+                OnPursuit?.Invoke(entity.transform.position);
 
                 return;
             }
+            else
+            {
+                CheckLastPositionAndPursuit();
+            }
         }
 
-        private void CheckLastPosition()
+        private void CheckLastPositionAndPursuit()
         {
-            lastTargetPosition = target.value.position;
-            OnPursuit.Invoke(lastTargetPosition);
+            lastTargetPos.value = target.value.position;
+            OnPursuit.Invoke(lastTargetPos.value);            
         }
     }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63267927bf8b42e4ea7e1ef030cae65b, type: 3}
+  m_Name: DirectedProjectileSpell
+  m_EditorClassIdentifier: 
+  cooldownTime: 2
+  rangeApplycation: 30
+  projectilePrefab: {fileID: 6561111288490704334, guid: 980f7817bc8793b4ab6f1b506883bc61, type: 3}
+  amount: 45
+  speed: 5
+  angleSpread: 360
+  direction: 0

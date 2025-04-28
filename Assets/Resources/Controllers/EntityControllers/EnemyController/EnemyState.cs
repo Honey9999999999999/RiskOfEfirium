@@ -1,5 +1,4 @@
-﻿using System;
-using Assets.Scripts.Entities;
+﻿using Assets.Scripts.Entities;
 using Assets.Scripts.Tools;
 using FSM;
 using UnityEngine;
@@ -11,7 +10,6 @@ namespace EntityControllers
         protected FinalStateMachine<EnemyState> stateMachine;
         protected LivingEntity entity;
         protected ShellValue<Transform> target;
-        public Vector3 TargetPosition { get; protected set; }
 
         public EnemyState(FinalStateMachine<EnemyState> stateMachine, LivingEntity entity, ShellValue<Transform> target) : base()
         {

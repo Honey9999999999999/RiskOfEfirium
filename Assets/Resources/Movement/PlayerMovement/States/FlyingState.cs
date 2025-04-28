@@ -48,7 +48,7 @@ namespace PlayerMoveStates
             Vector3 right = new Vector3(camera.right.x, 0, camera.right.z) * InputHandler.MoveDirection.x;
             Vector3 direction = forward + right;
 
-            _rigidbody.velocity = direction * (_speed.CurrentValue * 0.75f);
+            _rigidbody.velocity = direction * (speed.CurrentValue * 0.75f);
         }
 
         private void ViewOnDirection()

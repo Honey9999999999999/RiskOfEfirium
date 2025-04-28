@@ -34,7 +34,7 @@ namespace Assets.Resources.PlayerUI.Scripts
 
             player.OnEntityDeath += Death;
 
-            UpdateBar();            
+            UpdateBar();
         }
 
         private void UpdateBar()

@@ -50,7 +50,7 @@ public class PlayerTransition : MonoBehaviour
                 Vector3 targetPosition = new Vector3(position.x, 0, position.y) * MapCreator.OFFSET;
                 targetPosition += new Vector3(reverseDirection.x, 0, reverseDirection.y) * MapCreator.OFFSET / 4;
                 _player.transform.position = targetPosition;
-                
+
                 OnPositionChanged?.Invoke(door.TargetRoom);
             }
         }

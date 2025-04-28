@@ -58,7 +58,7 @@ public class LootContainer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.isTrigger && other.TryGetComponent<Player>(out _))
+        if (!other.isTrigger && other.TryGetComponent<Player>(out _))
         {
             InputHandler.OnInteractionButtonInput += OpenContainer;
         }
@@ -81,15 +81,15 @@ public class LootContainer : MonoBehaviour
             {
                 DropItem item = spawnsMap[typeSpawn]?.Invoke();
                 OnDroped?.Invoke(item);
-            }            
+            }
 
             openAmount--;
 
-            if(openAmount <= 0)
+            if (openAmount <= 0)
             {
                 isOpened = true;
-                OnOpened?.Invoke();            
-            }            
+                OnOpened?.Invoke();
+            }
         }
     }
 }

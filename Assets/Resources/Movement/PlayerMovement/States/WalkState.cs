@@ -47,7 +47,7 @@ namespace PlayerMoveStates
             Vector3 right = _movebleObject.right * InputHandler.MoveDirection.x;
             Vector3 direction = forward + right;
 
-            _rigidbody.velocity = direction * _speed.CurrentValue;
+            _rigidbody.velocity = direction * speed.CurrentValue;
         }
 
         private void ViewOnDirection()

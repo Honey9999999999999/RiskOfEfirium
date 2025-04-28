@@ -15,6 +15,8 @@ namespace Assets.Resources.BattleSystem.CustomEditors
         private SerializedProperty spellList;
         private SerializedProperty posList;
 
+        private SerializedProperty cooldown;
+
         private void OnEnable()
         {
             spellOrganaizer = (SpellOrganaizer)target;
@@ -23,6 +25,8 @@ namespace Assets.Resources.BattleSystem.CustomEditors
 
             spellList = serializedObject.FindProperty("spells");
             posList = serializedObject.FindProperty("startPosSpells");
+
+            cooldown = serializedObject.FindProperty("generalCooldown");
         }
 
         public override void OnInspectorGUI()
@@ -83,6 +87,16 @@ namespace Assets.Resources.BattleSystem.CustomEditors
             }
 
             EditorGUILayout.EndVertical();
+
+            EditorGUILayout.Space();
+
+            EditorGUIUtility.labelWidth = 150;
+            EditorGUILayout.PropertyField(cooldown);
+
+            if (cooldown.floatValue < 0)
+            {
+                cooldown.floatValue = 0;
+            }
 
             serializedObject.ApplyModifiedProperties();
         }

@@ -15,7 +15,7 @@ namespace Assets.Scripts.InputManager
         public static event Action OnEscInput;
         public static event Action OnInteractionButtonInput;
 
-        public static event Action OnMoveInput;        
+        public static event Action OnMoveInput;
 
         private float xMove;
         private float yMove;
@@ -24,8 +24,11 @@ namespace Assets.Scripts.InputManager
 
         public static Vector2 MoveDirection => new Vector2(Instance.xMove, Instance.yMove).normalized;
 
-        public static bool IsMoveDeadZone { get => (MoveDirection.x * MoveDirection.x)
-                                                 + (MoveDirection.y * MoveDirection.y) < 0.01f; }
+        public static bool IsMoveDeadZone
+        {
+            get => (MoveDirection.x * MoveDirection.x)
+                                                 + (MoveDirection.y * MoveDirection.y) < 0.01f;
+        }
 
         private void Awake()
         {

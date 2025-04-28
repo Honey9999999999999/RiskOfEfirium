@@ -2,8 +2,6 @@ using System;
 using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.CraftSystem.PersonalCards;
 using Assets.Scripts.Entities;
-using EnemyMovement;
-using UnityEngine;
 
 [Serializable]
 public class Enemy : LivingEntity

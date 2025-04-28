@@ -9,18 +9,23 @@ namespace EnemyMoveStates
 {
     internal class WalkState : EnemyMoveState
     {
-        public WalkState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> targetPos, ImprovedCharacteristic speed) : base(stateMachine, agent, targetPos, speed)
+        public WalkState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> followPos, ShellValue<Vector3> trackingPos, ImprovedCharacteristic speed) : base(stateMachine, agent, followPos, trackingPos, speed)
         {
         }
 
         public override void Enter()
         {
             base.Enter();
+
+            agent.speed = speed.CurrentValue;
         }
 
         public override void Exit()
         {
             base.Exit();
+
+            agent.velocity = Vector3.zero;
+            agent.ResetPath();
         }
 
         public override void Update()
@@ -36,7 +41,7 @@ namespace EnemyMoveStates
 
             if (Game.GetInteractor<NavMeshInteractor>().IsInitialized)
             {
-                agent.SetDestination(targetPosition.value);
+                agent.SetDestination(followPosition.value);
             }
         }
     }

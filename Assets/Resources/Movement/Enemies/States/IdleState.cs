@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.CharacterStatsSystem;
+﻿using Assets.Scripts.CharacterStatsSystem;
 using Assets.Scripts.Movement;
 using Assets.Scripts.Tools;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace EnemyMoveStates
 {
     internal class IdleState : EnemyMoveState
     {
-        public IdleState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> targetPos, ImprovedCharacteristic speed) : base(stateMachine, agent, targetPos, speed)
+        public IdleState(FSMMove stateMachine, NavMeshAgent agent, ShellValue<Vector3> followPos, ShellValue<Vector3> trackingPos, ImprovedCharacteristic speed) : base(stateMachine, agent, followPos, trackingPos, speed)
         {
         }
 
@@ -33,11 +32,11 @@ namespace EnemyMoveStates
                 return;
             }
 
-            //if(_controller.TryGetTarget(out _) && !IsLookingAtTarget())
-            //{
-            //    stateMachine.EnterIn<RotateState>();
-            //    return;
-            //}
+            if (!IsLookingAtTarget())
+            {
+                stateMachine.EnterIn<RotateState>();
+                return;
+            }
         }
     }
 }

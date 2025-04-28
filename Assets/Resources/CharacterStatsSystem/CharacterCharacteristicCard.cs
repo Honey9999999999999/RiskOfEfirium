@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.CharacterStatsSystem
 {
-    public abstract class CharacterCharacteristicCard
+    public class CharacterCharacteristicCard
     {
-        protected readonly Dictionary<Characteristics, ImprovedCharacteristic> characteristicsMap = new()
+        protected Dictionary<Characteristics, ImprovedCharacteristic> characteristicsMap = new()
         {
             [Characteristics.RateFirePerMin] = new ImprovedCharacteristic(45, 30, 240),
             [Characteristics.MaxAmmo] = new ImprovedCharacteristic(15, 6, 60),
@@ -25,5 +25,15 @@ namespace Assets.Scripts.CharacterStatsSystem
         public float GetValueOf(Characteristics name) => characteristicsMap[name].CurrentValue;
         public ImprovedCharacteristic Get(Characteristics name) => characteristicsMap[name];
         public void ChangeOf(Characteristics name, float percent) => characteristicsMap[name].Change(percent);
+
+        public CharacterCharacteristicCard Clone()
+        {
+            CharacterCharacteristicCard cloneCard = new()
+            {
+                characteristicsMap = new Dictionary<Characteristics, ImprovedCharacteristic>(characteristicsMap)
+            };
+
+            return cloneCard;
+        }
     }
 }

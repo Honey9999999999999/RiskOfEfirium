@@ -57,7 +57,7 @@ namespace Assets.Scripts.MapDrawer
             {
                 Image image = ResourceLoader.Load<Image>("MiniMapSystem/Prefabs/Minimaze/Oxygen", drawingRoom.transform);
                 image.SetNativeSize();
-            }            
+            }
 
             drawingRoom.transform.localPosition = roomPosition * _config.textureBlockSize;
 

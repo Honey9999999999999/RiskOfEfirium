@@ -44,11 +44,11 @@ namespace Assets.Scripts.LabyrinthGenerator
             get { return parentRoom; }
             internal set
             {
-                if(parentRoom == null)
+                if (parentRoom == null)
                 {
                     parentRoom = value;
 
-                    foreach(Door door in doors)
+                    foreach (Door door in doors)
                     {
                         door.ParentRoom = parentRoom;
                     }

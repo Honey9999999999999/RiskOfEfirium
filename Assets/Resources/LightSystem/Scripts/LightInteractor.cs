@@ -34,7 +34,7 @@ public class LightInteractor : Interactor
     {
         base.OnCreate();
 
-        light = ResourceLoader.Load<Light>("LightSystem/Prefabs/Directional Light");        
+        light = ResourceLoader.Load<Light>("LightSystem/Prefabs/Directional Light");
     }
 
     public override void OnStart()
@@ -53,8 +53,8 @@ public class LightInteractor : Interactor
 
             // Назначаем текстуры Lightmap (глобально для сцены)
             LightmapData[] lightmapData = new LightmapData[lightMaps.Count];
-            
-            for(int i = 0; i < lightMaps.Count; i++)
+
+            for (int i = 0; i < lightMaps.Count; i++)
             {
                 lightmapData[i] = new LightmapData
                 {
@@ -73,7 +73,7 @@ public class LightInteractor : Interactor
         {
             roomLight.SetLightMap(LIGHT_MAIN_INDEX);
         }
-        else if(roomLight.isEmergencyLighting)
+        else if (roomLight.isEmergencyLighting)
         {
             if (roomLight.isEmergencyBlinking)
             {
@@ -120,12 +120,12 @@ public class LightInteractor : Interactor
 
     private void StopBlinking()
     {
-        if(blinkingCorroutine != null)
+        if (blinkingCorroutine != null)
         {
             switchTimer.Reset();
             switchTimer = new();
 
             Coroutines.StopRoutine(blinkingCorroutine);
-        }        
+        }
     }
 }

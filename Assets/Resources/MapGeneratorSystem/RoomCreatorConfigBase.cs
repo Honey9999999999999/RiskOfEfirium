@@ -8,7 +8,7 @@ namespace Assets.Scripts.LabyrinthGenerator
         protected delegate Room RoomCreator<T>();
         protected readonly Dictionary<RoomType, ControlRandomList<RoomType>> _roomMap;
         protected readonly Dictionary<RoomType, ControlRandomList<RoomCreator<Room>>> _sizeMap;
-        
+
         protected readonly Dictionary<RoomType, ControlRandomList<RoomType>> _roomNoOxMap;
         protected readonly Dictionary<RoomType, ControlRandomList<RoomCreator<Room>>> _sizeNoOxMap;
 
@@ -35,11 +35,11 @@ namespace Assets.Scripts.LabyrinthGenerator
         {
             RoomType targetRoomType = isStartNoOxygenZone() ? _roomNoOxMap[parentRoom.type].GetValue() : _roomMap[parentRoom.type].GetValue();
 
-            Room room = _sizeMap[targetRoomType].GetValue().Invoke();            
+            Room room = _sizeMap[targetRoomType].GetValue().Invoke();
             room.SetTypeRoom(targetRoomType);
 
             room.isEndNoOxygenZone = isEndNoOxygenZone();
-            room.presenceOfOxygen = !(!room.isEndNoOxygenZone && (isStartNoOxygenZone() || !parentRoom.presenceOfOxygen));            
+            room.presenceOfOxygen = !(!room.isEndNoOxygenZone && (isStartNoOxygenZone() || !parentRoom.presenceOfOxygen));
 
             return room;
 

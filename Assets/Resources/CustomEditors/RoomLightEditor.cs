@@ -29,7 +29,7 @@ namespace Assets.Resources.CustomEditors
             roomLight.type = (RoomType)EditorGUILayout.EnumPopup("Тип комнаты", roomLight.type);
             roomLight.indexLigtMapOffset = EditorGUILayout.IntField("Сдвиг по индексу карт света", roomLight.indexLigtMapOffset);
 
-            if(roomLight.indexLigtMapOffset < 0)
+            if (roomLight.indexLigtMapOffset < 0)
             {
                 roomLight.indexLigtMapOffset = 0;
             }
@@ -57,7 +57,7 @@ namespace Assets.Resources.CustomEditors
                     if (roomLight.isEmergencyBlinking)
                     {
                         EditorGUILayout.PropertyField(lightProperty, new GUIContent("Сломанный источник света"));
-                    }                    
+                    }
                 }
             }
 

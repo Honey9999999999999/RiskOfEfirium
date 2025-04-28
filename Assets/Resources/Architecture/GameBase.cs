@@ -28,7 +28,7 @@ namespace Architecture
             {
                 sceneManager.OnSceneLoaded += (_) =>
                 {
-                    action?.Invoke();                    
+                    action?.Invoke();
                 };
             }
             else
