@@ -179,9 +179,9 @@ MonoBehaviour:
   itemName: 0
   roomType: 14
   enemyName: 0
-  maxLootAmount: 1
-  openAmount: 1
-  isRandomazeLootAmount: 0
+  maxLootAmount: 10
+  openAmount: 3
+  isRandomazeLootAmount: 1
 --- !u!114 &8608304405978960443
 MonoBehaviour:
   m_ObjectHideFlags: 0
