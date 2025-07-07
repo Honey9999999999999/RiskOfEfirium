@@ -13,7 +13,7 @@ namespace Maps
             {
                 [typeof(SimpleRoomC)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
+                    { 1, "MapSystem/Prefabs/Rooms/GatewayRoom_D1" }
                 }
             },
             [RoomType.ResidentialRoom] = new()
@@ -46,11 +46,11 @@ namespace Maps
             {
                 [typeof(SimpleRoomA)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/Room" }
+                    { 1, "MapSystem/Prefabs/Rooms/CargoRoom_D4" }
                 },
                 [typeof(SimpleRoomB)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                    { 1, "MapSystem/Prefabs/Rooms/CargoRoom_D2" }
                 }
             },
             [RoomType.LifeSupportRoom] = new()
@@ -78,21 +78,21 @@ namespace Maps
             {
                 [typeof(SimpleRoomC)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/Armory" }
+                    { 1, "MapSystem/Prefabs/Rooms/ArmoryRoom_D1" }
                 }
             },
             [RoomType.EngineeringRoom] = new()
             {
                 [typeof(SimpleRoomC)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
+                    { 1, "MapSystem/Prefabs/Rooms/EngineeringRoom_D1" }
                 }
             },
             [RoomType.Restroom] = new()
             {
                 [typeof(SimpleRoomC)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
+                    { 1, "MapSystem/Prefabs/Rooms/RestRoom_D1" }
                 }
             }
         };
