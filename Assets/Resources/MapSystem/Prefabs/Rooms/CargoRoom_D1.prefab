@@ -1175,7 +1175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3491136932262459886}
   m_Layer: 0
-  m_Name: Cargo_Room_D1
+  m_Name: CargoRoom_D1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
