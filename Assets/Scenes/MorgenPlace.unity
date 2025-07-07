@@ -430,11 +430,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: EngineeringRoom_D1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1533834292862656881, guid: e41ef9a26f4921049810f1e9d998bdd2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2946878011933120406, guid: e41ef9a26f4921049810f1e9d998bdd2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1292033509038276047}
   m_SourcePrefab: {fileID: 100100000, guid: e41ef9a26f4921049810f1e9d998bdd2, type: 3}
+--- !u!1 &1292033509038276046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2946878011933120406, guid: e41ef9a26f4921049810f1e9d998bdd2, type: 3}
+  m_PrefabInstance: {fileID: 1292033509038276045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1292033509038276047
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292033509038276046}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.5, y: 2, z: 5.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
