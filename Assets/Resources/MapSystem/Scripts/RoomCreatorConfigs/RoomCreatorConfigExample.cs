@@ -20,26 +20,26 @@ namespace Maps
             {
                 [typeof(SimpleRoomA)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/Room" }
+                    { 1, "MapSystem/Prefabs/Rooms/ResidentalRoom_D4" }
                 },
                 [typeof(SimpleRoomB)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                    { 1, "MapSystem/Prefabs/Rooms/ResidentalRoom_D2" }
                 },
                 [typeof(SimpleRoomC)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomC" }
+                    { 1, "MapSystem/Prefabs/Rooms/ResidentalRoom_D1" }
                 }
             },
             [RoomType.RecreationRoom] = new()
             {
                 [typeof(SimpleRoomA)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/Room" }
+                    { 1, "MapSystem/Prefabs/Rooms/RecreationRoom_D4" }
                 },
                 [typeof(SimpleRoomB)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                    { 1, "MapSystem/Prefabs/Rooms/RecreationRoom_D2" }
                 }
             },
             [RoomType.CargoRoom] = new()
@@ -57,7 +57,7 @@ namespace Maps
             {
                 [typeof(SimpleRoomB)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                    { 1, "MapSystem/Prefabs/Rooms/LifeSupportRoom_D2" }
                 }
             },
             [RoomType.CommandRoom] = new()
@@ -71,7 +71,7 @@ namespace Maps
             {
                 [typeof(SimpleRoomB)] = new()
                 {
-                    { 1, "MapSystem/Prefabs/Rooms/RoomB" }
+                    { 1, "MapSystem/Prefabs/Rooms/SecurityRoom_D2" }
                 }
             },
             [RoomType.Armory] = new()

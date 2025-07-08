@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 3445529209906486811}
   - component: {fileID: 7770662918960985502}
   m_Layer: 0
-  m_Name: LifeSupport_D2
+  m_Name: LifeSupportRoom_D2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
