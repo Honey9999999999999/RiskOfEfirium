@@ -16,12 +16,14 @@ namespace Assets.Resources.CustomEditors
         private LootContainer container;
         private SerializedProperty dropEventProperty;
         private SerializedProperty openEventProperty;
+        private SerializedProperty animatorProperty;
 
         public void OnEnable()
         {
             container = (LootContainer)target;
             dropEventProperty = serializedObject.FindProperty("OnDroped");
             openEventProperty = serializedObject.FindProperty("OnOpened");
+            animatorProperty = serializedObject.FindProperty("animator");
         }
 
         public override void OnInspectorGUI()
@@ -69,6 +71,7 @@ namespace Assets.Resources.CustomEditors
 
             EditorGUILayout.PropertyField(dropEventProperty, new GUIContent("Событие при дропе предмета"));
             EditorGUILayout.PropertyField(openEventProperty, new GUIContent("Событие при опустении контейнера"));
+            EditorGUILayout.PropertyField(animatorProperty, new GUIContent("Аниматор, если нужен"));
 
             // Применяем изменения
             serializedObject.ApplyModifiedProperties();

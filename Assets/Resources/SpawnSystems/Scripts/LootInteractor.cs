@@ -29,7 +29,7 @@ namespace Assets.Scripts.InventorySystem
         }
         public DropItem SpawnLoot(RoomType roomType, Transform transform)
         {
-            return SpawnLoot(_configRoomLoot.GetSpawnItem(roomType), transform.position, transform);
+            return SpawnLoot(_configRoomLoot.GetSpawnItem(roomType), transform.position, transform.parent);
         }
         public DropItem SpawnLoot(ItemNames dropName, Vector3 position, Transform parent = null)
         {

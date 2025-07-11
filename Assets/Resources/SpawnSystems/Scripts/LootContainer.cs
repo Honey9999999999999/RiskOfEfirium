@@ -4,6 +4,7 @@ using Assets.Scripts.Entities;
 using Assets.Scripts.InputManager;
 using Assets.Scripts.InventorySystem;
 using Assets.Scripts.LabyrinthGenerator;
+using MyTimer;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -31,12 +32,16 @@ public class LootContainer : MonoBehaviour
 
     public bool isRandomazeLootAmount;
 
+    public Animator animator;
+
     private LootInteractor lootInteractor;
 
     private delegate DropItem OnSpawn();
     private Dictionary<TypeSpawn, OnSpawn> spawnsMap;
 
     private bool isOpened;
+
+    private Timer timer = new();
 
     private void Start()
     {
@@ -46,6 +51,9 @@ public class LootContainer : MonoBehaviour
             [TypeSpawn.Room] = () => lootInteractor.SpawnLoot(roomType, transform),
             [TypeSpawn.Enemy] = () => lootInteractor.SpawnLoot(enemyName, transform)
         };
+
+        timer = new Timer();
+        timer.OnStoped += DropItem;
 
         if (Game.sceneManager.isLoading)
         {
@@ -75,21 +83,35 @@ public class LootContainer : MonoBehaviour
     {
         if (!isOpened)
         {
-            int lootCounter = isRandomazeLootAmount ? Random.Range(1, maxLootAmount) : maxLootAmount;
-
-            for (int i = 0; i < lootCounter; i++)
+            if (animator != null)
             {
-                DropItem item = spawnsMap[typeSpawn]?.Invoke();
-                OnDroped?.Invoke(item);
+                animator.SetTrigger("Looting");
+                float timeAnim = animator.GetCurrentAnimatorStateInfo(0).length;
+                timer.Start(timeAnim);
             }
-
-            openAmount--;
-
-            if (openAmount <= 0)
+            else
             {
-                isOpened = true;
-                OnOpened?.Invoke();
+                DropItem();
             }
+        }
+    }
+
+    private void DropItem()
+    {        
+        int lootCounter = isRandomazeLootAmount ? Random.Range(1, maxLootAmount) : maxLootAmount;
+
+        for (int i = 0; i < lootCounter; i++)
+        {
+            DropItem item = spawnsMap[typeSpawn]?.Invoke();
+            OnDroped?.Invoke(item);
+        }
+
+        openAmount--;
+
+        if (openAmount <= 0)
+        {
+            isOpened = true;
+            OnOpened?.Invoke();
         }
     }
 }
