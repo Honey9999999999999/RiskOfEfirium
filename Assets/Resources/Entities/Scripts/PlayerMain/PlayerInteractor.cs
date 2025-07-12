@@ -40,6 +40,7 @@ public class PlayerInteractor : Interactor
 
         GameObject playerObj = ResourceLoader.Load<GameObject>(PLAYER_PATH);
         playerObj.transform.position = new Vector3(0, 1, 0);
+        playerObj.transform.rotation = GameObject.Find("GatewayRoom_D1(Clone)").transform.rotation;
 
         if (!playerObj.TryGetComponent(out player))
         {
